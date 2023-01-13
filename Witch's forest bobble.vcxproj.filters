@@ -2,9 +2,33 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="entity.cpp" />
+    <ClCompile Include="src\Ball\ball.cpp">
+      <Filter>Ball</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entity\entity.cpp">
+      <Filter>Entity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="entity.h" />
+    <Filter Include="Entity">
+      <UniqueIdentifier>{e9f0ed00-9c1f-470b-bf90-10228c0e84cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GlobalUtilities">
+      <UniqueIdentifier>{312bd896-aa32-4b27-8d03-57e9f7a60c61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Ball">
+      <UniqueIdentifier>{7ef14ace-8978-40e2-ab88-cb9b55b895e5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\GlobalUtilities\globalUtilities.h">
+      <Filter>GlobalUtilities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Ball\ball.h">
+      <Filter>Ball</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entity\entity.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

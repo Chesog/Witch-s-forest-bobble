@@ -158,11 +158,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="entity.cpp" />
+    <ClCompile Include="src\Ball\ball.cpp" />
+    <ClCompile Include="src\Entity\entity.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="entity.h" />
+    <ClInclude Include="src\Ball\ball.h" />
+    <ClInclude Include="src\Entity\entity.h" />
+    <ClInclude Include="src\GlobalUtilities\globalUtilities.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
