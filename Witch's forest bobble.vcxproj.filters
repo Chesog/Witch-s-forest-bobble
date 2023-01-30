@@ -5,6 +5,13 @@
     <ClCompile Include="src\Entity\entity.cpp">
       <Filter>Entity</Filter>
     </ClCompile>
+    <ClCompile Include="src\Ball\ball.cpp">
+      <Filter>Ball</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Player\player.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game\game.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entity">
@@ -12,6 +19,12 @@
     </Filter>
     <Filter Include="GlobalUtilities">
       <UniqueIdentifier>{de9028a2-406c-435d-9f0e-8e6754935dba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Ball">
+      <UniqueIdentifier>{8a4d3a39-7dc5-46ea-bea4-aaf64bed0033}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Player">
+      <UniqueIdentifier>{48ab3d47-be2e-4a5c-bc0b-7c4ad1884bc2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -21,5 +34,12 @@
     <ClInclude Include="src\Entity\entity.h">
       <Filter>Entity</Filter>
     </ClInclude>
+    <ClInclude Include="src\Ball\ball.h">
+      <Filter>Ball</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Player\player.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Game\game.h" />
   </ItemGroup>
 </Project>

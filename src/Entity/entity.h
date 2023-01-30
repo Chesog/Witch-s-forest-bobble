@@ -4,7 +4,7 @@
 
 class Entity
 {
-private:
+protected:
 	Vector2 pos;
 	EntityType type;
 	float speed;

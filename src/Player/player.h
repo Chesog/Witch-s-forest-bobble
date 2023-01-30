@@ -6,9 +6,11 @@ class Player : public Entity
 private:
 	float width;
 	float height;
-	float lifes;
+
+	int lives;
+
 public:
-	Player(Vector2 pos, EntityType type, float speed, float points, float width,float height,float lifes) : Entity(pos, type, speed, points);
+	Player(Vector2 pos, EntityType type, float speed, float points, float width, float height, float lives);
 	~Player();
 	void Draw() override;
 	void Movement() override;
