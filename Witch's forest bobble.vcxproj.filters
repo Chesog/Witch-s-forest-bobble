@@ -2,30 +2,21 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\Ball\ball.cpp">
-      <Filter>Ball</Filter>
-    </ClCompile>
     <ClCompile Include="src\Entity\entity.cpp">
       <Filter>Entity</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entity">
-      <UniqueIdentifier>{e9f0ed00-9c1f-470b-bf90-10228c0e84cf}</UniqueIdentifier>
+      <UniqueIdentifier>{ca4f42e2-1371-4c3a-8cb7-9061f23cbc9c}</UniqueIdentifier>
     </Filter>
     <Filter Include="GlobalUtilities">
-      <UniqueIdentifier>{312bd896-aa32-4b27-8d03-57e9f7a60c61}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Ball">
-      <UniqueIdentifier>{7ef14ace-8978-40e2-ab88-cb9b55b895e5}</UniqueIdentifier>
+      <UniqueIdentifier>{de9028a2-406c-435d-9f0e-8e6754935dba}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\GlobalUtilities\globalUtilities.h">
       <Filter>GlobalUtilities</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Ball\ball.h">
-      <Filter>Ball</Filter>
     </ClInclude>
     <ClInclude Include="src\Entity\entity.h">
       <Filter>Entity</Filter>

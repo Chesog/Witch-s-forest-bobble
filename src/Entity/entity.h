@@ -13,7 +13,7 @@ public:
 	Entity(Vector2 pos,EntityType type,float speed,float points);
 	virtual ~Entity();
 	virtual void Draw() = 0;
+	virtual void Movement() = 0;
 	bool CheckColition(Entity* entity);
 
 };
-
