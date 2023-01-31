@@ -1,6 +1,11 @@
-#include <iostream>
+#include "Game/game.h"
 
-void main() 
+int main() 
 {
-	std::cout << "hola mundo" << std::endl;
+	Game* game = new Game();
+	game->GameLoop();
+
+	delete game;
+
+	return 0;
 }

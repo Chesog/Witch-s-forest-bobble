@@ -16,7 +16,9 @@ public:
 	Game();
 	~Game();
 
+	void GameLoop();
 	void GameInput();
+	void Update();
 	void Draw();
 	void DrawBoard();
 
