@@ -5,6 +5,11 @@
 
 Game::Game()
 {
+	screenWidht = 1280;
+	screenHeight = 720;
+
+	InitWindow(screenWidht, screenHeight, "Witch's forest bobble");
+
 	float playerWidth = 20.0f;
 	float playerHeight = 40.0f;
 	float playerSpeed = 200.0f;
@@ -12,18 +17,19 @@ Game::Game()
 
 	int playerInitalLives = 3;
 
-	Vector2 initialPos = Vector2{ static_cast<float>(GetScreenWidth() / 2) , static_cast<float>((GetScreenHeight() / 2) - playerHeight) };
+	Vector2 initialPos;
+	initialPos.x = static_cast<float>(GetScreenWidth() / 2);
+	initialPos.y = static_cast<float>(GetScreenHeight() -  playerHeight * 2);
 
 	this->player = new Player(initialPos, EntityType::Player, playerSpeed, playerInitalScore, playerWidth, playerHeight, playerInitalLives);
 	this->initGame = true;
 
 	cout << "Witch-s-forest-bobble was created" << endl;
 
-	int screenWidht = 1280;
-	int screenHeight = 720;
 
 
-	InitWindow(screenWidht, screenHeight, "Witch's forest bobble");
+
+	
 }
 
 Game::~Game()
@@ -74,6 +80,11 @@ void Game::GameInput()
 void Game::Update()
 {
 	player->Movement();
+
+	Vector2 pos = player->GetPosition();
+
+	cout << "player pos x " << pos.x << endl;
+	cout << "player pos y " << pos.y << endl;
 }
 
 void Game::Draw()
@@ -82,6 +93,8 @@ void Game::Draw()
 	ClearBackground(BLACK);
 
 	player->Draw();
+
+	
 
 	EndDrawing();
 }

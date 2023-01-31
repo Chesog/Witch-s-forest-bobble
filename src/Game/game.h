@@ -11,7 +11,8 @@ private:
 	vector<Entity*> entities;
 	Player* player;
 	bool initGame;
-
+	int screenWidht;
+	int screenHeight;
 public:
 	Game();
 	~Game();

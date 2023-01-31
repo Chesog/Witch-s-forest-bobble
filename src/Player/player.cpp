@@ -10,6 +10,8 @@ Player::Player(Vector2 pos, EntityType type, float speed, float points, float wi
 	this->points = points;
 	rec.width = width;
 	rec.height = height;
+	rec.x = pos.x;
+	rec.y = pos.y;
 	this->lives = lifes;
 	normalizedDirection = Vector2{0.0f,0.0f};
 	rotation = 0.0f;
@@ -35,7 +37,12 @@ void Player::SetDirection(Vector2 newDirection)
 
 void Player::Draw() 
 {
-	DrawRectanglePro(rec,pos,rotation,GREEN);
+	Vector2 origin;
+	origin.x = rec.width / 2;
+	origin.y = rec.height / 2;
+
+	DrawRectanglePro(rec,origin,rotation,GREEN);
+
 }
 void Player::Movement() 
 {
