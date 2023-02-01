@@ -2,13 +2,14 @@
 #include <vector>
 #include "Entity/entity.h"
 #include "Player/player.h"
+#include "Ball/ball.h"
 
 using namespace std;
 
 class Game
 {
 private:
-	vector<Entity*> entities;
+	vector<Ball*> gameBalls;
 	Player* player;
 	bool initGame;
 	int screenWidht;

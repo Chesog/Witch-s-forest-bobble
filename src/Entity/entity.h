@@ -5,10 +5,10 @@
 class Entity
 {
 protected:
-	Vector2 pos;
-	EntityType type;
-	float speed;
 	float points;
+	Vector2 pos;
+	Vector2 speed;
+	EntityType type;
 public:
 	Entity(Vector2 pos,EntityType type,float speed,float points);
 	virtual ~Entity();

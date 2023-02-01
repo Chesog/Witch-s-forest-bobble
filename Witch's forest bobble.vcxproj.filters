@@ -11,7 +11,9 @@
     <ClCompile Include="src\Player\player.cpp">
       <Filter>Player</Filter>
     </ClCompile>
-    <ClCompile Include="src\Game\game.cpp" />
+    <ClCompile Include="src\Game\game.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entity">
@@ -25,6 +27,9 @@
     </Filter>
     <Filter Include="Player">
       <UniqueIdentifier>{48ab3d47-be2e-4a5c-bc0b-7c4ad1884bc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{03b0ff79-3b4b-4ae6-9f3d-a049709e28ff}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -40,6 +45,8 @@
     <ClInclude Include="src\Player\player.h">
       <Filter>Player</Filter>
     </ClInclude>
-    <ClInclude Include="src\Game\game.h" />
+    <ClInclude Include="src\Game\game.h">
+      <Filter>Game</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

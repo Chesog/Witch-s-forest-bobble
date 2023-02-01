@@ -10,8 +10,8 @@ Game::Game()
 
 	InitWindow(screenWidht, screenHeight, "Witch's forest bobble");
 
-	float playerWidth = 20.0f;
-	float playerHeight = 40.0f;
+	float playerWidth = 40.0f;
+	float playerHeight = 20.0f;
 	float playerSpeed = 200.0f;
 	float playerInitalScore = 0.0f;
 
@@ -51,6 +51,49 @@ void Game::GameLoop()
 
 void Game::GameInput()
 {
+	if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
+	{
+		Vector2 ballInitialPos;
+		ballInitialPos.x = player->GetXPosition();
+		ballInitialPos.y = player->GetYPosition() - (player->GetWidth() / 2);
+
+		float ballSpeed = 200.0f;
+		float ballPoints = 10.0f;
+		float ballRad = 20.0f;
+
+		Color ballColor;
+
+		int colorSelection = GetRandomValue(1,4);
+
+		switch (colorSelection)
+		{
+		case 1:
+			ballColor = RED;
+			break;
+		case 2 :
+			ballColor = YELLOW;
+			break;
+		case 3:
+			ballColor = WHITE;
+			break;
+		case 4:
+			ballColor = BLUE;
+			break;
+		default:
+			break;
+		}
+
+		gameBalls.push_back(new Ball(ballInitialPos,player->GetDirection(),EntityType::Ball,ballSpeed,ballPoints,ballRad,ballColor));
+		
+	}
+
+
+}
+
+void Game::Update()
+{
+	player->Movement();
+
 	Vector2 distanceDiff;
 
 
@@ -61,30 +104,29 @@ void Game::GameInput()
 
 	if (GetMousePosition().x < player->GetXPosition() && GetMousePosition().y < player->GetYPosition())
 	{
-		angle += 180;
+		angle += 180 * GetFrameTime();
 	}
 	if (GetMousePosition().x < player->GetXPosition() && GetMousePosition().y > player->GetYPosition())
 	{
-		angle += 180;
+		angle += 180 * GetFrameTime();
 	}
 	if (GetMousePosition().x > player->GetXPosition() && GetMousePosition().y > player->GetYPosition())
 	{
-		angle += 360;
+		angle += 360 * GetFrameTime();
 	}
 
 	player->SetRotation(angle);
 
 	player->SetDirection(Vector2Normalize(distanceDiff));
-}
 
-void Game::Update()
-{
-	player->Movement();
 
-	Vector2 pos = player->GetPosition();
-
-	cout << "player pos x " << pos.x << endl;
-	cout << "player pos y " << pos.y << endl;
+	if (gameBalls.size() != 0)
+	{
+		for (int i = 0; i < gameBalls.size(); i++)
+		{
+			gameBalls[i]->Movement();
+		}
+	}
 }
 
 void Game::Draw()
@@ -94,7 +136,13 @@ void Game::Draw()
 
 	player->Draw();
 
-	
+	if (gameBalls.size() != 0)
+	{
+		for (int i = 0; i < gameBalls.size(); i++)
+		{
+			gameBalls[i]->Draw();
+		}
+	}
 
 	EndDrawing();
 }

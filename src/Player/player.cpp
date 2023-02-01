@@ -6,7 +6,8 @@ Player::Player(Vector2 pos, EntityType type, float speed, float points, float wi
 {
 	this->pos = pos;
 	this->type = type;
-	this->speed = speed;
+	this->speed.x = speed;
+	this->speed.y = speed;
 	this->points = points;
 	rec.width = width;
 	rec.height = height;
@@ -77,4 +78,14 @@ Vector2 Player::GetPosition()
 Rectangle Player::GetPlayerRect() 
 {
 	return rec;
+}
+
+float Player::GetWidth() 
+{
+	return rec.width;
+}
+
+float Player::GetHeight() 
+{
+	return rec.height;
 }

@@ -22,6 +22,8 @@ public:
 	float GetRotation();
 	float GetXPosition();
 	float GetYPosition();
+	float GetWidth();
+	float GetHeight();
 
 	Vector2 GetDirection();
 	Vector2 GetPosition();
