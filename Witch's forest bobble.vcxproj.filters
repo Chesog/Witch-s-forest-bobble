@@ -14,6 +14,9 @@
     <ClCompile Include="src\Game\game.cpp">
       <Filter>Game</Filter>
     </ClCompile>
+    <ClCompile Include="src\Hud\hud.cpp">
+      <Filter>Hud</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entity">
@@ -31,6 +34,9 @@
     <Filter Include="Game">
       <UniqueIdentifier>{03b0ff79-3b4b-4ae6-9f3d-a049709e28ff}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Hud">
+      <UniqueIdentifier>{b14b61b4-37c0-4f48-9a89-3c4a19a7b8ca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\GlobalUtilities\globalUtilities.h">
@@ -47,6 +53,9 @@
     </ClInclude>
     <ClInclude Include="src\Game\game.h">
       <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Hud\hud.h">
+      <Filter>Hud</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

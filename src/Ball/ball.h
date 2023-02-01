@@ -1,6 +1,9 @@
 #include "Entity/entity.h"
 #include "raylib.h"
 
+enum class BallColors {Red,Yellow,White,Blue};
+
+
 class Ball : public Entity
 {
 private:

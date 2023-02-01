@@ -63,20 +63,20 @@ void Game::GameInput()
 
 		Color ballColor;
 
-		int colorSelection = GetRandomValue(1,4);
+		int colorSelection = GetRandomValue(static_cast<int>(BallColors::Red), static_cast<int>(BallColors::Blue));
 
 		switch (colorSelection)
 		{
-		case 1:
+		case static_cast<int>(BallColors::Red):
 			ballColor = RED;
 			break;
-		case 2 :
+		case static_cast<int>(BallColors::Yellow):
 			ballColor = YELLOW;
 			break;
-		case 3:
+		case static_cast<int>(BallColors::White):
 			ballColor = WHITE;
 			break;
-		case 4:
+		case static_cast<int>(BallColors::Blue):
 			ballColor = BLUE;
 			break;
 		default:
