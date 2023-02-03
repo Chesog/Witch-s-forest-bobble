@@ -9,7 +9,11 @@ class Hud
 {
 private:
 	Player* player;
-	vector<Ball*> gameBalls;
+	//vector<Ball*> gameBalls;
+
+	Rectangle leftWall;
+	Rectangle rightWall;
+	Rectangle topWall;
 
 public:
 	Hud(Player* player, vector<Ball*> gameBalls);

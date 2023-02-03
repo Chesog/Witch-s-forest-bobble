@@ -19,21 +19,32 @@ Game::Game()
 
 	Vector2 initialPos;
 	initialPos.x = static_cast<float>(GetScreenWidth() / 2);
-	initialPos.y = static_cast<float>(GetScreenHeight() -  playerHeight * 2);
+	initialPos.y = static_cast<float>(GetScreenHeight() - playerHeight * 2);
 
 	this->player = new Player(initialPos, EntityType::Player, playerSpeed, playerInitalScore, playerWidth, playerHeight, playerInitalLives);
 	this->initGame = true;
+
+	this->hud = new Hud(player, gameBalls);
 
 	cout << "Witch-s-forest-bobble was created" << endl;
 
 
 
 
-	
+
 }
 
 Game::~Game()
 {
+	for (int i = 0; i < gameBalls.size(); i++)
+	{
+		delete gameBalls[i];
+	}
+
+	delete player;
+
+	delete hud;
+
 	cout << "Witch-s-forest-bobble was destroyed" << endl;
 }
 
@@ -53,41 +64,48 @@ void Game::GameInput()
 {
 	if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
 	{
-		Vector2 ballInitialPos;
-		ballInitialPos.x = player->GetXPosition();
-		ballInitialPos.y = player->GetYPosition() - (player->GetWidth() / 2);
-
-		float ballSpeed = 200.0f;
-		float ballPoints = 10.0f;
-		float ballRad = 20.0f;
-
-		Color ballColor;
-
-		int colorSelection = GetRandomValue(static_cast<int>(BallColors::Red), static_cast<int>(BallColors::Blue));
-
-		switch (colorSelection)
+		if (player->GetCanShoot())
 		{
-		case static_cast<int>(BallColors::Red):
-			ballColor = RED;
-			break;
-		case static_cast<int>(BallColors::Yellow):
-			ballColor = YELLOW;
-			break;
-		case static_cast<int>(BallColors::White):
-			ballColor = WHITE;
-			break;
-		case static_cast<int>(BallColors::Blue):
-			ballColor = BLUE;
-			break;
-		default:
-			break;
+
+			Vector2 ballInitialPos;
+			ballInitialPos.x = player->GetXPosition();
+			ballInitialPos.y = player->GetYPosition() - (player->GetWidth() / 2);
+
+			float ballSpeed = 200.0f;
+			float ballPoints = 10.0f;
+			float ballRad = 20.0f;
+
+			Color ballColor;
+
+			int colorSelection = GetRandomValue(static_cast<int>(BallColors::Red), static_cast<int>(BallColors::Blue));
+
+			switch (colorSelection)
+			{
+			case static_cast<int>(BallColors::Red):
+				ballColor = RED;
+				break;
+			case static_cast<int>(BallColors::Yellow):
+				ballColor = YELLOW;
+				break;
+			case static_cast<int>(BallColors::White):
+				ballColor = WHITE;
+				break;
+			case static_cast<int>(BallColors::Blue):
+				ballColor = BLUE;
+				break;
+			default:
+				ballColor = BLACK;
+				break;
+			}
+
+			gameBalls.push_back(new Ball(ballInitialPos, player->GetDirection(), EntityType::Ball, ballSpeed, ballPoints, ballRad, ballColor));
+
 		}
-
-		gameBalls.push_back(new Ball(ballInitialPos,player->GetDirection(),EntityType::Ball,ballSpeed,ballPoints,ballRad,ballColor));
-		
+		else
+		{
+			return;
+		}
 	}
-
-
 }
 
 void Game::Update()
@@ -102,20 +120,40 @@ void Game::Update()
 	float angle = atan(distanceDiff.y / distanceDiff.x);
 	angle = angle * 180 / PI;
 
-	if (GetMousePosition().x < player->GetXPosition() && GetMousePosition().y < player->GetYPosition())
+	if (angle < 0)
 	{
-		angle += 180 * GetFrameTime();
-	}
-	if (GetMousePosition().x < player->GetXPosition() && GetMousePosition().y > player->GetYPosition())
-	{
-		angle += 180 * GetFrameTime();
-	}
-	if (GetMousePosition().x > player->GetXPosition() && GetMousePosition().y > player->GetYPosition())
-	{
-		angle += 360 * GetFrameTime();
+		angle = (angle * -1) + 90;
 	}
 
-	player->SetRotation(angle);
+	cout << angle << endl;
+
+	if (player->GetRotation() < angle)
+	{
+		player->SetRotation(player->GetRotation() + player->GetSpeed() * GetFrameTime());
+
+		if (player->GetRotation() > angle)
+		{
+			player->SetRotation(angle);
+		}
+	}
+	else if (player->GetRotation() > angle)
+	{
+		player->SetRotation(player->GetRotation() - player->GetSpeed() * GetFrameTime());
+
+		if (player->GetRotation() < angle)
+		{
+			player->SetRotation(angle);
+		}
+	}
+
+	if (player->GetRotation() == angle)
+	{
+		player->SetCanShoot(true);
+	}
+	else
+	{
+		player->SetCanShoot(false);
+	}
 
 	player->SetDirection(Vector2Normalize(distanceDiff));
 
@@ -143,6 +181,9 @@ void Game::Draw()
 			gameBalls[i]->Draw();
 		}
 	}
+
+	hud->Draw();
+
 
 	EndDrawing();
 }

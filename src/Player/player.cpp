@@ -17,6 +17,7 @@ Player::Player(Vector2 pos, EntityType type, float speed, float points, float wi
 	normalizedDirection = Vector2{0.0f,0.0f};
 	rotation = 0.0f;
 
+	this->canShoot = false;
 
 
 	std::cout << "A new Player was Created" << std::endl;
@@ -88,4 +89,25 @@ float Player::GetWidth()
 float Player::GetHeight() 
 {
 	return rec.height;
+}
+
+float Player::GetSpeed() 
+{
+	return speed.x;
+}
+
+void Player::SetSpeed(float newSpeed) 
+{
+	speed.x = newSpeed;
+	speed.y = newSpeed;
+}
+
+bool Player::GetCanShoot()
+{
+	return canShoot;
+}
+
+void Player::SetCanShoot(bool canShoot)
+{
+	this->canShoot = canShoot;
 }

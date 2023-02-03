@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "Entity/entity.h"
+#include "Hud/hud.h"
 #include "Player/player.h"
 #include "Ball/ball.h"
 
@@ -11,7 +12,10 @@ class Game
 private:
 	vector<Ball*> gameBalls;
 	Player* player;
+	Hud* hud;
+
 	bool initGame;
+
 	int screenWidht;
 	int screenHeight;
 public:
