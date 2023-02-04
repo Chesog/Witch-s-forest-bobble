@@ -5,7 +5,8 @@
 Hud::Hud(Player* player, vector<Ball*> gameBalls)
 {
 	this->player = player;
-	//this->gameBalls = gameBalls;
+	this->gameBalls = gameBalls;
+
 
 	float sideWallsWidht = 20;
 	float sideWallsHeight = GetScreenHeight();
@@ -20,20 +21,20 @@ Hud::Hud(Player* player, vector<Ball*> gameBalls)
 	float topWallX = leftWallX;
 	float topWallY = 0.0f;
 	
-	this->leftWall.width = sideWallsWidht;
-	this->leftWall.height = sideWallsHeight;
-	this->leftWall.x = leftWallX;
-	this->leftWall.y = sideWallsY;
+	leftWall.width = sideWallsWidht;
+	leftWall.height = sideWallsHeight;
+	leftWall.x = leftWallX;
+	leftWall.y = sideWallsY;
 
-	this->rightWall.width = sideWallsWidht;
-	this->rightWall.height = sideWallsHeight;
-	this->rightWall.x = rightWallX;
-	this->rightWall.y = sideWallsY;
+	rightWall.width = sideWallsWidht;
+	rightWall.height = sideWallsHeight;
+	rightWall.x = rightWallX;
+	rightWall.y = sideWallsY;
 
-	this->topWall.width = topWallWidht;
-	this->topWall.height = topWallHeight;
-	this->topWall.x = topWallX;
-	this->topWall.y = topWallY;
+	topWall.width = topWallWidht;
+	topWall.height = topWallHeight;
+	topWall.x = topWallX;
+	topWall.y = topWallY;
 
 
 	cout << "The HUD was Created" << endl;
@@ -69,4 +70,19 @@ void Hud::Pause()
 bool Hud::isPlayerAlive() 
 {
 	return true;
+}
+
+Rectangle Hud::GetLeftWall()
+{
+	return leftWall;
+}
+
+Rectangle Hud::GetRightWall()
+{
+	return rightWall;
+}
+
+Rectangle Hud::GetTopWall()
+{
+	return topWall;
 }

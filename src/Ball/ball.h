@@ -20,7 +20,11 @@ public:
 	void SetTrajectoy(Vector2 trajectory);
 	void Draw() override;
 	void Movement() override;
+
+	float GetRad();
+	Vector2 GetTrajectory();
 	
+	Vector2 GetPos();
 	Directions GetDirection();
 };
 

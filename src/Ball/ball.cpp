@@ -30,15 +30,31 @@ void Ball::Movement()
 	pos.y = pos.y + trajectory.y * speed.y * GetFrameTime();
 }
 
-//void Ball::SetTrajectoy(Vector2 trajectory)
-//{
-//	this->trajectory = trajectory;
-//}
+Vector2 Ball::GetTrajectory() 
+{
+	return trajectory;
+}
+
+void Ball::SetTrajectoy(Vector2 trajectory)
+{
+	this->trajectory = trajectory;
+}
 
 void Ball::SetDirection(Directions newDirection)
 {
 	currentDirection = newDirection;
 }
+
+float Ball::GetRad() 
+{
+	return rad;
+}
+
+Vector2 Ball::GetPos() 
+{
+	return pos;
+}
+
 Directions Ball::GetDirection() 
 {
 	return currentDirection;

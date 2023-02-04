@@ -112,6 +112,8 @@ void Game::Update()
 {
 	player->Movement();
 
+	CheckColition();
+
 	Vector2 distanceDiff;
 
 
@@ -191,6 +193,28 @@ void Game::Draw()
 void Game::DrawBoard()
 {
 
+}
+
+void Game::CheckColition() 
+{
+	for (int i = 0; i < gameBalls.size(); i++)
+	{
+		if (CheckCollisionCircleRec(gameBalls[i]->GetPos(),gameBalls[i]->GetRad(),hud->GetLeftWall()))
+		{
+			Vector2 newTrajectory = gameBalls[i]->GetTrajectory();
+			newTrajectory.x = newTrajectory.x * -1;
+
+			gameBalls[i]->SetTrajectoy(newTrajectory);
+
+		}
+		else if (CheckCollisionCircleRec(gameBalls[i]->GetPos(), gameBalls[i]->GetRad(), hud->GetRightWall()))
+		{
+			Vector2 newTrajectory = gameBalls[i]->GetTrajectory();
+			newTrajectory.x = newTrajectory.x * -1;
+
+			gameBalls[i]->SetTrajectoy(newTrajectory);
+		}
+	}
 }
 
 bool Game::ScreenResized(int& screenWidth, int& screenHeight)

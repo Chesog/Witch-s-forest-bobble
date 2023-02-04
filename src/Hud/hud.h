@@ -9,7 +9,7 @@ class Hud
 {
 private:
 	Player* player;
-	//vector<Ball*> gameBalls;
+	vector<Ball*> gameBalls;
 
 	Rectangle leftWall;
 	Rectangle rightWall;
@@ -23,6 +23,10 @@ public:
 	void PlayerWin();
 	void PlayerLose();
 	void Pause();
+
+	Rectangle GetLeftWall();
+	Rectangle GetRightWall();
+	Rectangle GetTopWall();
 
 	bool isPlayerAlive();
 };

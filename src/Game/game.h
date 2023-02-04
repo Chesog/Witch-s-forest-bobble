@@ -27,6 +27,7 @@ public:
 	void Update();
 	void Draw();
 	void DrawBoard();
+	void CheckColition();
 
 	bool ScreenResized(int& screenWidth, int& screenHeight);
 };
