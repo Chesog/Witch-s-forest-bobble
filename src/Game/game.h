@@ -29,5 +29,6 @@ public:
 	void DrawBoard();
 	void CheckColition();
 
+	bool BallBallColition(Ball* ball1, Ball* ball2);
 	bool ScreenResized(int& screenWidth, int& screenHeight);
 };

@@ -127,7 +127,7 @@ void Game::Update()
 		angle = (angle * -1) + 90;
 	}
 
-	cout << angle << endl;
+	//cout << angle << endl;
 
 	if (player->GetRotation() < angle)
 	{
@@ -195,13 +195,14 @@ void Game::DrawBoard()
 
 }
 
-void Game::CheckColition() 
+void Game::CheckColition()
 {
 	for (int i = 0; i < gameBalls.size(); i++)
 	{
-		if (CheckCollisionCircleRec(gameBalls[i]->GetPos(),gameBalls[i]->GetRad(),hud->GetLeftWall()))
+		Vector2 newTrajectory = gameBalls[i]->GetTrajectory();
+
+		if (CheckCollisionCircleRec(gameBalls[i]->GetPos(), gameBalls[i]->GetRad(), hud->GetLeftWall()))
 		{
-			Vector2 newTrajectory = gameBalls[i]->GetTrajectory();
 			newTrajectory.x = newTrajectory.x * -1;
 
 			gameBalls[i]->SetTrajectoy(newTrajectory);
@@ -209,11 +210,56 @@ void Game::CheckColition()
 		}
 		else if (CheckCollisionCircleRec(gameBalls[i]->GetPos(), gameBalls[i]->GetRad(), hud->GetRightWall()))
 		{
-			Vector2 newTrajectory = gameBalls[i]->GetTrajectory();
+
 			newTrajectory.x = newTrajectory.x * -1;
 
 			gameBalls[i]->SetTrajectoy(newTrajectory);
 		}
+		else if (CheckCollisionCircleRec(gameBalls[i]->GetPos(), gameBalls[i]->GetRad(), hud->GetTopWall()))
+		{
+			newTrajectory.x = 0.0f;
+			newTrajectory.y = 0.0f;
+			gameBalls[i]->SetTrajectoy(newTrajectory);
+		}
+	}
+	for (int i = 0; i < gameBalls.size(); i++)
+	{
+		Vector2 newTrajectory = gameBalls[i]->GetTrajectory();
+
+		for (int j = 0; j < gameBalls.size(); j++)
+		{
+			if (gameBalls[i] != gameBalls[j])
+			{
+				if (BallBallColition(gameBalls[i], gameBalls[j]))
+				{
+					newTrajectory.x = 0.0f;
+					newTrajectory.y = 0.0f;
+					gameBalls[i]->SetTrajectoy(newTrajectory);
+				}
+			}
+		}
+	}
+}
+
+bool Game::BallBallColition(Ball* ball1, Ball* ball2)
+{
+	float distanceX = 0;
+	float distanceY = 0;
+	float distance = 0;
+
+	distanceX = ball2->GetPosX() - ball1->GetPosX();
+	distanceY = ball2->GetPosY() - ball1->GetPosY();
+
+	distance = sqrt((distanceX * distanceX) + (distanceY * distanceY));
+
+	if (distance < ball1->GetRad() + ball2->GetRad())
+	{
+		cout << "Colicion" << endl;
+		return true;
+	}
+	else
+	{
+		return false;
 	}
 }
 

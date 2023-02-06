@@ -22,8 +22,10 @@ public:
 	void Movement() override;
 
 	float GetRad();
+	float GetPosX();
+	float GetPosY();
+
 	Vector2 GetTrajectory();
-	
 	Vector2 GetPos();
 	Directions GetDirection();
 };

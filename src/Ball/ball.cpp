@@ -50,6 +50,16 @@ float Ball::GetRad()
 	return rad;
 }
 
+float Ball::GetPosX()
+{
+	return pos.x;
+}
+
+float Ball::GetPosY()
+{
+	return pos.y;
+}
+
 Vector2 Ball::GetPos() 
 {
 	return pos;
