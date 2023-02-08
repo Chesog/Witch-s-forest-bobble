@@ -15,6 +15,7 @@ private:
 	Hud* hud;
 
 	bool initGame;
+	bool ballsStopMoving;
 
 	int screenWidht;
 	int screenHeight;
@@ -29,6 +30,7 @@ public:
 	void DrawBoard();
 	void CheckColition();
 	void CheckConection();
+	void CheckBallsMovement();
 	void OutOfBounds();
 
 	bool BallBallColition(Ball* ball1, Ball* ball2);

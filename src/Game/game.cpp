@@ -23,6 +23,7 @@ Game::Game()
 
 	this->player = new Player(initialPos, EntityType::Player, playerSpeed, playerInitalScore, playerWidth, playerHeight, playerInitalLives);
 	this->initGame = true;
+	this->ballsStopMoving = true;
 
 	this->hud = new Hud(player, gameBalls);
 
@@ -62,7 +63,7 @@ void Game::GameInput()
 {
 	if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
 	{
-		if (player->GetCanShoot())
+		if (player->GetCanShoot() && ballsStopMoving)
 		{
 			player->SetActualBallTrajectory(player->GetDirection());
 			player->SetActualBall(CreateBall());
@@ -127,6 +128,7 @@ void Game::Update()
 
 	CheckColition();
 	CheckConection();
+	CheckBallsMovement();
 	OutOfBounds();
 
 	Vector2 distanceDiff;
@@ -193,6 +195,7 @@ void Game::Draw()
 	BeginDrawing();
 	ClearBackground(BLACK);
 
+
 	player->Draw();
 
 	if (gameBalls.size() != 0)
@@ -207,6 +210,29 @@ void Game::Draw()
 
 
 	EndDrawing();
+}
+
+void Game::CheckBallsMovement()
+{
+	Vector2 stopMovement = {0.0f,0.0f};
+	float size = gameBalls.size();
+	float counter = 0.0f;
+	for (int i = 0; i < size; i++)
+	{
+		if (gameBalls[i]->GetTrajectory().x == stopMovement.x && gameBalls[i]->GetTrajectory().y == stopMovement.y)
+		{
+			counter++;
+		}
+	}
+
+	if (counter == size)
+	{
+		ballsStopMoving = true;
+	}
+	else
+	{
+		ballsStopMoving = false;
+	}
 }
 
 void Game::DrawBoard()
@@ -235,7 +261,8 @@ void Game::CheckConection()
 
 void Game::CheckColition()
 {
-	for (int i = 0; i < gameBalls.size(); i++)
+	float size = gameBalls.size();
+	for (int i = 0; i < size; i++)
 	{
 		Vector2 newTrajectory = gameBalls[i]->GetTrajectory();
 
@@ -260,11 +287,16 @@ void Game::CheckColition()
 			gameBalls[i]->SetTrajectoy(newTrajectory);
 			gameBalls[i]->SetCanColide(true);
 		}
+
+		if (gameBalls[i]->GetPos().y < player->GetPosition().y - 100.0f)
+		{
+			gameBalls[i]->SetCanColide(true);
+		}
 	}
-	for (int i = 0; i < gameBalls.size(); i++)
+	for (int i = 0; i < size; i++)
 	{
 		Vector2 newTrajectory;
-		for (int j = 0; j < gameBalls.size(); j++)
+		for (int j = 0; j < size; j++)
 		{
 			if (gameBalls[i]->GetCanColide())
 			{
