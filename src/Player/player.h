@@ -1,10 +1,12 @@
 #pragma once
 #include "Entity/entity.h"
+#include "Ball/ball.h"
 
 class Player : public Entity
 {
 private:
 	Rectangle rec;
+	Ball* actualBall;
 	float rotation;
 
 	int lives;
@@ -22,6 +24,8 @@ public:
 	void SetDirection(Vector2 newDirection);
 	void SetCanShoot(bool canShoot);
 	void SetSpeed(float newSpeed);
+	void SetActualBall(Ball* ball);
+	void SetActualBallTrajectory(Vector2 trajectory);
 
 	float GetRotation();
 	float GetXPosition();

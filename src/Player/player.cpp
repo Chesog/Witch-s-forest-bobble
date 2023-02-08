@@ -37,6 +37,16 @@ void Player::SetDirection(Vector2 newDirection)
 	normalizedDirection = newDirection;
 }
 
+void Player::SetActualBallTrajectory(Vector2 trajectory)
+{
+	actualBall->SetTrajectoy(trajectory);
+}
+
+void Player::SetActualBall(Ball* ball)
+{
+	this->actualBall = ball;
+}
+
 void Player::Draw() 
 {
 	Vector2 origin;

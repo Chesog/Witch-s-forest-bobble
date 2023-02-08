@@ -28,7 +28,11 @@ public:
 	void Draw();
 	void DrawBoard();
 	void CheckColition();
+	void CheckConection();
+	void OutOfBounds();
 
 	bool BallBallColition(Ball* ball1, Ball* ball2);
 	bool ScreenResized(int& screenWidth, int& screenHeight);
+
+	Ball* CreateBall();
 };
