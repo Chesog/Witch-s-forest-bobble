@@ -26,6 +26,7 @@ public:
 	void SetSpeed(float newSpeed);
 	void SetActualBall(Ball* ball);
 	void SetActualBallTrajectory(Vector2 trajectory);
+	void SetActualBallRad(float rad);
 
 	float GetRotation();
 	float GetXPosition();

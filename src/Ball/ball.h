@@ -27,6 +27,7 @@ public:
 	void SetTrajectoy(Vector2 trajectory);
 	void SetIsFalling(bool isFalling);
 	void SetCanColide(bool canColide);
+	void SetRad(float rad);
 	void AddCollidedBall(Ball* ball);
 	void StartConcectionFall();
 	void Draw() override;
@@ -44,7 +45,7 @@ public:
 	BallColors GetColor();
 	Color GetBallColor();
 
-
+	vector <Ball*> GetCollidedBalls();
 	Vector2 GetTrajectory();
 	Vector2 GetPos();
 	Directions GetDirection();

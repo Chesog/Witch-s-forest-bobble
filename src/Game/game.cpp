@@ -12,7 +12,7 @@ Game::Game()
 
 	float playerWidth = 40.0f;
 	float playerHeight = 20.0f;
-	float playerSpeed = 200.0f;
+	float playerSpeed = 80.0f;
 	float playerInitalScore = 0.0f;
 
 	int playerInitalLives = 3;
@@ -65,6 +65,8 @@ void Game::GameInput()
 	{
 		if (player->GetCanShoot() && ballsStopMoving)
 		{
+			float newRad = 20.0f;
+			player->SetActualBallRad(newRad);
 			player->SetActualBallTrajectory(player->GetDirection());
 			player->SetActualBall(CreateBall());
 		}
@@ -85,7 +87,7 @@ Ball* Game::CreateBall()
 
 	float ballSpeed = 200.0f;
 	float ballPoints = 10.0f;
-	float ballRad = 20.0f;
+	float ballRad = 5.0f;
 
 	Color ballColor;
 	BallColors color;
@@ -142,9 +144,8 @@ void Game::Update()
 
 	if (angle < 0)
 	{
-		angle = (angle)+180;
+		angle =  angle + 180;
 	}
-
 
 	//cout << angle << endl;
 
@@ -235,15 +236,10 @@ void Game::CheckBallsMovement()
 	}
 }
 
-void Game::DrawBoard()
-{
-
-}
-
 void Game::CheckConection()
 {
 	int size = gameBalls.size();
-	int concetionToFall = 3;
+	int concetionToFall = 2;
 
 	for (int i = 0; i < size; i++)
 	{
@@ -285,7 +281,6 @@ void Game::CheckColition()
 			newTrajectory.x = 0.0f;
 			newTrajectory.y = 0.0f;
 			gameBalls[i]->SetTrajectoy(newTrajectory);
-			gameBalls[i]->SetCanColide(true);
 		}
 
 		if (gameBalls[i]->GetPos().y < player->GetPosition().y - 100.0f)
@@ -311,8 +306,23 @@ void Game::CheckColition()
 							gameBalls[i]->SetTrajectoy(newTrajectory);
 							if (gameBalls[i]->GetColor() == gameBalls[j]->GetColor())
 							{
-								gameBalls[i]->AddCollidedBall(gameBalls[j]);
-								gameBalls[j]->AddCollidedBall(gameBalls[i]);
+								vector <Ball*> collidedBalls = gameBalls[j]->GetCollidedBalls();
+								int collidedSize = gameBalls[j]->GetColidedBallsSize();
+								int count = 0;
+								for (int h = 0; h < collidedSize; h++)
+								{
+									if (gameBalls[i] == collidedBalls[h])
+									{
+										count++;
+									}
+								}
+
+								if (count == 0)
+								{
+									gameBalls[i]->AddCollidedBall(gameBalls[j]);
+									gameBalls[j]->AddCollidedBall(gameBalls[i]);
+								}
+
 							}
 						}
 					}

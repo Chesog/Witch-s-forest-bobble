@@ -27,7 +27,6 @@ public:
 	void GameInput();
 	void Update();
 	void Draw();
-	void DrawBoard();
 	void CheckColition();
 	void CheckConection();
 	void CheckBallsMovement();

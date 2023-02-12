@@ -56,6 +56,11 @@ void Ball::StartConcectionFall()
 	}
 }
 
+void Ball::SetRad(float rad) 
+{
+	this->rad = rad;
+}
+
 Vector2 Ball::GetTrajectory()
 {
 	return trajectory;
@@ -119,6 +124,11 @@ int Ball::GetColidedBallsSize()
 Color Ball::GetBallColor()
 {
 	return ballColor;
+}
+
+vector <Ball*> Ball::GetCollidedBalls()
+{
+	return collidedBalls;
 }
 
 Vector2 Ball::GetPos()

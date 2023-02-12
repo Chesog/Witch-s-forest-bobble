@@ -42,6 +42,11 @@ void Player::SetActualBallTrajectory(Vector2 trajectory)
 	actualBall->SetTrajectoy(trajectory);
 }
 
+void Player::SetActualBallRad(float rad)
+{
+	actualBall->SetRad(rad);
+}
+
 void Player::SetActualBall(Ball* ball)
 {
 	this->actualBall = ball;
