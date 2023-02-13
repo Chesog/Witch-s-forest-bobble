@@ -85,7 +85,7 @@ Ball* Game::CreateBall()
 	ballInitialPos.x = player->GetXPosition();
 	ballInitialPos.y = player->GetYPosition();
 
-	float ballSpeed = 200.0f;
+	float ballSpeed = 300.0f;
 	float ballPoints = 10.0f;
 	float ballRad = 5.0f;
 
