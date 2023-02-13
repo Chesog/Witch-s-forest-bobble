@@ -50,6 +50,9 @@ void Hud::Draw()
 	DrawRectangle(static_cast<int>(leftWall.x), static_cast<int>(leftWall.y), static_cast<int>(leftWall.width), leftWall.height,RAYWHITE);
 	DrawRectangle(static_cast<int>(rightWall.x), static_cast<int>(rightWall.y), static_cast<int>(rightWall.width), rightWall.height, RAYWHITE);
 	DrawRectangle(static_cast<int>(topWall.x), static_cast<int>(topWall.y), static_cast<int>(topWall.width), topWall.height, RAYWHITE);
+	int versionFontSize = 30;
+	int versionTextSize = MeasureText("V 0.1",versionFontSize);
+	DrawText("V 0.1",GetScreenWidth() - (versionTextSize * 2),GetScreenHeight() - versionTextSize,versionFontSize,RAYWHITE);
 }
 
 void Hud::PlayerWin()
