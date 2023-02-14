@@ -36,6 +36,7 @@ public:
 	float GetRad();
 	float GetPosX();
 	float GetPosY();
+	EntityType GetBallType();
 
 	int GetColidedBallsSize();
 

@@ -245,12 +245,25 @@ void Game::CheckConection()
 	{
 		if (gameBalls[i]->GetColidedBallsSize() >= concetionToFall && !gameBalls[i]->GetIsFalling())
 		{
-			Vector2 trajectory;
-			trajectory.y = 2.0f;
-			trajectory.x = 0.0f;
-			gameBalls[i]->SetTrajectoy(trajectory);
-			gameBalls[i]->SetIsFalling(true);
-			gameBalls[i]->StartConcectionFall();
+			vector <Ball*> collidedBalls = gameBalls[i]->GetCollidedBalls();
+			int collidedSize = gameBalls[i]->GetColidedBallsSize();
+			int playerBalls = 0;
+			for (int j = 0; j < collidedSize; j++)
+			{
+				if (collidedBalls[j]->GetBallType() == EntityType::Ball)
+				{
+					playerBalls++;
+				}
+			}
+			if (playerBalls >= 1)
+			{
+				Vector2 trajectory;
+				trajectory.y = 2.0f;
+				trajectory.x = 0.0f;
+				gameBalls[i]->SetTrajectoy(trajectory);
+				gameBalls[i]->SetIsFalling(true);
+				gameBalls[i]->StartConcectionFall();
+			}
 		}
 	}
 }
@@ -309,6 +322,7 @@ void Game::CheckColition()
 								vector <Ball*> collidedBalls = gameBalls[j]->GetCollidedBalls();
 								int collidedSize = gameBalls[j]->GetColidedBallsSize();
 								int count = 0;
+								int playerBall = 0;
 								for (int h = 0; h < collidedSize; h++)
 								{
 									if (gameBalls[i] == collidedBalls[h])

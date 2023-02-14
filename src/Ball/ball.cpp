@@ -71,6 +71,11 @@ BallColors Ball::GetColor()
 	return this->color;
 }
 
+EntityType Ball::GetBallType()
+{
+	return this->type;
+}
+
 void Ball::SetTrajectoy(Vector2 trajectory)
 {
 	this->trajectory = trajectory;
