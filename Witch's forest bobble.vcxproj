@@ -161,6 +161,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Ball\ball.cpp" />
+    <ClCompile Include="src\Button\button.cpp" />
     <ClCompile Include="src\Entity\entity.cpp" />
     <ClCompile Include="src\Game\game.cpp" />
     <ClCompile Include="src\Hud\hud.cpp" />
@@ -169,6 +170,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Ball\ball.h" />
+    <ClInclude Include="src\Button\button.h" />
     <ClInclude Include="src\Entity\entity.h" />
     <ClInclude Include="src\Game\game.h" />
     <ClInclude Include="src\GlobalUtilities\globalUtilities.h" />

@@ -29,6 +29,8 @@ Game::Game()
 
 	player->SetActualBall(CreateBall());
 
+	currentScene = SceneType::Gameplay;
+
 	cout << "Witch-s-forest-bobble was created" << endl;
 
 }
@@ -49,13 +51,27 @@ Game::~Game()
 
 void Game::GameLoop()
 {
+
 	do
 	{
-
-		GameInput();
-		Update();
-		Draw();
-
+		switch (currentScene)
+		{
+		case SceneType::MainMenu:
+			break;
+		case SceneType::Gameplay:
+			GameInput();
+			Update();
+			Draw();
+			break;
+		case SceneType::Rules:
+			break;
+		case SceneType::Options:
+			break;
+		case SceneType::Exit:
+			break;
+		default:
+			break;
+		}
 	} while (!WindowShouldClose());
 }
 

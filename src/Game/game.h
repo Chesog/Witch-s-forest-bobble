@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include "GlobalUtilities/globalUtilities.h"
 #include "Entity/entity.h"
 #include "Hud/hud.h"
 #include "Player/player.h"
@@ -13,6 +14,7 @@ private:
 	vector<Ball*> gameBalls;
 	Player* player;
 	Hud* hud;
+	SceneType currentScene;
 
 	bool initGame;
 	bool ballsStopMoving;
