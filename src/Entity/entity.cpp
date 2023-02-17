@@ -15,7 +15,3 @@ Entity::~Entity()
 {
 	std::cout << "Entity Destroyed" << std::endl;
 }
-//bool Entity::CheckColition(Entity* entity) 
-//{
-//	return true;
-//}
