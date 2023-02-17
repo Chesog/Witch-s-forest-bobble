@@ -9,6 +9,8 @@ Button::Button(Vector2 pos, float width, float height, Color buttonColor, Color 
 	rec.height = height;
 	this->buttonColor = buttonColor;
 	this->buttonSelectionColor = buttonSelectionColor;
+	mouseOver = false;
+	buttonPresed = false;
 
 	std::cout << "A New Button Was Created" << std::endl;
 }
@@ -29,7 +31,23 @@ void Button::DrawButton()
 	}
 }
 
+void Button::SetButtonPresed(bool buttonPresed)
+{
+	this->buttonPresed = buttonPresed;
+}
+
+void Button::SetMouseOver(bool mouseOver)
+{
+	this->mouseOver = mouseOver;
+}
+
 bool Button::IsButtonPressed()
 {
-	return true;
+	return buttonPresed;
+}
+
+Vector2 Button::GetButtonPos()
+{
+	Vector2 buttonPos = {rec.x,rec.y};
+	return buttonPos;
 }
