@@ -167,6 +167,7 @@
     <ClCompile Include="src\Game\game.cpp" />
     <ClCompile Include="src\Hud\hud.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\MenuScene\mainMenu.cpp" />
     <ClCompile Include="src\Player\player.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -177,6 +178,7 @@
     <ClInclude Include="src\Game\game.h" />
     <ClInclude Include="src\GlobalUtilities\globalUtilities.h" />
     <ClInclude Include="src\Hud\hud.h" />
+    <ClInclude Include="src\MenuScene\mainMenu.h" />
     <ClInclude Include="src\Player\player.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

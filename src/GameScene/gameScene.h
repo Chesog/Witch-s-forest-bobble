@@ -12,6 +12,7 @@ private:
 public:
 	GameScene();
 	virtual ~GameScene();
+	virtual void ExecuteScene() = 0;
 	virtual void Draw() = 0;
 	virtual void Update() = 0;
 	virtual void Input() = 0;

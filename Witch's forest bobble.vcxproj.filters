@@ -19,6 +19,7 @@
     </ClCompile>
     <ClCompile Include="src\Button\button.cpp" />
     <ClCompile Include="src\GameScene\gameScene.cpp" />
+    <ClCompile Include="src\MenuScene\mainMenu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entity">
@@ -61,5 +62,6 @@
     </ClInclude>
     <ClInclude Include="src\Button\button.h" />
     <ClInclude Include="src\GameScene\gameScene.h" />
+    <ClInclude Include="src\MenuScene\mainMenu.h" />
   </ItemGroup>
 </Project>
