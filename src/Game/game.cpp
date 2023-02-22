@@ -41,6 +41,8 @@ Game::~Game()
 		delete gameBalls[i];
 	}
 
+	delete mainMenu;
+
 	delete player;
 
 	delete hud;

@@ -5,12 +5,7 @@
 class MainMenu: public GameScene
 {
 private:
-	bool mainMenu;
-	bool gameplay;
-	bool rules;
-	bool options;
-	bool credits;
-	bool exit;
+	SceneType selectionScene;
 
 public:
 	MainMenu();
@@ -20,4 +15,5 @@ public:
 	void Update() override;
 	void Input() override;
 	void AddButton(Button* newButton) override;
+	void CheckButtonState();
 };
