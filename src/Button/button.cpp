@@ -47,7 +47,7 @@ bool Button::IsButtonPressed()
 	return buttonPresed;
 }
 
-Rectangle Button::GetMouseRec()
+Rectangle Button::GetButtonRec()
 {
 	return rec;
 }

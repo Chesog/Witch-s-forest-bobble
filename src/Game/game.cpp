@@ -68,8 +68,10 @@ void Game::GameLoop()
 		case SceneType::Options:
 			break;
 		case SceneType::Exit:
+			return;
 			break;
 		default:
+			currentScene = SceneType::MainMenu;
 			break;
 		}
 	} while (!WindowShouldClose());

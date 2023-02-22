@@ -20,7 +20,7 @@ public:
 	void SetMouseOver(bool mouseOver);
 	bool IsButtonPressed();
 
-	Rectangle GetMouseRec();
+	Rectangle GetButtonRec();
 	SceneType GetButtonType();
 	Vector2 GetButtonPos();
 };

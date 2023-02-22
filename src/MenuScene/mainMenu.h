@@ -5,6 +5,7 @@
 class MainMenu: public GameScene
 {
 private:
+	bool mainMenu;
 	bool gameplay;
 	bool rules;
 	bool options;

@@ -4,7 +4,7 @@ MainMenu::MainMenu()
 {
 	float width = 200.0f;
 	float height = 40.0f;
-	Vector2 pos = { width / 2,height * 2};
+	Vector2 pos = { width / 2,height * 2 };
 	Color buttonColor = RED;
 	Color buttonSelectionColor = GREEN;
 	SceneType buttonType = SceneType::Gameplay;
@@ -12,22 +12,22 @@ MainMenu::MainMenu()
 	Button* playButton = new Button(pos, width, height, buttonColor, buttonSelectionColor, buttonType);
 	sceneButtons.push_back(playButton);
 
-	pos = { width / 2,height * 4};
+	pos = { width / 2,height * 4 };
 	buttonType = SceneType::Rules;
 	Button* rulesButton = new Button(pos, width, height, buttonColor, buttonSelectionColor, buttonType);
 	sceneButtons.push_back(rulesButton);
-	
-	pos = { width / 2,height * 6};
+
+	pos = { width / 2,height * 6 };
 	buttonType = SceneType::Options;
 	Button* optionsButton = new Button(pos, width, height, buttonColor, buttonSelectionColor, buttonType);
 	sceneButtons.push_back(optionsButton);
-	
-	pos = { width / 2,height * 8};
+
+	pos = { width / 2,height * 8 };
 	buttonType = SceneType::Credits;
 	Button* creditsButton = new Button(pos, width, height, buttonColor, buttonSelectionColor, buttonType);
 	sceneButtons.push_back(creditsButton);
-	
-	pos = { width / 2,height * 6};
+
+	pos = { width / 2,height * 10 };
 	buttonType = SceneType::Exit;
 	Button* exitButton = new Button(pos, width, height, buttonColor, buttonSelectionColor, buttonType);
 	sceneButtons.push_back(exitButton);
@@ -49,25 +49,29 @@ MainMenu::~MainMenu()
 SceneType MainMenu::ExecuteScene()
 {
 	Update();
-	if (gameplay)
+	if (mainMenu)
+	{
+		return SceneType::MainMenu;
+	}
+	else if (gameplay)
 	{
 		return SceneType::Gameplay;
 	}
 	else if (rules)
 	{
-		return SceneType::Gameplay;
+		return SceneType::Rules;
 	}
 	else if (options)
 	{
-		return SceneType::Gameplay;
+		return SceneType::Options;
+	}
+	else if (credits)
+	{
+		return SceneType::Credits;
 	}
 	else if (exit)
 	{
-		return SceneType::Gameplay;
-	}
-	else
-	{
-		return SceneType::MainMenu;
+		return SceneType::Exit;
 	}
 }
 
@@ -76,40 +80,18 @@ void MainMenu::Update()
 {
 	Draw();
 	Input();
-	
+
 	for (int i = 0; i < sceneButtons.size(); i++)
 	{
-		sceneButtons[i]->SetMouseOver(CheckCollisionPointRec(GetMousePosition(),sceneButtons[i]->GetMouseRec()));
-	}
-}
-
-void MainMenu::Draw()
-{
-	BeginDrawing();
-	ClearBackground(BLACK);
-
-	float size = sceneButtons.size();
-
-	for (int i = 0; i < size; i++)
-	{
-		sceneButtons[i]->DrawButton();
-	}
-
-	DrawCircle(GetMouseX(),GetMouseY(),5,YELLOW);
-
-	EndDrawing();
-}
-
-void MainMenu::Input()
-{
-	for (int i = 0; i < sceneButtons.size(); i++)
-	{
-
+		sceneButtons[i]->SetMouseOver(CheckCollisionPointRec(GetMousePosition(), sceneButtons[i]->GetButtonRec()));
 	}
 	for (int i = 0; i < sceneButtons.size(); i++)
 	{
-		sceneButtons[i]->GetButtonPos();
-		if (sceneButtons[i]->GetButtonType() == SceneType::Gameplay && sceneButtons[i]->IsButtonPressed())
+		if (sceneButtons[i]->GetButtonType() == SceneType::MainMenu && sceneButtons[i]->IsButtonPressed())
+		{
+			this->mainMenu = true;
+		}
+		else if (sceneButtons[i]->GetButtonType() == SceneType::Gameplay && sceneButtons[i]->IsButtonPressed())
 		{
 			this->gameplay = true;
 		}
@@ -128,6 +110,43 @@ void MainMenu::Input()
 		else if (sceneButtons[i]->GetButtonType() == SceneType::Exit && sceneButtons[i]->IsButtonPressed())
 		{
 			this->exit = true;
+		}
+	}
+}
+
+void MainMenu::Draw()
+{
+	BeginDrawing();
+	ClearBackground(BLACK);
+
+	float size = sceneButtons.size();
+
+	for (int i = 0; i < size; i++)
+	{
+		sceneButtons[i]->DrawButton();
+	}
+
+	DrawCircle(GetMouseX(), GetMouseY(), 5, YELLOW);
+
+	EndDrawing();
+}
+
+void MainMenu::Input()
+{
+	int size = sceneButtons.size();
+
+	for (int i = 0; i < size; i++)
+	{
+		if (CheckCollisionPointRec(GetMousePosition(), sceneButtons[i]->GetButtonRec()))
+		{
+			if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
+			{
+				sceneButtons[i]->SetButtonPresed(true);
+			}
+			else
+			{
+				sceneButtons[i]->SetButtonPresed(false);
+			}
 		}
 	}
 }
