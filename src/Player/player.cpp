@@ -1,6 +1,4 @@
-#include <iostream>
 #include "Player/player.h"
-#include "raylib.h"
 
 Player::Player(Vector2 pos, EntityType type, float speed, float points, float width, float height, int lifes) : Entity(pos, type, speed, points)
 {

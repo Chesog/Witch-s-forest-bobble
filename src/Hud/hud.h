@@ -1,22 +1,22 @@
 #pragma once
+#include <iostream>
 #include <vector>
+#include "raylib.h"
 #include "Player/player.h"
 #include "Ball/ball.h"
-
-using namespace std;
 
 class Hud
 {
 private:
 	Player* player;
-	vector<Ball*> gameBalls;
+	std::vector<Ball*> gameBalls;
 
 	Rectangle leftWall;
 	Rectangle rightWall;
 	Rectangle topWall;
 
 public:
-	Hud(Player* player, vector<Ball*> gameBalls);
+	Hud(Player* player, std::vector<Ball*> gameBalls);
 	~Hud();
 
 	void Draw();

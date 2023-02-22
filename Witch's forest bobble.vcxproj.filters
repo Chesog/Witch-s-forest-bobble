@@ -17,9 +17,15 @@
     <ClCompile Include="src\Hud\hud.cpp">
       <Filter>Hud</Filter>
     </ClCompile>
-    <ClCompile Include="src\Button\button.cpp" />
-    <ClCompile Include="src\GameScene\gameScene.cpp" />
-    <ClCompile Include="src\MenuScene\mainMenu.cpp" />
+    <ClCompile Include="src\Button\button.cpp">
+      <Filter>Button</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameScene\gameScene.cpp">
+      <Filter>GameScene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MenuScene\mainMenu.cpp">
+      <Filter>MainMenu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entity">
@@ -39,6 +45,15 @@
     </Filter>
     <Filter Include="Hud">
       <UniqueIdentifier>{b14b61b4-37c0-4f48-9a89-3c4a19a7b8ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Button">
+      <UniqueIdentifier>{ea940d08-fec7-43fc-8753-14467ab0da87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameScene">
+      <UniqueIdentifier>{21792324-23d7-49f6-bd9c-148c53aa8092}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainMenu">
+      <UniqueIdentifier>{4d4b22c0-85e0-4db5-bd42-86eceac8c752}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -60,8 +75,14 @@
     <ClInclude Include="src\Hud\hud.h">
       <Filter>Hud</Filter>
     </ClInclude>
-    <ClInclude Include="src\Button\button.h" />
-    <ClInclude Include="src\GameScene\gameScene.h" />
-    <ClInclude Include="src\MenuScene\mainMenu.h" />
+    <ClInclude Include="src\Button\button.h">
+      <Filter>Button</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameScene\gameScene.h">
+      <Filter>GameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MenuScene\mainMenu.h">
+      <Filter>MainMenu</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

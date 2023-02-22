@@ -1,18 +1,18 @@
 #pragma once
+#include <iostream>
 #include <vector>
 #include "raylib.h"
+#include "GlobalUtilities/globalUtilities.h"
 #include "Button/button.h"
-
-using namespace std;
 
 class GameScene
 {
-private:
-	vector <Button*> buttons;
+protected:
+	std::vector<Button*> sceneButtons;
 public:
 	GameScene();
 	virtual ~GameScene();
-	virtual void ExecuteScene() = 0;
+	virtual SceneType ExecuteScene() = 0;
 	virtual void Draw() = 0;
 	virtual void Update() = 0;
 	virtual void Input() = 0;

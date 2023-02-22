@@ -1,5 +1,6 @@
 #pragma once
 #include "raylib.h"
+#include "GlobalUtilities/globalUtilities.h"
 
 class Button
 {
@@ -9,13 +10,17 @@ private:
 	bool buttonPresed;
 	Color buttonColor;
 	Color buttonSelectionColor;
+	SceneType buttonType;
 	
 public:
-	Button(Vector2 pos,float width,float height,Color buttonColor, Color buttonSelectionColor);
+	Button(Vector2 pos,float width,float height,Color buttonColor, Color buttonSelectionColor, SceneType buttonType);
 	~Button();
 	void DrawButton();
 	void SetButtonPresed(bool buttonPresed);
 	void SetMouseOver(bool mouseOver);
 	bool IsButtonPressed();
+
+	Rectangle GetMouseRec();
+	SceneType GetButtonType();
 	Vector2 GetButtonPos();
 };

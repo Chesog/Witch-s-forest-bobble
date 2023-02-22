@@ -1,4 +1,3 @@
-#include <iostream>
 #include "entity.h"
 
 Entity::Entity(Vector2 pos, EntityType type, float speed, float points) 

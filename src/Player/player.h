@@ -1,4 +1,6 @@
 #pragma once
+#include <iostream>
+#include "raylib.h"
 #include "Entity/entity.h"
 #include "Ball/ball.h"
 

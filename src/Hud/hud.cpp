@@ -1,8 +1,6 @@
-#include <iostream>
-#include "raylib.h"
 #include "hud.h"
 
-Hud::Hud(Player* player, vector<Ball*> gameBalls)
+Hud::Hud(Player* player, std::vector<Ball*> gameBalls)
 {
 	this->player = player;
 	this->gameBalls = gameBalls;
@@ -37,12 +35,12 @@ Hud::Hud(Player* player, vector<Ball*> gameBalls)
 	topWall.y = topWallY;
 
 
-	cout << "The HUD was Created" << endl;
+	std::cout << "The HUD was Created" << std::endl;
 }
 
 Hud::~Hud() 
 {
-	cout << "The HUD was send to oblivion" << endl;
+	std::cout << "The HUD was send to oblivion" << std::endl;
 }
 
 void Hud::Draw() 

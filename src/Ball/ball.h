@@ -1,11 +1,10 @@
 #pragma once
-#include "Entity/entity.h"
-#include "raylib.h"
+#include <iostream>
 #include <vector>
+#include "raylib.h"
+#include "Entity/entity.h"
 
 enum class BallColors { Red, Yellow, White, Blue };
-
-using namespace std;
 
 class Ball : public Entity
 {
@@ -15,9 +14,9 @@ private:
 	float rad;
 	Color ballColor;
 	Directions currentDirection;
-	Vector2 trajectory;
 	BallColors color;
-	vector <Ball*> collidedBalls;
+	std::vector<Ball*> collidedBalls;
+	Vector2 trajectory;
 
 public:
 	Ball(Vector2 pos,Vector2 trajectory, EntityType type, float speed, float points, float rad,Color ballColor,BallColors color);
@@ -36,7 +35,6 @@ public:
 	float GetRad();
 	float GetPosX();
 	float GetPosY();
-	EntityType GetBallType();
 
 	int GetColidedBallsSize();
 
@@ -44,11 +42,16 @@ public:
 	bool GetCanColide();
 
 	BallColors GetColor();
+
 	Color GetBallColor();
 
-	vector <Ball*> GetCollidedBalls();
+	EntityType GetBallType();
+
+	std::vector<Ball*> GetCollidedBalls();
+
 	Vector2 GetTrajectory();
 	Vector2 GetPos();
+
 	Directions GetDirection();
 };
 

@@ -1,20 +1,25 @@
 #pragma once
+#include <iostream>
 #include <vector>
 #include "GlobalUtilities/globalUtilities.h"
+#include "MenuScene/mainMenu.h"
 #include "Entity/entity.h"
-#include "Hud/hud.h"
 #include "Player/player.h"
 #include "Ball/ball.h"
+#include "Hud/hud.h"
+#include "raymath.h"
+#include "raylib.h"
 
-using namespace std;
 
 class Game
 {
 private:
-	vector<Ball*> gameBalls;
+	MainMenu* mainMenu;
+	std::vector<Ball*> gameBalls;
 	Player* player;
 	Hud* hud;
 	SceneType currentScene;
+	Vector2 distanceDiff;
 
 	bool initGame;
 	bool ballsStopMoving;

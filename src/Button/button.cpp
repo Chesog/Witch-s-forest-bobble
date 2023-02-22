@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Button/button.h"
 
-Button::Button(Vector2 pos, float width, float height, Color buttonColor, Color buttonSelectionColor)
+Button::Button(Vector2 pos, float width, float height, Color buttonColor, Color buttonSelectionColor,SceneType buttonType)
 {
 	rec.x = pos.x;
 	rec.y = pos.y;
@@ -9,6 +9,7 @@ Button::Button(Vector2 pos, float width, float height, Color buttonColor, Color 
 	rec.height = height;
 	this->buttonColor = buttonColor;
 	this->buttonSelectionColor = buttonSelectionColor;
+	this->buttonType = buttonType;
 	mouseOver = false;
 	buttonPresed = false;
 
@@ -44,6 +45,16 @@ void Button::SetMouseOver(bool mouseOver)
 bool Button::IsButtonPressed()
 {
 	return buttonPresed;
+}
+
+Rectangle Button::GetMouseRec()
+{
+	return rec;
+}
+
+SceneType Button::GetButtonType()
+{
+	return buttonType;
 }
 
 Vector2 Button::GetButtonPos()

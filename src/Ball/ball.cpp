@@ -1,6 +1,4 @@
-#include <iostream>
-#include "raylib.h"
-#include "ball.h"
+#include "Ball/ball.h"
 
 Ball::Ball(Vector2 pos, Vector2 trajectory, EntityType type, float speed, float points, float rad, Color ballColor, BallColors color) : Entity(pos, type, speed, points)
 {
@@ -131,7 +129,7 @@ Color Ball::GetBallColor()
 	return ballColor;
 }
 
-vector <Ball*> Ball::GetCollidedBalls()
+std::vector<Ball*> Ball::GetCollidedBalls()
 {
 	return collidedBalls;
 }

@@ -1,6 +1,3 @@
-#include <iostream>
-#include "raylib.h"
-#include "raymath.h"
 #include "game.h"
 
 Game::Game()
@@ -9,6 +6,8 @@ Game::Game()
 	screenHeight = 720;
 
 	InitWindow(screenWidht, screenHeight, "Witch's forest bobble");
+
+	this->mainMenu = new MainMenu;
 
 	float playerWidth = 40.0f;
 	float playerHeight = 20.0f;
@@ -29,9 +28,9 @@ Game::Game()
 
 	player->SetActualBall(CreateBall());
 
-	currentScene = SceneType::Gameplay;
+	currentScene = SceneType::MainMenu;
 
-	cout << "Witch-s-forest-bobble was created" << endl;
+	std::cout << "Witch-s-forest-bobble was created" << std::endl;
 
 }
 
@@ -46,7 +45,7 @@ Game::~Game()
 
 	delete hud;
 
-	cout << "Witch-s-forest-bobble was destroyed" << endl;
+	std::cout << "Witch-s-forest-bobble was destroyed" << std::endl;
 }
 
 void Game::GameLoop()
@@ -57,6 +56,7 @@ void Game::GameLoop()
 		switch (currentScene)
 		{
 		case SceneType::MainMenu:
+			currentScene = mainMenu->ExecuteScene();
 			break;
 		case SceneType::Gameplay:
 			GameInput();
@@ -148,9 +148,6 @@ void Game::Update()
 	CheckConection();
 	CheckBallsMovement();
 	OutOfBounds();
-
-	Vector2 distanceDiff;
-
 
 	distanceDiff.x = GetMouseX() - player->GetXPosition();
 	distanceDiff.y = GetMouseY() - player->GetYPosition();
@@ -261,7 +258,7 @@ void Game::CheckConection()
 	{
 		if (gameBalls[i]->GetColidedBallsSize() >= concetionToFall && !gameBalls[i]->GetIsFalling())
 		{
-			vector <Ball*> collidedBalls = gameBalls[i]->GetCollidedBalls();
+			std::vector<Ball*> collidedBalls = gameBalls[i]->GetCollidedBalls();
 			int collidedSize = gameBalls[i]->GetColidedBallsSize();
 			int playerBalls = 0;
 			for (int j = 0; j < collidedSize; j++)
@@ -335,7 +332,7 @@ void Game::CheckColition()
 							gameBalls[i]->SetTrajectoy(newTrajectory);
 							if (gameBalls[i]->GetColor() == gameBalls[j]->GetColor())
 							{
-								vector <Ball*> collidedBalls = gameBalls[j]->GetCollidedBalls();
+								std::vector<Ball*> collidedBalls = gameBalls[j]->GetCollidedBalls();
 								int collidedSize = gameBalls[j]->GetColidedBallsSize();
 								int count = 0;
 								int playerBall = 0;
