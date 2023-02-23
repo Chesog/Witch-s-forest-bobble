@@ -4,7 +4,7 @@
 #include "raylib.h"
 #include "Entity/entity.h"
 
-enum class BallColors { Red, Yellow, White, Blue };
+enum class BallColors { Red, Yellow, Purple, Blue ,Green,Orange};
 
 class Ball : public Entity
 {
@@ -17,9 +17,10 @@ private:
 	BallColors color;
 	std::vector<Ball*> collidedBalls;
 	Vector2 trajectory;
+	Texture ballTexture;
 
 public:
-	Ball(Vector2 pos,Vector2 trajectory, EntityType type, float speed, float points, float rad,Color ballColor,BallColors color);
+	Ball(Vector2 pos,Vector2 trajectory, EntityType type, float speed, float points, float rad,Color ballColor,BallColors color, Texture2D ballTexture);
 	~Ball();
 
 	void SetDirection(Directions newDirection);

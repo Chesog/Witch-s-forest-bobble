@@ -1,6 +1,6 @@
 #include "Ball/ball.h"
 
-Ball::Ball(Vector2 pos, Vector2 trajectory, EntityType type, float speed, float points, float rad, Color ballColor, BallColors color) : Entity(pos, type, speed, points)
+Ball::Ball(Vector2 pos, Vector2 trajectory, EntityType type, float speed, float points, float rad, Color ballColor, BallColors color, Texture2D ballTexture) : Entity(pos, type, speed, points)
 {
 	this->pos = pos;
 	this->type = type;
@@ -11,6 +11,7 @@ Ball::Ball(Vector2 pos, Vector2 trajectory, EntityType type, float speed, float 
 	this->ballColor = ballColor;
 	this->trajectory = trajectory;
 	this->color = color;
+	this->ballTexture = ballTexture;
 	canColide = false;
 	currentDirection = Directions::Stop;
 	isFalling = false;
@@ -23,7 +24,22 @@ Ball::~Ball()
 }
 void Ball::Draw()
 {
-	DrawCircle(static_cast<int>(pos.x), static_cast<int>(pos.y), rad, ballColor);
+	Vector2 textureCenter;
+	float textureScale;
+
+	if (rad == 5.0f)
+	{
+		textureScale = 0.04f;
+	}
+	else
+	{
+		textureScale = 0.16f;
+	}
+	float textureRotation = 0.0f;
+	textureCenter.x = static_cast<int>(pos.x - rad);
+	textureCenter.y = static_cast<int>(pos.y - rad);
+	//DrawCircle(static_cast<int>(pos.x), static_cast<int>(pos.y), rad, ballColor);
+	DrawTextureEx(ballTexture, textureCenter, textureRotation, textureScale,ballColor);
 }
 void Ball::Movement()
 {

@@ -26,7 +26,9 @@
     <ClCompile Include="src\MenuScene\mainMenu.cpp">
       <Filter>MainMenu</Filter>
     </ClCompile>
-    <ClCompile Include="src\Gameplay\gameplay.cpp" />
+    <ClCompile Include="src\Gameplay\gameplay.cpp">
+      <Filter>GamePlay</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entity">
@@ -55,6 +57,9 @@
     </Filter>
     <Filter Include="MainMenu">
       <UniqueIdentifier>{4d4b22c0-85e0-4db5-bd42-86eceac8c752}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GamePlay">
+      <UniqueIdentifier>{63246a69-bee3-452c-9a55-8111a82160f2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -85,6 +90,8 @@
     <ClInclude Include="src\MenuScene\mainMenu.h">
       <Filter>MainMenu</Filter>
     </ClInclude>
-    <ClInclude Include="src\Gameplay\gameplay.h" />
+    <ClInclude Include="src\Gameplay\gameplay.h">
+      <Filter>GamePlay</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

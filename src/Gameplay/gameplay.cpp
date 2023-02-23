@@ -335,33 +335,48 @@ Ball* Gameplay::CreateBall()
 
 	Color ballColor;
 	BallColors color;
+	Texture2D ballTexture;
 
-	int colorSelection = GetRandomValue(static_cast<int>(BallColors::Red), static_cast<int>(BallColors::Blue));
+	int colorSelection = GetRandomValue(static_cast<int>(BallColors::Red), static_cast<int>(BallColors::Orange));
 
 	switch (colorSelection)
 	{
 	case static_cast<int>(BallColors::Red):
 		ballColor = RED;
 		color = BallColors::Red;
+		ballTexture = LoadTexture("Assets/Balls/RedBubble.png");
 		break;
 	case static_cast<int>(BallColors::Yellow):
 		ballColor = YELLOW;
 		color = BallColors::Yellow;
+		ballTexture = LoadTexture("Assets/Balls/YellowBubble.png");
 		break;
-	case static_cast<int>(BallColors::White):
-		ballColor = WHITE;
-		color = BallColors::White;
+	case static_cast<int>(BallColors::Purple):
+		ballColor = PURPLE;
+		color = BallColors::Purple;
+		ballTexture = LoadTexture("Assets/Balls/PurpleBubble.png");
 		break;
 	case static_cast<int>(BallColors::Blue):
 		ballColor = BLUE;
 		color = BallColors::Blue;
+		ballTexture = LoadTexture("Assets/Balls/BlueBubble.png");
+		break;
+	case static_cast<int>(BallColors::Green):
+		ballColor = GREEN;
+		color = BallColors::Green;
+		ballTexture = LoadTexture("Assets/Balls/GreenBubble.png");
+		break;
+	case static_cast<int>(BallColors::Orange):
+		ballColor = ORANGE;
+		color = BallColors::Orange;
+		ballTexture = LoadTexture("Assets/Balls/OrangeBubble.png");
 		break;
 	default:
 		ballColor = BLACK;
 		break;
 	}
 
-	Ball* ball = new Ball(ballInitialPos, trajectory, EntityType::Ball, ballSpeed, ballPoints, ballRad, ballColor, color);
+	Ball* ball = new Ball(ballInitialPos, trajectory, EntityType::Ball, ballSpeed, ballPoints, ballRad, ballColor, color,ballTexture);
 
 	gameBalls.push_back(ball);
 
