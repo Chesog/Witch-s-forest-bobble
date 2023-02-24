@@ -20,6 +20,7 @@ Ball::Ball(Vector2 pos, Vector2 trajectory, EntityType type, float speed, float 
 
 Ball::~Ball()
 {
+	UnloadTexture(ballTexture);
 	std::cout << "A Ball Was Destroyed" << std::endl;
 }
 void Ball::Draw()

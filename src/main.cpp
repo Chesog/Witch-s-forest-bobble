@@ -3,7 +3,7 @@
 int main() 
 {
 	Game* game = new Game();
-	game->GameLoop();
+	game->ExecuteGame();
 
 	delete game;
 

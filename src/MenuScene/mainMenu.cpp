@@ -136,6 +136,17 @@ void MainMenu::Input()
 	}
 }
 
+void MainMenu::ResetScene() 
+{
+	int sceneButtonsSice = sceneButtons.size();
+	for (int i = 0; i < sceneButtonsSice; i++)
+	{
+		sceneButtons[i]->SetButtonPresed(false);
+		sceneButtons[i]->SetMouseOver(false);
+	}
+	selectionScene = SceneType::MainMenu;
+}
+
 void MainMenu::AddButton(Button* newButton)
 {
 	sceneButtons.push_back(newButton);

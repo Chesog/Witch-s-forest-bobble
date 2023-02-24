@@ -9,8 +9,12 @@ Game::Game()
 
 	this->mainMenuScene = new MainMenu;
 	this->gameplayScene = new Gameplay;
+	this->creditsScene = new Credits;
+
+	this->resetScene = false;
 
 	currentScene = SceneType::MainMenu;
+	lastSelectedScene = SceneType::MainMenu;
 
 	std::cout << "Witch-s-forest-bobble was created" << std::endl;
 
@@ -20,26 +24,46 @@ Game::~Game()
 {
 	
 	delete mainMenuScene;
+	delete gameplayScene;
 
 	std::cout << "Witch-s-forest-bobble was destroyed" << std::endl;
 }
 
-void Game::GameLoop()
+void Game::ExecuteGame()
 {
 
 	do
 	{
+		resetScene = ShouldResetScene();
 		switch (currentScene)
 		{
 		case SceneType::MainMenu:
+			if (resetScene)
+			{
+				mainMenuScene->ResetScene();
+				lastSelectedScene = currentScene;
+			}
 			currentScene = mainMenuScene->ExecuteScene();
 			break;
 		case SceneType::Gameplay:
+			if (resetScene)
+			{
+				gameplayScene->ResetScene();
+				lastSelectedScene = currentScene;
+			}
 			currentScene = gameplayScene->ExecuteScene();
 			break;
 		case SceneType::Rules:
 			break;
 		case SceneType::Options:
+			break;
+		case SceneType::Credits:
+			if (resetScene)
+			{
+				creditsScene->ResetScene();
+				lastSelectedScene = currentScene;
+			}
+			currentScene = creditsScene->ExecuteScene();
 			break;
 		case SceneType::Exit:
 			return;
@@ -51,19 +75,16 @@ void Game::GameLoop()
 	} while (!WindowShouldClose());
 }
 
-void Game::GameInput()
+bool Game::ShouldResetScene()
 {
-	
-}
-
-void Game::Update()
-{
-	
-}
-
-void Game::Draw()
-{
-	
+	if (lastSelectedScene == currentScene)
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
 }
 
 bool Game::ScreenResized(int& screenWidth, int& screenHeight)

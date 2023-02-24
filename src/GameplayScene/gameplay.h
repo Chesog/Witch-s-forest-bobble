@@ -28,6 +28,7 @@ public:
 	void Draw() override;
 	void Update() override;
 	void Input() override;
+	void ResetScene() override;
 	void AddButton(Button* newButton) override;
 	void CheckButtonState();
 	void CheckColition();

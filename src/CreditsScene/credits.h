@@ -2,14 +2,14 @@
 #include <iostream>
 #include "GameScene/gameScene.h"
 
-class MainMenu: public GameScene
+
+class Credits : public GameScene
 {
 private:
 	SceneType selectionScene;
-
 public:
-	MainMenu();
-	~MainMenu();
+	Credits();
+	~Credits();
 	SceneType ExecuteScene() override;
 	void Draw() override;
 	void Update() override;

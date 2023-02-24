@@ -26,9 +26,10 @@
     <ClCompile Include="src\MenuScene\mainMenu.cpp">
       <Filter>MainMenu</Filter>
     </ClCompile>
-    <ClCompile Include="src\Gameplay\gameplay.cpp">
+    <ClCompile Include="src\GameplayScene\gameplay.cpp">
       <Filter>GamePlay</Filter>
     </ClCompile>
+    <ClCompile Include="src\CreditsScene\credits.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entity">
@@ -90,7 +91,8 @@
     <ClInclude Include="src\MenuScene\mainMenu.h">
       <Filter>MainMenu</Filter>
     </ClInclude>
-    <ClInclude Include="src\Gameplay\gameplay.h">
+    <ClInclude Include="src\CreditsScene\credits.h" />
+    <ClInclude Include="src\GameplayScene\gameplay.h">
       <Filter>GamePlay</Filter>
     </ClInclude>
   </ItemGroup>

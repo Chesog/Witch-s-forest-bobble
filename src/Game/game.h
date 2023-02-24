@@ -2,7 +2,8 @@
 #include <iostream>
 #include "GlobalUtilities/globalUtilities.h"
 #include "MenuScene/mainMenu.h"
-#include "Gameplay/gameplay.h"
+#include "GameplayScene/gameplay.h"
+#include "CreditsScene/credits.h"
 
 
 class Game
@@ -10,7 +11,12 @@ class Game
 private:
 	MainMenu* mainMenuScene;
 	Gameplay* gameplayScene;
+	Credits* creditsScene;
+
 	SceneType currentScene;
+	SceneType lastSelectedScene;
+
+	bool resetScene;
 
 	int screenWidht;
 	int screenHeight;
@@ -18,10 +24,8 @@ public:
 	Game();
 	~Game();
 
-	void GameLoop();
-	void GameInput();
-	void Update();
-	void Draw();
+	void ExecuteGame();
 
+	bool ShouldResetScene();
 	bool ScreenResized(int& screenWidth, int& screenHeight);
 };

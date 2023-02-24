@@ -12,9 +12,10 @@ protected:
 public:
 	GameScene();
 	virtual ~GameScene();
-	virtual SceneType ExecuteScene() = 0;
 	virtual void Draw() = 0;
 	virtual void Update() = 0;
 	virtual void Input() = 0;
+	virtual void ResetScene() = 0;
 	virtual void AddButton(Button* newButton) = 0;
+	virtual SceneType ExecuteScene() = 0;
 };

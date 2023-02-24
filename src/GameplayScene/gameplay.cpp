@@ -1,4 +1,4 @@
-#include "Gameplay/gameplay.h"
+#include "GameplayScene/gameplay.h"
 
 Gameplay::Gameplay()
 {
@@ -144,6 +144,17 @@ void Gameplay::Input()
 			return;
 		}
 	}
+}
+
+void Gameplay::ResetScene() 
+{
+	//int sceneButtonsSice = sceneButtons.size();
+	//for (int i = 0; i < sceneButtonsSice; i++)
+	//{
+	//	sceneButtons[i]->SetButtonPresed(false);
+	//	sceneButtons[i]->SetMouseOver(false);
+	//}
+	//selectionScene = SceneType::MainMenu;
 }
 
 void Gameplay::AddButton(Button* newButton)

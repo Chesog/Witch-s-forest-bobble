@@ -162,8 +162,9 @@
   <ItemGroup>
     <ClCompile Include="src\Ball\ball.cpp" />
     <ClCompile Include="src\Button\button.cpp" />
+    <ClCompile Include="src\CreditsScene\credits.cpp" />
     <ClCompile Include="src\Entity\entity.cpp" />
-    <ClCompile Include="src\Gameplay\gameplay.cpp" />
+    <ClCompile Include="src\GameplayScene\gameplay.cpp" />
     <ClCompile Include="src\GameScene\gameScene.cpp" />
     <ClCompile Include="src\Game\game.cpp" />
     <ClCompile Include="src\Hud\hud.cpp" />
@@ -174,8 +175,9 @@
   <ItemGroup>
     <ClInclude Include="src\Ball\ball.h" />
     <ClInclude Include="src\Button\button.h" />
+    <ClInclude Include="src\CreditsScene\credits.h" />
     <ClInclude Include="src\Entity\entity.h" />
-    <ClInclude Include="src\Gameplay\gameplay.h" />
+    <ClInclude Include="src\GameplayScene\gameplay.h" />
     <ClInclude Include="src\GameScene\gameScene.h" />
     <ClInclude Include="src\Game\game.h" />
     <ClInclude Include="src\GlobalUtilities\globalUtilities.h" />
