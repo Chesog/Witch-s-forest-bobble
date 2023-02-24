@@ -5,6 +5,7 @@
 #include "GameplayScene/gameplay.h"
 #include "CreditsScene/credits.h"
 #include "RulesScene/rules.h"
+#include "Options/options.h"
 
 
 class Game
@@ -14,6 +15,7 @@ private:
 	Gameplay* gameplayScene;
 	Credits* creditsScene;
 	Rules* rulesScene;
+	Options* optionsScene;
 
 	SceneType currentScene;
 	SceneType lastSelectedScene;

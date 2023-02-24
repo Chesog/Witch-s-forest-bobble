@@ -11,6 +11,7 @@ Game::Game()
 	this->gameplayScene = new Gameplay;
 	this->creditsScene = new Credits;
 	this->rulesScene = new Rules;
+	this->optionsScene = new Options;
 
 	this->resetScene = false;
 
@@ -62,6 +63,12 @@ void Game::ExecuteGame()
 			currentScene = rulesScene->ExecuteScene();
 			break;
 		case SceneType::Options:
+			if (ShouldResetScene())
+			{
+				optionsScene->ResetScene();
+				lastSelectedScene = currentScene;
+			}
+			currentScene = optionsScene->ExecuteScene();
 			break;
 		case SceneType::Credits:
 			if (ShouldResetScene())
@@ -73,9 +80,6 @@ void Game::ExecuteGame()
 			break;
 		case SceneType::Exit:
 			return;
-			break;
-		default:
-			currentScene = SceneType::MainMenu;
 			break;
 		}
 	} while (!WindowShouldClose());

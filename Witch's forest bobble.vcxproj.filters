@@ -35,6 +35,9 @@
     <ClCompile Include="src\CreditsScene\credits.cpp">
       <Filter>Credits</Filter>
     </ClCompile>
+    <ClCompile Include="src\Options\options.cpp">
+      <Filter>Options</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entity">
@@ -73,6 +76,9 @@
     <Filter Include="Credits">
       <UniqueIdentifier>{4e8caebc-c2e8-4708-915f-f4c5a199e735}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Options">
+      <UniqueIdentifier>{5bd0ec92-142d-4743-b5c5-8f85f219bc6a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\GlobalUtilities\globalUtilities.h">
@@ -110,6 +116,9 @@
     </ClInclude>
     <ClInclude Include="src\CreditsScene\credits.h">
       <Filter>Credits</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Options\options.h">
+      <Filter>Options</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
