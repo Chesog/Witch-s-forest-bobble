@@ -34,11 +34,10 @@ void Game::ExecuteGame()
 
 	do
 	{
-		resetScene = ShouldResetScene();
 		switch (currentScene)
 		{
 		case SceneType::MainMenu:
-			if (resetScene)
+			if (ShouldResetScene())
 			{
 				mainMenuScene->ResetScene();
 				lastSelectedScene = currentScene;
@@ -46,7 +45,7 @@ void Game::ExecuteGame()
 			currentScene = mainMenuScene->ExecuteScene();
 			break;
 		case SceneType::Gameplay:
-			if (resetScene)
+			if (ShouldResetScene())
 			{
 				gameplayScene->ResetScene();
 				lastSelectedScene = currentScene;
@@ -58,7 +57,7 @@ void Game::ExecuteGame()
 		case SceneType::Options:
 			break;
 		case SceneType::Credits:
-			if (resetScene)
+			if (ShouldResetScene())
 			{
 				creditsScene->ResetScene();
 				lastSelectedScene = currentScene;

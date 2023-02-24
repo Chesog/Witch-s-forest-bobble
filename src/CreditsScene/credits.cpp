@@ -13,12 +13,15 @@ Credits::Credits()
 	Button* returnButton = new Button(pos, width, height, buttonColor, buttonSelectionColor, buttonType);
 	AddButton(returnButton);
 
+	sceneFont = LoadFont("Assets/Fonts/Hero Fest.otf");
+
 	selectionScene = SceneType::Credits;
 	std::cout << "A Credits Scene Was Created" << std::endl;
 }
 
 Credits::~Credits()
 {
+	UnloadFont(sceneFont);
 	std::cout << "A Credits Scene Was Destroyed" << std::endl;
 }
 
@@ -53,6 +56,17 @@ void Credits::Draw()
 	int textPosY = sceneButtons[0]->GetButtonPos().y + buttonFontSize / 3;
 
 	DrawText(buttonText, textPosX, textPosY, buttonFontSize, BLACK);
+
+	const char* titleText = "Credits";
+	int titleFontSize = 80.0f;
+	float titleSpacing = 3.0f;
+	Vector2 titleSize = MeasureTextEx(sceneFont, titleText,titleFontSize, titleSpacing);
+	Vector2 textPos;
+	textPos.x = (GetScreenWidth() / 2) - (titleSize.x / 2);
+	textPos.y = titleFontSize;
+
+	//DrawLine(GetScreenWidth() / 2,0,GetScreenWidth() / 2,GetScreenHeight(),WHITE);
+	DrawTextEx(sceneFont, titleText, textPos,titleFontSize, titleSpacing,GREEN);
 
 	EndDrawing();
 }
