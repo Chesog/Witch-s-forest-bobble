@@ -4,6 +4,7 @@
 #include "MenuScene/mainMenu.h"
 #include "GameplayScene/gameplay.h"
 #include "CreditsScene/credits.h"
+#include "RulesScene/rules.h"
 
 
 class Game
@@ -12,6 +13,7 @@ private:
 	MainMenu* mainMenuScene;
 	Gameplay* gameplayScene;
 	Credits* creditsScene;
+	Rules* rulesScene;
 
 	SceneType currentScene;
 	SceneType lastSelectedScene;

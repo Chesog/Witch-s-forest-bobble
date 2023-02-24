@@ -29,7 +29,12 @@
     <ClCompile Include="src\GameplayScene\gameplay.cpp">
       <Filter>GamePlay</Filter>
     </ClCompile>
-    <ClCompile Include="src\CreditsScene\credits.cpp" />
+    <ClCompile Include="src\RulesScene\rules.cpp">
+      <Filter>Rules</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CreditsScene\credits.cpp">
+      <Filter>Credits</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entity">
@@ -62,6 +67,12 @@
     <Filter Include="GamePlay">
       <UniqueIdentifier>{63246a69-bee3-452c-9a55-8111a82160f2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Rules">
+      <UniqueIdentifier>{7c844138-7923-4f38-9b00-9ef01ab4e9e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Credits">
+      <UniqueIdentifier>{4e8caebc-c2e8-4708-915f-f4c5a199e735}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\GlobalUtilities\globalUtilities.h">
@@ -91,9 +102,14 @@
     <ClInclude Include="src\MenuScene\mainMenu.h">
       <Filter>MainMenu</Filter>
     </ClInclude>
-    <ClInclude Include="src\CreditsScene\credits.h" />
     <ClInclude Include="src\GameplayScene\gameplay.h">
       <Filter>GamePlay</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RulesScene\rules.h">
+      <Filter>Rules</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CreditsScene\credits.h">
+      <Filter>Credits</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -171,6 +171,7 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\MenuScene\mainMenu.cpp" />
     <ClCompile Include="src\Player\player.cpp" />
+    <ClCompile Include="src\RulesScene\rules.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Ball\ball.h" />
@@ -184,6 +185,7 @@
     <ClInclude Include="src\Hud\hud.h" />
     <ClInclude Include="src\MenuScene\mainMenu.h" />
     <ClInclude Include="src\Player\player.h" />
+    <ClInclude Include="src\RulesScene\rules.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

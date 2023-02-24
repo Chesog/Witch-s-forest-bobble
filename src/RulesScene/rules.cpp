@@ -1,10 +1,10 @@
-#include "CreditsScene/credits.h"
+#include "RulesScene/rules.h"
 
-Credits::Credits()
+Rules::Rules()
 {
 	float width = 200.0f;
 	float height = 40.0f;
-	Vector2 pos = {GetScreenWidth() - width * 1.5f,height};
+	Vector2 pos = { GetScreenWidth() - width * 1.5f,height };
 	Color buttonColor = RED;
 	Color buttonSelectionColor = GREEN;
 	SceneType buttonType = SceneType::MainMenu;
@@ -14,30 +14,30 @@ Credits::Credits()
 
 	sceneFont = LoadFont("Assets/Fonts/Hero Fest.otf");
 
-	selectionScene = SceneType::Credits;
+	selectionScene = SceneType::Rules;
 	std::cout << "A Credits Scene Was Created" << std::endl;
 }
 
-Credits::~Credits()
+Rules::~Rules()
 {
 	UnloadFont(sceneFont);
 	std::cout << "A Credits Scene Was Destroyed" << std::endl;
 }
 
-SceneType Credits::ExecuteScene()
+SceneType Rules::ExecuteScene()
 {
 	Update();
 	return selectionScene;
 }
 
-void Credits::Update()
+void Rules::Update()
 {
 	Draw();
 	Input();
 	CheckButtonState();
 }
 
-void Credits::Draw()
+void Rules::Draw()
 {
 	BeginDrawing();
 	ClearBackground(BLACK);
@@ -56,22 +56,22 @@ void Credits::Draw()
 
 	DrawText(buttonText, textPosX, textPosY, buttonFontSize, BLACK);
 
-	const char* titleText = "Credits";
+	const char* titleText = "Rules";
 	int titleFontSize = 80.0f;
 	float titleSpacing = 3.0f;
-	Vector2 titleSize = MeasureTextEx(sceneFont, titleText,titleFontSize, titleSpacing);
+	Vector2 titleSize = MeasureTextEx(sceneFont, titleText, titleFontSize, titleSpacing);
 	Vector2 textPos;
 	textPos.x = (GetScreenWidth() / 2) - (titleSize.x / 2);
 	textPos.y = titleFontSize;
 
 	//DrawLine(GetScreenWidth() / 2,0,GetScreenWidth() / 2,GetScreenHeight(),WHITE);
-	DrawTextEx(sceneFont, titleText, textPos,titleFontSize, titleSpacing,GREEN);
+	DrawTextEx(sceneFont, titleText, textPos, titleFontSize, titleSpacing, GREEN);
 
 	EndDrawing();
 }
 
 
-void Credits::Input()
+void Rules::Input()
 {
 	int sceneButtonsSice = sceneButtons.size();
 
@@ -91,7 +91,7 @@ void Credits::Input()
 	}
 }
 
-void Credits::ResetScene() 
+void Rules::ResetScene()
 {
 	int sceneButtonsSice = sceneButtons.size();
 	for (int i = 0; i < sceneButtonsSice; i++)
@@ -99,15 +99,15 @@ void Credits::ResetScene()
 		sceneButtons[i]->SetButtonPresed(false);
 		sceneButtons[i]->SetMouseOver(false);
 	}
-	selectionScene = SceneType::Credits;
+	selectionScene = SceneType::Rules;
 }
 
-void Credits::AddButton(Button* newButton)
+void Rules::AddButton(Button* newButton)
 {
 	sceneButtons.push_back(newButton);
 }
 
-void Credits::CheckButtonState()
+void Rules::CheckButtonState()
 {
 	for (int i = 0; i < sceneButtons.size(); i++)
 	{
