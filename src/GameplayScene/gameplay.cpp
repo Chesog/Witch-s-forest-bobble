@@ -17,6 +17,14 @@ Gameplay::Gameplay()
 	this->initGame = true;
 	this->ballsStopMoving = true;
 
+	this->sceneFont = LoadFont("Assets/Fonts/Hero Fest.otf");
+	this->sceneBackground = LoadTexture("Assets/Background/GameplayBackground.png");
+
+	this->sceneBackgroundPos = { 0.0f,0.0f };
+	this->sceneBackgroundRotation = 0.0f;
+	this->sceneBackgroundScale = 1.0f;
+	this->sceneBackgroundTint = WHITE;
+
 	this->hud = new Hud(player, gameBalls);
 
 	player->SetActualBall(CreateBall());
@@ -24,13 +32,15 @@ Gameplay::Gameplay()
 
 Gameplay::~Gameplay() 
 {
+	UnloadFont(sceneFont);
+	UnloadTexture(sceneBackground);
+
 	for (int i = 0; i < gameBalls.size(); i++)
 	{
 		delete gameBalls[i];
 	}
 
 	delete player;
-
 	delete hud;
 }
 
@@ -49,6 +59,7 @@ void Gameplay::Draw()
 	BeginDrawing();
 	ClearBackground(BLACK);
 
+	DrawTextureEx(sceneBackground, sceneBackgroundPos, sceneBackgroundRotation, sceneBackgroundScale, sceneBackgroundTint);
 
 	player->Draw();
 
