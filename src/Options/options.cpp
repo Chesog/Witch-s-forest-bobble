@@ -12,7 +12,13 @@ Options::Options()
 	Button* returnButton = new Button(pos, width, height, buttonColor, buttonSelectionColor, buttonType);
 	AddButton(returnButton);
 
-	sceneFont = LoadFont("Assets/Fonts/Hero Fest.otf");
+	this->sceneFont = LoadFont("Assets/Fonts/Hero Fest.otf");
+	this->sceneBackground = LoadTexture("Assets/Background/OptionsBackground.png");
+
+	this->sceneBackgroundPos = { 0.0f,0.0f };
+	this->sceneBackgroundRotation = 0.0f;
+	this->sceneBackgroundScale = 1.0f;
+	this->sceneBackgroundTint = WHITE;
 
 	selectionScene = SceneType::Options;
 	std::cout << "A Credits Scene Was Created" << std::endl;
@@ -21,6 +27,7 @@ Options::Options()
 Options::~Options()
 {
 	UnloadFont(sceneFont);
+	UnloadTexture(sceneBackground);
 	std::cout << "A Credits Scene Was Destroyed" << std::endl;
 }
 
@@ -41,6 +48,8 @@ void Options::Draw()
 {
 	BeginDrawing();
 	ClearBackground(BLACK);
+
+	DrawTextureEx(sceneBackground, sceneBackgroundPos, sceneBackgroundRotation, sceneBackgroundScale, sceneBackgroundTint);
 
 	int sceneButtonsSice = sceneButtons.size();
 	for (int i = 0; i < sceneButtonsSice; i++)
