@@ -25,8 +25,12 @@ Game::Game()
 Game::~Game()
 {
 	
+
 	delete mainMenuScene;
 	delete gameplayScene;
+	delete creditsScene;
+	delete rulesScene;
+	delete optionsScene;
 
 	std::cout << "Witch-s-forest-bobble was destroyed" << std::endl;
 }

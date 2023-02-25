@@ -6,8 +6,7 @@
 class Credits : public GameScene
 {
 private:
-	SceneType selectionScene;
-	Font sceneFont;
+
 public:
 	Credits();
 	~Credits();

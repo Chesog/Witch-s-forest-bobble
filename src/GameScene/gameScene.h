@@ -9,6 +9,13 @@ class GameScene
 {
 protected:
 	std::vector<Button*> sceneButtons;
+	SceneType selectionScene;
+	Texture2D sceneBackground;
+	Font sceneFont;
+	Vector2 sceneBackgroundPos;
+	float sceneBackgroundRotation;
+	float sceneBackgroundScale;
+	Color sceneBackgroundTint;
 public:
 	GameScene();
 	virtual ~GameScene();
