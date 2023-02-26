@@ -12,7 +12,8 @@ Credits::Credits()
 	Button* returnButton = new Button(pos, width, height, buttonColor, buttonSelectionColor, buttonType);
 	AddButton(returnButton);
 
-	this->sceneFont = LoadFont("Assets/Fonts/Hero Fest.otf");
+	this->sceneFont = LoadFont("Assets/Fonts/HelloTwinsDEMO.otf");
+	this->sceneTextFont = LoadFont("Assets/Fonts/Rock Slayers.otf");
 	this->sceneBackground = LoadTexture("Assets/Background/CreditsBackground.png");
 
 	this->sceneBackgroundPos = {0.0f,0.0f};
@@ -27,6 +28,7 @@ Credits::Credits()
 Credits::~Credits()
 {
 	UnloadFont(sceneFont);
+	UnloadFont(sceneTextFont);
 	UnloadTexture(sceneBackground);
 	std::cout << "A Credits Scene Was Destroyed" << std::endl;
 }

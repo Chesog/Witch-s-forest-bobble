@@ -12,6 +12,7 @@ protected:
 	SceneType selectionScene;
 	Texture2D sceneBackground;
 	Font sceneFont;
+	Font sceneTextFont;
 	Vector2 sceneBackgroundPos;
 	float sceneBackgroundRotation;
 	float sceneBackgroundScale;

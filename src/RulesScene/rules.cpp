@@ -12,7 +12,8 @@ Rules::Rules()
 	Button* returnButton = new Button(pos, width, height, buttonColor, buttonSelectionColor, buttonType);
 	AddButton(returnButton);
 
-	this->sceneFont = LoadFont("Assets/Fonts/Hero Fest.otf");
+	this->sceneFont = LoadFont("Assets/Fonts/HelloTwinsDEMO.otf");
+	this->sceneTextFont = LoadFont("Assets/Fonts/Rock Slayers.otf");
 	this->sceneBackground = LoadTexture("Assets/Background/RulesBackground.png");
 
 	this->sceneBackgroundPos = { 0.0f,0.0f };
@@ -27,6 +28,7 @@ Rules::Rules()
 Rules::~Rules()
 {
 	UnloadFont(sceneFont);
+	UnloadFont(sceneTextFont);
 	UnloadTexture(sceneBackground);
 	std::cout << "A Credits Scene Was Destroyed" << std::endl;
 }
@@ -65,16 +67,151 @@ void Rules::Draw()
 
 	DrawText(buttonText, textPosX, textPosY, buttonFontSize, BLACK);
 
+	float mult = 3.0f;
 	const char* titleText = "Rules";
-	int titleFontSize = 80.0f;
+	int titleFontSize = 90.0f;
 	float titleSpacing = 3.0f;
 	Vector2 titleSize = MeasureTextEx(sceneFont, titleText, titleFontSize, titleSpacing);
 	Vector2 textPos;
 	textPos.x = (GetScreenWidth() / 2) - (titleSize.x / 2);
-	textPos.y = titleFontSize;
+	textPos.y = titleFontSize / 3;
 
-	//DrawLine(GetScreenWidth() / 2,0,GetScreenWidth() / 2,GetScreenHeight(),WHITE);
-	DrawTextEx(sceneFont, titleText, textPos, titleFontSize, titleSpacing, GREEN);
+	DrawTextEx(sceneFont, titleText, textPos, titleFontSize, titleSpacing, BLACK);
+
+	mult = 3.0f;
+	titleText = "Rules";
+	titleFontSize = 80.0f;
+	titleSpacing = 3.0f;
+	titleSize = MeasureTextEx(sceneFont, titleText, titleFontSize, titleSpacing);
+	textPos;
+	textPos.x = (GetScreenWidth() / 2) - (titleSize.x / 2);
+	textPos.y = titleFontSize / 3;
+
+	DrawTextEx(sceneFont, titleText, textPos, titleFontSize, titleSpacing, WHITE);
+
+	mult = 1.5f;
+	titleText = "How To Play";
+	titleFontSize = 65.0f;
+	titleSpacing = 3.0f;
+	titleSize = MeasureTextEx(sceneFont, titleText, titleFontSize, titleSpacing);
+	textPos.x = (GetScreenWidth() / 5) - (titleSize.x / 2);
+	textPos.y = titleFontSize * 1.5f;
+
+	DrawTextEx(sceneFont, titleText, textPos, titleFontSize, titleSpacing, BLACK);
+
+	mult = 1.5f;
+	titleText = "How To Play";
+	titleFontSize = 60.0f;
+	titleSpacing = 3.0f;
+	titleSize = MeasureTextEx(sceneFont, titleText, titleFontSize, titleSpacing);
+	textPos.x = (GetScreenWidth() / 5) - (titleSize.x / 2);
+	textPos.y = titleFontSize * 1.5f;
+
+	DrawTextEx(sceneFont, titleText, textPos, titleFontSize, titleSpacing, WHITE);
+
+	mult = 4.5f;
+
+	titleText = "~ Right Click To Shoot";
+	titleFontSize = 40.0f;
+	titleSpacing = 3.0f;
+	titleSize = MeasureTextEx(sceneFont, titleText, titleFontSize, titleSpacing);
+	textPos.x = (GetScreenWidth() / 5) - (titleSize.x / 2);
+	textPos.y = titleFontSize * mult;
+
+	DrawTextEx(sceneTextFont, titleText, textPos, titleFontSize, titleSpacing, BLACK);
+
+	mult ++;
+	titleText = "~ You Can Only Shoot";
+	titleFontSize = 40.0f;
+	titleSpacing = 3.0f;
+	titleSize = MeasureTextEx(sceneFont, titleText, titleFontSize, titleSpacing);
+	textPos.x = (GetScreenWidth() / 5) - (titleSize.x / 2);
+	textPos.y = titleFontSize * mult;
+
+	DrawTextEx(sceneTextFont, titleText, textPos, titleFontSize, titleSpacing, BLACK);
+
+	mult ++;
+	titleText = "When The Player And";
+	titleFontSize = 40.0f;
+	titleSpacing = 3.0f;
+	titleSize = MeasureTextEx(sceneFont, titleText, titleFontSize, titleSpacing);
+	textPos.x = (GetScreenWidth() / 5) - (titleSize.x / 2);
+	textPos.y = titleFontSize * mult;
+
+	DrawTextEx(sceneTextFont, titleText, textPos, titleFontSize, titleSpacing, BLACK);
+
+	mult++;
+	titleText = "The Balls Stop Moving";
+	titleFontSize = 40.0f;
+	titleSpacing = 3.0f;
+	titleSize = MeasureTextEx(sceneFont, titleText, titleFontSize, titleSpacing);
+	textPos.x = (GetScreenWidth() / 5) - (titleSize.x / 2);
+	textPos.y = titleFontSize * mult;
+
+	DrawTextEx(sceneTextFont, titleText, textPos, titleFontSize, titleSpacing, BLACK);
+
+	mult ++;
+	titleText = "~ Esc To Pause";
+	titleFontSize = 40.0f;
+	titleSpacing = 3.0f;
+	titleSize = MeasureTextEx(sceneFont, titleText, titleFontSize, titleSpacing);
+	textPos.x = (GetScreenWidth() / 5) - (titleSize.x / 2);
+	textPos.y = titleFontSize * mult;
+
+	DrawTextEx(sceneTextFont, titleText, textPos, titleFontSize, titleSpacing, BLACK);
+
+	mult = 1.5f;
+	titleText = "Objetive";
+	titleFontSize = 65.0f;
+	titleSpacing = 3.0f;
+	titleSize = MeasureTextEx(sceneFont, titleText, titleFontSize, titleSpacing);
+	textPos.x = (GetScreenWidth() / 2 + (GetScreenWidth() / 4) - (titleSize.x / 2));
+	textPos.y = titleFontSize * mult;
+
+	DrawTextEx(sceneFont, titleText, textPos, titleFontSize, titleSpacing, BLACK);
+
+	titleText = "Objetive";
+	titleFontSize = 60.0f;
+	titleSpacing = 3.0f;
+	titleSize = MeasureTextEx(sceneFont, titleText, titleFontSize, titleSpacing);
+	textPos.x = (GetScreenWidth() / 2 + (GetScreenWidth() / 4) - (titleSize.x / 2));
+	textPos.y = titleFontSize * mult;
+
+	DrawTextEx(sceneFont, titleText, textPos, titleFontSize, titleSpacing, WHITE);
+
+	mult = 4.5f;
+
+	titleText = "~ Save The Animals";
+	titleFontSize = 40.0f;
+	titleSpacing = 3.0f;
+	titleSize = MeasureTextEx(sceneFont, titleText, titleFontSize, titleSpacing);
+	textPos.x = (GetScreenWidth() / 2 + (GetScreenWidth() / 4) - (titleSize.x / 2));
+	textPos.y = titleFontSize * mult;
+
+	DrawTextEx(sceneTextFont, titleText, textPos, titleFontSize, titleSpacing, BLACK);
+
+	mult ++;
+
+	titleText = "~ Don't Let The Balls";
+	titleFontSize = 40.0f;
+	titleSpacing = 3.0f;
+	titleSize = MeasureTextEx(sceneFont, titleText, titleFontSize, titleSpacing);
+	textPos.x = (GetScreenWidth() / 2 + (GetScreenWidth() / 4) - (titleSize.x / 2));
+	textPos.y = titleFontSize * mult;
+
+	DrawTextEx(sceneTextFont, titleText, textPos, titleFontSize, titleSpacing, BLACK);
+
+	mult++;
+
+	titleText = "Touch The Bottom Line";
+	titleFontSize = 40.0f;
+	titleSpacing = 3.0f;
+	titleSize = MeasureTextEx(sceneFont, titleText, titleFontSize, titleSpacing);
+	textPos.x = (GetScreenWidth() / 2 + (GetScreenWidth() / 4) - (titleSize.x / 2));
+	textPos.y = titleFontSize * mult;
+
+	DrawTextEx(sceneTextFont, titleText, textPos, titleFontSize, titleSpacing, BLACK);
+	
 
 	EndDrawing();
 }
