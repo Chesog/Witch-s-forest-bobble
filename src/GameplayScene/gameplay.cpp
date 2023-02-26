@@ -46,6 +46,20 @@ Gameplay::~Gameplay()
 	delete hud;
 }
 
+void Gameplay::ResetScene()
+{
+	//int size = gameBalls.size();
+	//if (size != 0)
+	//{
+	//	for (int i = 0; i < size; i++)
+	//	{
+	//		delete gameBalls[i];
+	//	}
+	//}
+	//CreateBallPatern();
+	//player->SetActualBall(CreateBall());
+}
+
 SceneType Gameplay::ExecuteScene()
 {
 	Update();
@@ -158,17 +172,6 @@ void Gameplay::Input()
 			return;
 		}
 	}
-}
-
-void Gameplay::ResetScene()
-{
-	//int sceneButtonsSice = sceneButtons.size();
-	//for (int i = 0; i < sceneButtonsSice; i++)
-	//{
-	//	sceneButtons[i]->SetButtonPresed(false);
-	//	sceneButtons[i]->SetMouseOver(false);
-	//}
-	//selectionScene = SceneType::MainMenu;
 }
 
 void Gameplay::AddButton(Button* newButton)

@@ -67,15 +67,169 @@ void Credits::Draw()
 
 	DrawText(buttonText, textPosX, textPosY, buttonFontSize, BLACK);
 
+	float mult = 3.0f;
 	const char* titleText = "Credits";
-	int titleFontSize = 80.0f;
+	int titleFontSize = 90.0f;
 	float titleSpacing = 3.0f;
-	Vector2 titleSize = MeasureTextEx(sceneFont, titleText,titleFontSize, titleSpacing);
+	Vector2 titleSize = MeasureTextEx(sceneFont, titleText, titleFontSize, titleSpacing);
 	Vector2 textPos;
 	textPos.x = (GetScreenWidth() / 2) - (titleSize.x / 2);
-	textPos.y = titleFontSize;
+	textPos.y = titleFontSize / 3;
 
-	DrawTextEx(sceneFont, titleText, textPos,titleFontSize, titleSpacing,GREEN);
+	DrawTextEx(sceneFont, titleText, textPos, titleFontSize, titleSpacing, BLACK);
+
+	mult = 3.0f;
+	titleText = "Credits";
+	titleFontSize = 80.0f;
+	titleSpacing = 3.0f;
+	titleSize = MeasureTextEx(sceneFont, titleText, titleFontSize, titleSpacing);
+	textPos;
+	textPos.x = (GetScreenWidth() / 2) - (titleSize.x / 2);
+	textPos.y = titleFontSize / 3;
+
+	DrawTextEx(sceneFont, titleText, textPos, titleFontSize, titleSpacing, WHITE);
+
+	mult = 1.5f;
+	titleText = "Art Team";
+	titleFontSize = 65.0f;
+	titleSpacing = 3.0f;
+	titleSize = MeasureTextEx(sceneFont, titleText, titleFontSize, titleSpacing);
+	textPos.x = (GetScreenWidth() / 5) - (titleSize.x / 2);
+	textPos.y = titleFontSize * 1.5f;
+
+	DrawTextEx(sceneFont, titleText, textPos, titleFontSize, titleSpacing, BLACK);
+
+	mult = 1.5f;
+	titleText = "Art Team";
+	titleFontSize = 60.0f;
+	titleSpacing = 3.0f;
+	titleSize = MeasureTextEx(sceneFont, titleText, titleFontSize, titleSpacing);
+	textPos.x = (GetScreenWidth() / 5) - (titleSize.x / 2);
+	textPos.y = titleFontSize * 1.5f;
+
+	DrawTextEx(sceneFont, titleText, textPos, titleFontSize, titleSpacing, WHITE);
+
+	mult = 4.5f;
+
+	titleText = "~ Jules Leech";
+	titleFontSize = 40.0f;
+	titleSpacing = 3.0f;
+	titleSize = MeasureTextEx(sceneFont, titleText, titleFontSize, titleSpacing);
+	textPos.x = (GetScreenWidth() / 5) - (titleSize.x / 2);
+	textPos.y = titleFontSize * mult;
+
+	DrawTextEx(sceneTextFont, titleText, textPos, titleFontSize, titleSpacing, BLACK);
+
+	mult = 6.5f;
+	titleText = "~ Martina Bonfiglio";
+	titleFontSize = 40.0f;
+	titleSpacing = 3.0f;
+	titleSize = MeasureTextEx(sceneFont, titleText, titleFontSize, titleSpacing);
+	textPos.x = (GetScreenWidth() / 5) - (titleSize.x / 2);
+	textPos.y = titleFontSize * mult;
+
+	DrawTextEx(sceneTextFont, titleText, textPos, titleFontSize, titleSpacing, BLACK);
+
+	mult =  8.5f;
+	titleText = "~ Pauli";
+	titleFontSize = 40.0f;
+	titleSpacing = 3.0f;
+	titleSize = MeasureTextEx(sceneFont, titleText, titleFontSize, titleSpacing);
+	textPos.x = (GetScreenWidth() / 5) - (titleSize.x / 2);
+	textPos.y = titleFontSize * mult;
+
+	DrawTextEx(sceneTextFont, titleText, textPos, titleFontSize, titleSpacing, BLACK);
+
+	mult = 1.5f;
+	titleText = "Music Team";
+	titleFontSize = 65.0f;
+	titleSpacing = 3.0f;
+	titleSize = MeasureTextEx(sceneFont, titleText, titleFontSize, titleSpacing);
+	textPos.x = (GetScreenWidth() / 2 + (GetScreenWidth() / 4) - (titleSize.x / 2));
+	textPos.y = titleFontSize * mult;
+
+	DrawTextEx(sceneFont, titleText, textPos, titleFontSize, titleSpacing, BLACK);
+
+	titleText = "Music Team";
+	titleFontSize = 60.0f;
+	titleSpacing = 3.0f;
+	titleSize = MeasureTextEx(sceneFont, titleText, titleFontSize, titleSpacing);
+	textPos.x = (GetScreenWidth() / 2 + (GetScreenWidth() / 4) - (titleSize.x / 2));
+	textPos.y = titleFontSize * mult;
+
+	DrawTextEx(sceneFont, titleText, textPos, titleFontSize, titleSpacing, WHITE);
+
+	mult = 4.5f;
+
+	titleText = "~ Enzo Coletta";
+	titleFontSize = 40.0f;
+	titleSpacing = 3.0f;
+	titleSize = MeasureTextEx(sceneFont, titleText, titleFontSize, titleSpacing);
+	textPos.x = (GetScreenWidth() / 2 + (GetScreenWidth() / 4) - (titleSize.x / 2));
+	textPos.y = titleFontSize * mult;
+
+	DrawTextEx(sceneTextFont, titleText, textPos, titleFontSize, titleSpacing, BLACK);
+
+	mult++;
+
+	titleText = "Alias: BiscupidTea";
+	titleFontSize = 40.0f;
+	titleSpacing = 3.0f;
+	titleSize = MeasureTextEx(sceneFont, titleText, titleFontSize, titleSpacing);
+	textPos.x = (GetScreenWidth() / 2 + (GetScreenWidth() / 4) - (titleSize.x / 2));
+	textPos.y = titleFontSize * mult;
+
+	DrawTextEx(sceneTextFont, titleText, textPos, titleFontSize, titleSpacing, BLACK);
+
+	mult = 7.5f;
+
+	titleText = "~ Canine Lotus";
+	titleFontSize = 40.0f;
+	titleSpacing = 3.0f;
+	titleSize = MeasureTextEx(sceneFont, titleText, titleFontSize, titleSpacing);
+	textPos.x = (GetScreenWidth() / 2 + (GetScreenWidth() / 4) - (titleSize.x / 2));
+	textPos.y = titleFontSize * mult;
+
+	DrawTextEx(sceneTextFont, titleText, textPos, titleFontSize, titleSpacing, BLACK);
+
+	mult = 6.0f;
+	titleText = "Developer Team";
+	titleFontSize = 63.0f;
+	titleSpacing = 3.0f;
+	titleSize = MeasureTextEx(sceneFont, titleText, titleFontSize, titleSpacing);
+	textPos.x = (GetScreenWidth() / 2) - (titleSize.x / 2);
+	textPos.y = titleFontSize  * mult;
+
+	DrawTextEx(sceneFont, titleText, textPos, titleFontSize, titleSpacing, BLACK);
+
+	titleText = "Developer Team";
+	titleFontSize = 60.0f;
+	titleSpacing = 3.0f;
+	titleSize = MeasureTextEx(sceneFont, titleText, titleFontSize, titleSpacing);
+	textPos.x = (GetScreenWidth() / 2) - (titleSize.x / 2);
+	textPos.y = titleFontSize * mult;
+
+	DrawTextEx(sceneFont, titleText, textPos, titleFontSize, titleSpacing, WHITE);
+
+	mult = 11.0f;
+	titleText = "~ Dario Otranto";
+	titleFontSize = 40.0f;
+	titleSpacing = 3.0f;
+	titleSize = MeasureTextEx(sceneFont, titleText, titleFontSize, titleSpacing);
+	textPos.x = (GetScreenWidth() / 2) - (titleSize.x / 2);
+	textPos.y = titleFontSize * mult;
+
+	DrawTextEx(sceneTextFont, titleText, textPos, titleFontSize, titleSpacing, BLACK);
+
+	mult ++;
+	titleText = "Alias: Cheso";
+	titleFontSize = 40.0f;
+	titleSpacing = 3.0f;
+	titleSize = MeasureTextEx(sceneFont, titleText, titleFontSize, titleSpacing);
+	textPos.x = (GetScreenWidth() / 2) - (titleSize.x / 2);
+	textPos.y = titleFontSize * mult;
+
+	DrawTextEx(sceneTextFont, titleText, textPos, titleFontSize, titleSpacing, BLACK);
 
 	EndDrawing();
 }
