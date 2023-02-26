@@ -25,6 +25,9 @@ Gameplay::Gameplay()
 	this->sceneBackgroundScale = 1.0f;
 	this->sceneBackgroundTint = WHITE;
 
+	this->shootCount = 0;
+	this->maxShootCount = 10;
+
 	this->hud = new Hud(player, gameBalls);
 
 	player->SetActualBall(CreateBall());
@@ -62,9 +65,9 @@ void Gameplay::ResetScene()
 
 SceneType Gameplay::ExecuteScene()
 {
+	Input();
 	Update();
 	Draw();
-	Input();
 	return SceneType::Gameplay;
 }
 
@@ -101,6 +104,7 @@ void Gameplay::Update()
 	CheckConection();
 	CheckBallsMovement();
 	OutOfBounds();
+	checkShootCount();
 
 	distanceDiff.x = GetMouseX() - player->GetXPosition();
 	distanceDiff.y = GetMouseY() - player->GetYPosition();
@@ -166,6 +170,7 @@ void Gameplay::Input()
 			player->SetActualBallPos(player->GetPosition());
 			player->SetActualBallTrajectory(player->GetDirection());
 			player->SetActualBall(CreateBall());
+			shootCount++;
 		}
 		else
 		{
@@ -600,5 +605,21 @@ void Gameplay::CreateBallPatern()
 	for (int i = 0; i < PaternBalls.size(); i++)
 	{
 		gameBalls.push_back(PaternBalls[i]);
+	}
+}
+
+void Gameplay::checkShootCount()
+{
+	if (shootCount == maxShootCount)
+	{
+			Vector2 newPos;
+
+		for (int i = 0; i < gameBalls.size(); i++)
+		{
+			newPos.x = gameBalls[i]->GetPos().x;
+			newPos.y = gameBalls[i]->GetPos().y + gameBalls[i]->GetRad();
+			gameBalls[i]->SetPos(newPos);
+		}
+		shootCount = 0;
 	}
 }

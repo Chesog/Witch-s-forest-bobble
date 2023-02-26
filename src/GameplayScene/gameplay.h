@@ -18,6 +18,9 @@ private:
 	Hud* hud;
 	Vector2 distanceDiff;
 
+	int shootCount;
+	int maxShootCount;
+
 	bool initGame;
 	bool ballsStopMoving;
 public:
@@ -36,6 +39,7 @@ public:
 	void CheckBallsMovement();
 	void OutOfBounds();
 	void CreateBallPatern();
+	void checkShootCount();
 
 	bool BallBallColition(Ball* ball1, Ball* ball2);
 
