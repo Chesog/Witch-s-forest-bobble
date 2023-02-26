@@ -6,7 +6,7 @@ Hud::Hud(Player* player, std::vector<Ball*> gameBalls)
 	this->gameBalls = gameBalls;
 
 
-	float sideWallsWidht = 20;
+	float sideWallsWidht = 20.0f;
 	float sideWallsHeight = GetScreenHeight();
 
 	float leftWallX = static_cast<float>(GetScreenWidth() / 3 - (sideWallsWidht / 2));
@@ -14,11 +14,23 @@ Hud::Hud(Player* player, std::vector<Ball*> gameBalls)
 	float sideWallsY = 0.0f;
 
 	float topWallWidht = rightWallX - leftWallX;
-	float topWallHeight = 20;
+	float topWallHeight = 20.0f;
 
 	float topWallX = leftWallX;
 	float topWallY = 0.0f;
+
+
+	float finishLineWidht = rightWallX - leftWallX;
+	float finishLineHeight = 10.0f;
+
+	float finishLineX = leftWallX;
+	float finishLineY = player->GetYPosition() - 100.0f;
 	
+	finishLine.width = finishLineWidht;
+	finishLine.height = finishLineHeight;
+	finishLine.x = finishLineX;
+	finishLine.y = finishLineY;
+
 	leftWall.width = sideWallsWidht;
 	leftWall.height = sideWallsHeight;
 	leftWall.x = leftWallX;
@@ -48,9 +60,10 @@ void Hud::Draw()
 	DrawRectangle(static_cast<int>(leftWall.x), static_cast<int>(leftWall.y), static_cast<int>(leftWall.width), leftWall.height,RAYWHITE);
 	DrawRectangle(static_cast<int>(rightWall.x), static_cast<int>(rightWall.y), static_cast<int>(rightWall.width), rightWall.height, RAYWHITE);
 	DrawRectangle(static_cast<int>(topWall.x), static_cast<int>(topWall.y), static_cast<int>(topWall.width), topWall.height, RAYWHITE);
+	DrawRectangle(static_cast<int>(finishLine.x), static_cast<int>(finishLine.y), static_cast<int>(finishLine.width), finishLine.height, RAYWHITE);
 	int versionFontSize = 30;
 	int versionTextSize = MeasureText("V 0.2",versionFontSize);
-	DrawText("V 0.2",GetScreenWidth() - (versionTextSize * 2),GetScreenHeight() - versionTextSize,versionFontSize,RAYWHITE);
+	DrawText("V 0.3",GetScreenWidth() - (versionTextSize * 2),GetScreenHeight() - versionTextSize,versionFontSize,RAYWHITE);
 }
 
 void Hud::PlayerWin()
@@ -86,4 +99,9 @@ Rectangle Hud::GetRightWall()
 Rectangle Hud::GetTopWall()
 {
 	return topWall;
+}
+
+Rectangle Hud::GetFinishLine()
+{
+	return finishLine;
 }

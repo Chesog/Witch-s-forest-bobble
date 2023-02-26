@@ -45,6 +45,11 @@ void Player::SetActualBallRad(float rad)
 	actualBall->SetRad(rad);
 }
 
+void Player::SetActualBallPos(Vector2 pos)
+{
+	actualBall->SetPos(pos);
+}
+
 void Player::SetActualBall(Ball* ball)
 {
 	this->actualBall = ball;

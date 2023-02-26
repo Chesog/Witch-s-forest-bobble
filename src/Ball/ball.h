@@ -25,6 +25,7 @@ public:
 
 	void SetDirection(Directions newDirection);
 	void SetTrajectoy(Vector2 trajectory);
+	void SetPos(Vector2 pos);
 	void SetIsFalling(bool isFalling);
 	void SetCanColide(bool canColide);
 	void SetRad(float rad);

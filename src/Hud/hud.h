@@ -14,6 +14,7 @@ private:
 	Rectangle leftWall;
 	Rectangle rightWall;
 	Rectangle topWall;
+	Rectangle finishLine;
 
 public:
 	Hud(Player* player, std::vector<Ball*> gameBalls);
@@ -27,6 +28,7 @@ public:
 	Rectangle GetLeftWall();
 	Rectangle GetRightWall();
 	Rectangle GetTopWall();
+	Rectangle GetFinishLine();
 
 	bool isPlayerAlive();
 };

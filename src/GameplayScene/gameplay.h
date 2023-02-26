@@ -35,6 +35,8 @@ public:
 	void CheckConection();
 	void CheckBallsMovement();
 	void OutOfBounds();
+	void CreateBallPatern();
+
 	bool BallBallColition(Ball* ball1, Ball* ball2);
 
 	Ball* CreateBall();

@@ -13,8 +13,8 @@ Ball::Ball(Vector2 pos, Vector2 trajectory, EntityType type, float speed, float 
 	this->color = color;
 	this->ballTexture = ballTexture;
 	canColide = false;
-	currentDirection = Directions::Stop;
 	isFalling = false;
+	currentDirection = Directions::Stop;
 	std::cout << "A New Ball Is Created" << std::endl;
 }
 
@@ -39,7 +39,6 @@ void Ball::Draw()
 	float textureRotation = 0.0f;
 	textureCenter.x = static_cast<int>(pos.x - rad);
 	textureCenter.y = static_cast<int>(pos.y - rad);
-	//DrawCircle(static_cast<int>(pos.x), static_cast<int>(pos.y), rad, ballColor);
 	DrawTextureEx(ballTexture, textureCenter, textureRotation, textureScale,ballColor);
 }
 void Ball::Movement()
@@ -94,6 +93,11 @@ EntityType Ball::GetBallType()
 void Ball::SetTrajectoy(Vector2 trajectory)
 {
 	this->trajectory = trajectory;
+}
+
+void Ball::SetPos(Vector2 pos)
+{
+	this->pos = pos;
 }
 
 void Ball::SetIsFalling(bool isFalling)

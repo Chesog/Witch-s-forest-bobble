@@ -28,9 +28,11 @@ Gameplay::Gameplay()
 	this->hud = new Hud(player, gameBalls);
 
 	player->SetActualBall(CreateBall());
+
+	CreateBallPatern();
 }
 
-Gameplay::~Gameplay() 
+Gameplay::~Gameplay()
 {
 	UnloadFont(sceneFont);
 	UnloadTexture(sceneBackground);
@@ -147,6 +149,7 @@ void Gameplay::Input()
 		{
 			float newRad = 20.0f;
 			player->SetActualBallRad(newRad);
+			player->SetActualBallPos(player->GetPosition());
 			player->SetActualBallTrajectory(player->GetDirection());
 			player->SetActualBall(CreateBall());
 		}
@@ -157,7 +160,7 @@ void Gameplay::Input()
 	}
 }
 
-void Gameplay::ResetScene() 
+void Gameplay::ResetScene()
 {
 	//int sceneButtonsSice = sceneButtons.size();
 	//for (int i = 0; i < sceneButtonsSice; i++)
@@ -334,7 +337,7 @@ bool Gameplay::BallBallColition(Ball* ball1, Ball* ball2)
 
 	distance = sqrt((distanceX * distanceX) + (distanceY * distanceY));
 
-	if (distance < ball1->GetRad() + ball2->GetRad())
+	if (distance <= ball1->GetRad() + ball2->GetRad())
 	{
 		return true;
 	}
@@ -346,14 +349,16 @@ bool Gameplay::BallBallColition(Ball* ball1, Ball* ball2)
 
 Ball* Gameplay::CreateBall()
 {
+	float ballSpeed = 500.0f;
+	float ballPoints = 10.0f;
+	float ballRad = 20.0f;
+
 	Vector2 trajectory = { 0.0f,0.0f };
 	Vector2 ballInitialPos;
-	ballInitialPos.x = player->GetXPosition();
+	ballInitialPos.x = player->GetXPosition() - ballRad * 5;
 	ballInitialPos.y = player->GetYPosition();
 
-	float ballSpeed = 300.0f;
-	float ballPoints = 10.0f;
-	float ballRad = 5.0f;
+
 
 	Color ballColor;
 	BallColors color;
@@ -398,9 +403,199 @@ Ball* Gameplay::CreateBall()
 		break;
 	}
 
-	Ball* ball = new Ball(ballInitialPos, trajectory, EntityType::Ball, ballSpeed, ballPoints, ballRad, ballColor, color,ballTexture);
+	Ball* ball = new Ball(ballInitialPos, trajectory, EntityType::Ball, ballSpeed, ballPoints, ballRad, ballColor, color, ballTexture);
 
 	gameBalls.push_back(ball);
 
 	return ball;
+}
+
+void Gameplay::CreateBallPatern()
+{
+
+	std::vector<Ball*> PaternBalls;
+	int paternRow = 9;
+	int paternColum = 4;
+	int paternCounter = paternRow * paternColum;
+	int colorSelection;
+	int ballTypeSelection;
+
+	float ballSpeed = 500.0f;
+	float ballPoints = 10.0f;
+	float ballRad = 20.0f;
+
+	Vector2 trajectory = { 0.0f,0.0f };
+	Vector2 ballInitialPos;
+	Vector2 ballAuxPos;
+
+	Color ballColor;
+	BallColors color;
+	Texture2D ballTexture;
+	EntityType ballType;
+
+	int ballsCreated = 0;
+	int currentRow = 1;
+	int maxBallsPerRow = 9;
+	int maxBallsPerColum = 4;
+
+	do
+	{
+		if (ballsCreated == maxBallsPerRow)
+		{
+			ballsCreated = 0;
+			currentRow++;
+		}
+		if (ballsCreated < maxBallsPerRow)
+		{
+			ballAuxPos.x = (hud->GetLeftWall().x + hud->GetLeftWall().width) + (ballRad * 2) * (ballsCreated + 1);
+			if (currentRow == 1)
+			{
+				ballAuxPos.y = (hud->GetTopWall().y + hud->GetTopWall().height) + (ballRad * 2)* currentRow - 5;
+			}
+			else
+			{
+				ballAuxPos.y = (hud->GetTopWall().y + hud->GetTopWall().height) + (ballRad * 2) * currentRow - 5;
+			}
+			ballInitialPos = ballAuxPos;
+			ballsCreated++;
+		}
+
+		colorSelection = GetRandomValue(static_cast<int>(BallColors::Red), static_cast<int>(BallColors::Orange));
+		ballTypeSelection = GetRandomValue(static_cast<int>(EntityType::LevelBall), static_cast<int>(EntityType::SpecialBall));
+
+		switch (colorSelection)
+		{
+		case static_cast<int>(BallColors::Red):
+			ballColor = RED;
+			color = BallColors::Red;
+			if (ballTypeSelection == static_cast<int>(EntityType::LevelBall))
+			{
+				ballTexture = LoadTexture("Assets/Balls/RedBubble.png");
+			}
+			else if (ballTypeSelection == static_cast<int>(EntityType::SpecialBall))
+			{
+				ballTexture = LoadTexture("Assets/Animals/FoxBubble.png");
+			}
+			break;
+		case static_cast<int>(BallColors::Yellow):
+			ballColor = YELLOW;
+			color = BallColors::Yellow;
+			if (ballTypeSelection == static_cast<int>(EntityType::LevelBall))
+			{
+				ballTexture = LoadTexture("Assets/Balls/YellowBubble.png");
+			}
+			else if (ballTypeSelection == static_cast<int>(EntityType::SpecialBall))
+			{
+				ballTexture = LoadTexture("Assets/Animals/RabbitBubble.png");
+			}
+			break;
+		case static_cast<int>(BallColors::Purple):
+			ballColor = PURPLE;
+			color = BallColors::Purple;
+			ballTexture = LoadTexture("Assets/Balls/PurpleBubble.png");
+			break;
+		case static_cast<int>(BallColors::Blue):
+			ballColor = BLUE;
+			color = BallColors::Blue;
+			if (ballTypeSelection == static_cast<int>(EntityType::LevelBall))
+			{
+				ballTexture = LoadTexture("Assets/Balls/BlueBubble.png");
+			}
+			else if (ballTypeSelection == static_cast<int>(EntityType::SpecialBall))
+			{
+				ballTexture = LoadTexture("Assets/Animals/FishBubble.png");
+			}
+			break;
+		case static_cast<int>(BallColors::Green):
+			ballColor = GREEN;
+			color = BallColors::Green;
+			if (ballTypeSelection == static_cast<int>(EntityType::LevelBall))
+			{
+				ballTexture = LoadTexture("Assets/Balls/GreenBubble.png");
+			}
+			else if (ballTypeSelection == static_cast<int>(EntityType::SpecialBall))
+			{
+				ballTexture = LoadTexture("Assets/Animals/OwlBubble.png");
+			}
+			break;
+		case static_cast<int>(BallColors::Orange):
+			ballColor = ORANGE;
+			color = BallColors::Orange;
+			ballTexture = LoadTexture("Assets/Balls/OrangeBubble.png");
+			break;
+		default:
+			ballColor = BLACK;
+			break;
+		}
+
+		if (ballTypeSelection == static_cast<int>(EntityType::LevelBall))
+		{
+			ballType = EntityType::LevelBall;
+		}
+		else
+		{
+			ballType = EntityType::SpecialBall;
+		}
+
+
+		Ball* ball = new Ball(ballInitialPos, trajectory, ballType, ballSpeed, ballPoints, ballRad, ballColor, color, ballTexture);
+
+
+		ball->SetCanColide(true);
+		ball->SetIsFalling(false);
+		PaternBalls.push_back(ball);
+
+		int size = PaternBalls.size();
+
+		for (int i = 0; i < size; i++)
+		{
+			Vector2 newTrajectory;
+			for (int j = 0; j < size; j++)
+			{
+				if (PaternBalls[i]->GetCanColide())
+				{
+					if (!PaternBalls[i]->GetIsFalling() && !PaternBalls[j]->GetIsFalling())
+					{
+						if (PaternBalls[i] != PaternBalls[j])
+						{
+							if (BallBallColition(PaternBalls[i], PaternBalls[j]))
+							{
+								newTrajectory.x = 0.0f;
+								newTrajectory.y = 0.0f;
+								PaternBalls[i]->SetTrajectoy(newTrajectory);
+								if (PaternBalls[i]->GetColor() == PaternBalls[j]->GetColor())
+								{
+									std::vector<Ball*> collidedBalls = PaternBalls[j]->GetCollidedBalls();
+									int collidedSize = PaternBalls[j]->GetColidedBallsSize();
+									int count = 0;
+									int playerBall = 0;
+									for (int h = 0; h < collidedSize; h++)
+									{
+										if (PaternBalls[i] == collidedBalls[h])
+										{
+											count++;
+										}
+									}
+
+									if (count == 0)
+									{
+										PaternBalls[i]->AddCollidedBall(PaternBalls[j]);
+										PaternBalls[j]->AddCollidedBall(PaternBalls[i]);
+									}
+
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		paternCounter --;
+
+	} while (paternCounter > 0);
+
+	for (int i = 0; i < PaternBalls.size(); i++)
+	{
+		gameBalls.push_back(PaternBalls[i]);
+	}
 }

@@ -75,7 +75,6 @@ void Credits::Draw()
 	textPos.x = (GetScreenWidth() / 2) - (titleSize.x / 2);
 	textPos.y = titleFontSize;
 
-	//DrawLine(GetScreenWidth() / 2,0,GetScreenWidth() / 2,GetScreenHeight(),WHITE);
 	DrawTextEx(sceneFont, titleText, textPos,titleFontSize, titleSpacing,GREEN);
 
 	EndDrawing();
