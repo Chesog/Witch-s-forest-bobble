@@ -5,7 +5,10 @@ Game::Game()
 	screenWidht = 1280;
 	screenHeight = 720;
 
+
 	InitWindow(screenWidht, screenHeight, "Witch's forest bobble");
+
+	SetExitKey(NULL);
 
 	this->mainMenuScene = new MainMenu;
 	this->gameplayScene = new Gameplay;

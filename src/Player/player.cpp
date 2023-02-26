@@ -69,6 +69,8 @@ void Player::Movement()
 
 }
 
+
+
 float Player::GetRotation()
 {
 	return rotation;
@@ -97,6 +99,11 @@ Vector2 Player::GetPosition()
 Rectangle Player::GetPlayerRect() 
 {
 	return rec;
+}
+
+Ball* Player::GetActualBall()
+{
+	return actualBall;
 }
 
 float Player::GetWidth() 

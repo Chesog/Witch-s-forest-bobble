@@ -13,8 +13,10 @@ Options::Options()
 	Button* returnButton = new Button(pos, width, height, buttonColor, buttonSelectionColor, buttonType, returnButtonTexture);
 	AddButton(returnButton);
 
+
 	this->sceneFont = LoadFont("Assets/Fonts/Hero Fest.otf");
 	this->sceneBackground = LoadTexture("Assets/Background/OptionsBackground.png");
+	this->cursorTexture = LoadTexture("Assets/Cursor/cursor.png");
 
 	this->sceneBackgroundPos = { 0.0f,0.0f };
 	this->sceneBackgroundRotation = 0.0f;
@@ -29,6 +31,13 @@ Options::~Options()
 {
 	UnloadFont(sceneFont);
 	UnloadTexture(sceneBackground);
+	UnloadTexture(cursorTexture);
+
+	int sceneButtonsSize = sceneButtons.size();
+	for (int i = 0; i < sceneButtonsSize; i++)
+	{
+		delete sceneButtons[i];
+	}
 	std::cout << "A Credits Scene Was Destroyed" << std::endl;
 }
 
@@ -68,6 +77,9 @@ void Options::Draw()
 
 	//DrawLine(GetScreenWidth() / 2,0,GetScreenWidth() / 2,GetScreenHeight(),WHITE);
 	DrawTextEx(sceneFont, titleText, textPos, titleFontSize, titleSpacing, GREEN);
+
+	HideCursor();
+	DrawTextureEx(cursorTexture, GetMousePosition(), sceneBackgroundRotation, 0.1f, sceneBackgroundTint);
 
 	EndDrawing();
 }

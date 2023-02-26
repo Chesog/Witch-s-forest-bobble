@@ -2,6 +2,8 @@
 
 Rules::Rules()
 {
+	this->cursorTexture = LoadTexture("Assets/Cursor/cursor.png");
+
 	float width = 200.0f;
 	float height = 40.0f;
 	Vector2 pos = { GetScreenWidth() - width * 1.5f,height };
@@ -9,6 +11,7 @@ Rules::Rules()
 	Color buttonSelectionColor = GREEN;
 	SceneType buttonType = SceneType::MainMenu;
 	Texture2D returnButtonTexture = LoadTexture("Assets/Buttons/return.png");
+
 
 	Button* returnButton = new Button(pos, width, height, buttonColor, buttonSelectionColor, buttonType, returnButtonTexture);
 	AddButton(returnButton);
@@ -31,6 +34,13 @@ Rules::~Rules()
 	UnloadFont(sceneFont);
 	UnloadFont(sceneTextFont);
 	UnloadTexture(sceneBackground);
+	UnloadTexture(cursorTexture);
+
+	int sceneButtonsSize = sceneButtons.size();
+	for (int i = 0; i < sceneButtonsSize; i++)
+	{
+		delete sceneButtons[i];
+	}
 	std::cout << "A Credits Scene Was Destroyed" << std::endl;
 }
 
@@ -206,6 +216,8 @@ void Rules::Draw()
 
 	DrawTextEx(sceneTextFont, titleText, textPos, titleFontSize, titleSpacing, BLACK);
 	
+	HideCursor();
+	DrawTextureEx(cursorTexture, GetMousePosition(), sceneBackgroundRotation, 0.1f, sceneBackgroundTint);
 
 	EndDrawing();
 }

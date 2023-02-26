@@ -20,6 +20,7 @@ Gameplay::Gameplay()
 	this->sceneFont = LoadFont("Assets/Fonts/Hero Fest.otf");
 	this->sceneBackground = LoadTexture("Assets/Background/GameplayBackground.png");
 	this->sceneBackground2 = LoadTexture("Assets/Background/GameplayBackground2.png");
+	this->cursorTexture = LoadTexture("Assets/Cursor/cursor.png");
 
 	this->sceneBackgroundPos = { 0.0f,0.0f };
 	this->sceneBackgroundRotation = 0.0f;
@@ -41,6 +42,7 @@ Gameplay::~Gameplay()
 	UnloadFont(sceneFont);
 	UnloadTexture(sceneBackground);
 	UnloadTexture(sceneBackground2);
+	UnloadTexture(cursorTexture);
 
 	for (int i = 0; i < gameBalls.size(); i++)
 	{
@@ -53,16 +55,18 @@ Gameplay::~Gameplay()
 
 void Gameplay::ResetScene()
 {
-	//int size = gameBalls.size();
-	//if (size != 0)
-	//{
-	//	for (int i = 0; i < size; i++)
-	//	{
-	//		delete gameBalls[i];
-	//	}
-	//}
-	//CreateBallPatern();
-	//player->SetActualBall(CreateBall());
+	int size = gameBalls.size();
+	for (int i = 0; i < size; i++)
+	{
+		delete gameBalls[i];
+	}
+	for (int i = 0; i < size; i++)
+	{
+		gameBalls.erase(gameBalls.begin());
+	}
+
+	CreateBallPatern();
+	player->SetActualBall(CreateBall());
 }
 
 SceneType Gameplay::ExecuteScene()
@@ -95,6 +99,8 @@ void Gameplay::Draw()
 
 	hud->Draw();
 
+	HideCursor();
+	DrawTextureEx(cursorTexture, GetMousePosition(), sceneBackgroundRotation, 0.1f, sceneBackgroundTint);
 
 	EndDrawing();
 }
@@ -162,24 +168,40 @@ void Gameplay::Update()
 	}
 
 	hud->UpdateGameBalls(gameBalls);
+	hud->PlayerWin();
+	hud->PlayerLose(ballsStopMoving);
 }
 
 void Gameplay::Input()
 {
-	if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
+	if (!hud->GetDrawPause())
 	{
-		if (player->GetCanShoot() && ballsStopMoving)
+		if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
 		{
-			float newRad = 20.0f;
-			player->SetActualBallRad(newRad);
-			player->SetActualBallPos(player->GetPosition());
-			player->SetActualBallTrajectory(player->GetDirection());
-			player->SetActualBall(CreateBall());
-			shootCount++;
+			if (player->GetCanShoot() && ballsStopMoving)
+			{
+				float newRad = 20.0f;
+				player->SetActualBallRad(newRad);
+				player->SetActualBallPos(player->GetPosition());
+				player->SetActualBallTrajectory(player->GetDirection());
+				player->SetActualBall(CreateBall());
+				shootCount++;
+			}
+			else
+			{
+				return;
+			}
+		}
+	}
+	if (IsKeyReleased(KEY_ESCAPE))
+	{
+		if (hud->GetDrawPause())
+		{
+			hud->SetDrawPause(false);
 		}
 		else
 		{
-			return;
+			hud->SetDrawPause(true);
 		}
 	}
 }
@@ -299,6 +321,22 @@ void Gameplay::CheckConection()
 				gameBalls[i]->SetTrajectoy(trajectory);
 				gameBalls[i]->SetIsFalling(true);
 				gameBalls[i]->StartConcectionFall();
+				for (int h = 0; h < size; h++)
+				{
+					if (gameBalls[h]->GetPos().x <= gameBalls[i]->GetPos().x - gameBalls[i]->GetRad() && !gameBalls[i]->GetIsFalling() || gameBalls[h]->GetPos().x >= gameBalls[i]->GetPos().x + gameBalls[i]->GetRad() && !gameBalls[i]->GetIsFalling())
+					{
+						if (gameBalls[h]->GetPos().y > gameBalls[i]->GetPos().y && gameBalls[h] != player->GetActualBall())
+						{
+							Vector2 trajectory;
+							trajectory.y = 2.0f;
+							trajectory.x = 0.0f;
+							gameBalls[h]->SetTrajectoy(trajectory);
+							gameBalls[h]->SetIsFalling(true);
+							gameBalls[h]->StartConcectionFall();
+							return;
+						}
+					}
+				}
 			}
 		}
 	}
@@ -463,7 +501,7 @@ void Gameplay::CreateBallPatern()
 			ballAuxPos.x = (hud->GetLeftWall().x + hud->GetLeftWall().width) + (ballRad * 2) * (ballsCreated + 1);
 			if (currentRow == 1)
 			{
-				ballAuxPos.y = (hud->GetTopWall().y + hud->GetTopWall().height) + (ballRad * 2)* currentRow - 5;
+				ballAuxPos.y = (hud->GetTopWall().y + hud->GetTopWall().height) + (ballRad * 2) * currentRow - 5;
 			}
 			else
 			{
@@ -603,7 +641,7 @@ void Gameplay::CreateBallPatern()
 				}
 			}
 		}
-		paternCounter --;
+		paternCounter--;
 
 	} while (paternCounter > 0);
 
@@ -617,13 +655,16 @@ void Gameplay::checkShootCount()
 {
 	if (shootCount == maxShootCount)
 	{
-			Vector2 newPos;
+		Vector2 newPos;
 
 		for (int i = 0; i < gameBalls.size(); i++)
 		{
-			newPos.x = gameBalls[i]->GetPos().x;
-			newPos.y = gameBalls[i]->GetPos().y + gameBalls[i]->GetRad();
-			gameBalls[i]->SetPos(newPos);
+			if (gameBalls[i] != player->GetActualBall())
+			{
+				newPos.x = gameBalls[i]->GetPos().x;
+				newPos.y = gameBalls[i]->GetPos().y + gameBalls[i]->GetRad();
+				gameBalls[i]->SetPos(newPos);
+			}
 		}
 		shootCount = 0;
 	}

@@ -9,6 +9,8 @@ MainMenu::MainMenu()
 	Color buttonSelectionColor = GREEN;
 	SceneType buttonType = SceneType::Gameplay;
 
+	this->cursorTexture = LoadTexture("Assets/Cursor/cursor.png");
+
 	this->sceneBackground = LoadTexture("Assets/Background/MenuBackground.png");
 	this->sceneBackgroundPos = { 0.0f,0.0f };
 	this->sceneBackgroundRotation = 0.0f;
@@ -52,6 +54,7 @@ MainMenu::MainMenu()
 MainMenu::~MainMenu()
 {
 	UnloadTexture(sceneBackground);
+	UnloadTexture(cursorTexture);
 
 	int sceneButtonsSize = sceneButtons.size();
 	for (int i = 0; i < sceneButtonsSize; i++)
@@ -80,6 +83,9 @@ void MainMenu::Draw()
 	BeginDrawing();
 	ClearBackground(BLACK);
 
+	HideCursor();
+	DrawTextureEx(cursorTexture,GetMousePosition(), sceneBackgroundRotation, sceneBackgroundScale, sceneBackgroundTint);
+
 	DrawTextureEx(sceneBackground, sceneBackgroundPos, sceneBackgroundRotation, sceneBackgroundScale, sceneBackgroundTint);
 
 	int size = sceneButtons.size();
@@ -90,7 +96,8 @@ void MainMenu::Draw()
 		sceneButtons[i]->DrawButton();
 	}
 
-	DrawCircle(GetMouseX(), GetMouseY(), 5, YELLOW);
+	HideCursor();
+	DrawTextureEx(cursorTexture, GetMousePosition(), sceneBackgroundRotation, 0.1f, sceneBackgroundTint);
 
 	EndDrawing();
 }

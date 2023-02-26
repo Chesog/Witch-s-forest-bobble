@@ -16,6 +16,7 @@ Credits::Credits()
 	this->sceneFont = LoadFont("Assets/Fonts/HelloTwinsDEMO.otf");
 	this->sceneTextFont = LoadFont("Assets/Fonts/Rock Slayers.otf");
 	this->sceneBackground = LoadTexture("Assets/Background/CreditsBackground.png");
+	this->cursorTexture = LoadTexture("Assets/Cursor/cursor.png");
 
 	this->instaL = LoadTexture("Assets/Buttons/Instagram_1.png");;
 	this->instaM = LoadTexture("Assets/Buttons/Instagram_1.png");;
@@ -77,6 +78,15 @@ Credits::~Credits()
 	UnloadTexture(gitE);
 	UnloadTexture(youtC);
 	UnloadTexture(gitD);
+
+	UnloadTexture(cursorTexture);
+
+	int sceneButtonsSize = sceneButtons.size();
+	for (int i = 0; i < sceneButtonsSize; i++)
+	{
+		delete sceneButtons[i];
+	}
+
 	std::cout << "A Credits Scene Was Destroyed" << std::endl;
 }
 
@@ -270,14 +280,8 @@ void Credits::Draw()
 
 	DrawTextEx(sceneTextFont, titleText, textPos, titleFontSize, titleSpacing, BLACK);
 
-	//float addScale = 0.6f;
-	//
-	//DrawTextureEx(instaL, sceneButtons[1]->GetButtonPos(), sceneBackgroundRotation, sceneBackgroundScale + addScale, sceneBackgroundTint);
-	//DrawTextureEx(instaM, sceneButtons[2]->GetButtonPos(), sceneBackgroundRotation, sceneBackgroundScale + addScale, sceneBackgroundTint);
-	//DrawTextureEx(instaP, sceneButtons[3]->GetButtonPos(), sceneBackgroundRotation, sceneBackgroundScale + addScale, sceneBackgroundTint);
-	//DrawTextureEx(gitE, sceneButtons[4]->GetButtonPos(), sceneBackgroundRotation, sceneBackgroundScale + addScale, sceneBackgroundTint);
-	//DrawTextureEx(youtC, sceneButtons[5]->GetButtonPos(), sceneBackgroundRotation, sceneBackgroundScale + addScale, sceneBackgroundTint);
-	//DrawTextureEx(gitD, sceneButtons[6]->GetButtonPos(), sceneBackgroundRotation, sceneBackgroundScale + addScale, sceneBackgroundTint);
+	HideCursor();
+	DrawTextureEx(cursorTexture, GetMousePosition(), sceneBackgroundRotation, 0.1f, sceneBackgroundTint);
 
 	EndDrawing();
 }

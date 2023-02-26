@@ -43,5 +43,7 @@ public:
 	Vector2 GetDirection();
 	Vector2 GetPosition();
 
+	Ball* GetActualBall();
+
 	Rectangle GetPlayerRect();
 };

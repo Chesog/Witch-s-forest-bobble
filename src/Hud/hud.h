@@ -15,6 +15,11 @@ private:
 	Rectangle rightWall;
 	Rectangle topWall;
 	Rectangle finishLine;
+	Rectangle pauseMenu;
+
+	bool drawPause;
+	bool drawVictory;
+	bool drawDefeat;
 
 public:
 	Hud(Player* player, std::vector<Ball*> gameBalls);
@@ -22,14 +27,14 @@ public:
 
 	void Draw();
 	void PlayerWin();
-	void PlayerLose();
-	void Pause();
+	void PlayerLose(bool ballsStopMoving);
 	void UpdateGameBalls(std::vector<Ball*> gameBalls);
+	void SetDrawPause(bool drawPause);
 
 	Rectangle GetLeftWall();
 	Rectangle GetRightWall();
 	Rectangle GetTopWall();
 	Rectangle GetFinishLine();
 
-	bool isPlayerAlive();
+	bool GetDrawPause();
 };
