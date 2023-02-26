@@ -128,6 +128,7 @@ void Options::CheckButtonState()
 		if (sceneButtons[i]->IsButtonPressed())
 		{
 			selectionScene = sceneButtons[i]->GetButtonType();
+			sceneButtons[i]->SetButtonPresed(false);
 		}
 	}
 }

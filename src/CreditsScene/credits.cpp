@@ -16,6 +16,14 @@ Credits::Credits()
 	this->sceneTextFont = LoadFont("Assets/Fonts/Rock Slayers.otf");
 	this->sceneBackground = LoadTexture("Assets/Background/CreditsBackground.png");
 
+	this->instaL = LoadTexture("Assets/Buttons/Instagram_1.png");;
+	this->instaM = LoadTexture("Assets/Buttons/Instagram_1.png");;
+	this->instaP = LoadTexture("Assets/Buttons/Instagram_1.png");;
+
+	this->gitE = LoadTexture("Assets/Buttons/Github_1.png");;
+	this->youtC = LoadTexture("Assets/Buttons/Instagram_1.png");;
+	this->gitD = LoadTexture("Assets/Buttons/Github_1.png");;
+
 	this->sceneBackgroundPos = {0.0f,0.0f};
 	this->sceneBackgroundRotation = 0.0f;
 	this->sceneBackgroundScale = 1.0f;
@@ -60,6 +68,14 @@ Credits::~Credits()
 	UnloadFont(sceneFont);
 	UnloadFont(sceneTextFont);
 	UnloadTexture(sceneBackground);
+
+	UnloadTexture(instaL);
+	UnloadTexture(instaM);
+	UnloadTexture(instaP);
+
+	UnloadTexture(gitE);
+	UnloadTexture(youtC);
+	UnloadTexture(gitD);
 	std::cout << "A Credits Scene Was Destroyed" << std::endl;
 }
 
@@ -260,6 +276,15 @@ void Credits::Draw()
 	textPos.y = titleFontSize * mult;
 
 	DrawTextEx(sceneTextFont, titleText, textPos, titleFontSize, titleSpacing, BLACK);
+
+	float addScale = 0.6f;
+
+	DrawTextureEx(instaL, sceneButtons[1]->GetButtonPos(), sceneBackgroundRotation, sceneBackgroundScale + addScale, sceneBackgroundTint);
+	DrawTextureEx(instaM, sceneButtons[2]->GetButtonPos(), sceneBackgroundRotation, sceneBackgroundScale + addScale, sceneBackgroundTint);
+	DrawTextureEx(instaP, sceneButtons[3]->GetButtonPos(), sceneBackgroundRotation, sceneBackgroundScale + addScale, sceneBackgroundTint);
+	DrawTextureEx(gitE, sceneButtons[4]->GetButtonPos(), sceneBackgroundRotation, sceneBackgroundScale + addScale, sceneBackgroundTint);
+	DrawTextureEx(youtC, sceneButtons[5]->GetButtonPos(), sceneBackgroundRotation, sceneBackgroundScale + addScale, sceneBackgroundTint);
+	DrawTextureEx(gitD, sceneButtons[6]->GetButtonPos(), sceneBackgroundRotation, sceneBackgroundScale + addScale, sceneBackgroundTint);
 
 	EndDrawing();
 }
