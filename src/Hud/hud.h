@@ -24,6 +24,7 @@ public:
 	void PlayerWin();
 	void PlayerLose();
 	void Pause();
+	void UpdateGameBalls(std::vector<Ball*> gameBalls);
 
 	Rectangle GetLeftWall();
 	Rectangle GetRightWall();

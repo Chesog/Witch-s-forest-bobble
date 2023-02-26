@@ -11,6 +11,8 @@ protected:
 	std::vector<Button*> sceneButtons;
 	SceneType selectionScene;
 	Texture2D sceneBackground;
+	Texture2D sceneBackground2;
+	Texture2D cursorTexture;
 	Font sceneFont;
 	Font sceneTextFont;
 	Vector2 sceneBackgroundPos;

@@ -62,8 +62,13 @@ void Hud::Draw()
 	DrawRectangle(static_cast<int>(topWall.x), static_cast<int>(topWall.y), static_cast<int>(topWall.width), topWall.height, RAYWHITE);
 	DrawRectangle(static_cast<int>(finishLine.x), static_cast<int>(finishLine.y), static_cast<int>(finishLine.width), finishLine.height, RAYWHITE);
 	int versionFontSize = 30;
-	int versionTextSize = MeasureText("V 0.2",versionFontSize);
-	DrawText("V 0.3",GetScreenWidth() - (versionTextSize * 2),GetScreenHeight() - versionTextSize,versionFontSize,RAYWHITE);
+	int versionTextSize = MeasureText("V 0.4",versionFontSize);
+	DrawText("V 0.4",GetScreenWidth() - (versionTextSize * 2),GetScreenHeight() - versionTextSize,versionFontSize,RAYWHITE);
+}
+
+void Hud::UpdateGameBalls(std::vector<Ball*> gameBalls)
+{
+	this->gameBalls = gameBalls;
 }
 
 void Hud::PlayerWin()

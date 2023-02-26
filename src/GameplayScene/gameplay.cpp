@@ -19,6 +19,7 @@ Gameplay::Gameplay()
 
 	this->sceneFont = LoadFont("Assets/Fonts/Hero Fest.otf");
 	this->sceneBackground = LoadTexture("Assets/Background/GameplayBackground.png");
+	this->sceneBackground2 = LoadTexture("Assets/Background/GameplayBackground2.png");
 
 	this->sceneBackgroundPos = { 0.0f,0.0f };
 	this->sceneBackgroundRotation = 0.0f;
@@ -39,6 +40,7 @@ Gameplay::~Gameplay()
 {
 	UnloadFont(sceneFont);
 	UnloadTexture(sceneBackground);
+	UnloadTexture(sceneBackground2);
 
 	for (int i = 0; i < gameBalls.size(); i++)
 	{
@@ -78,6 +80,7 @@ void Gameplay::Draw()
 	BeginDrawing();
 	ClearBackground(BLACK);
 
+	DrawTextureEx(sceneBackground2, sceneBackgroundPos, sceneBackgroundRotation, sceneBackgroundScale, sceneBackgroundTint);
 	DrawTextureEx(sceneBackground, sceneBackgroundPos, sceneBackgroundRotation, sceneBackgroundScale, sceneBackgroundTint);
 
 	player->Draw();
@@ -157,6 +160,8 @@ void Gameplay::Update()
 			gameBalls[i]->Movement();
 		}
 	}
+
+	hud->UpdateGameBalls(gameBalls);
 }
 
 void Gameplay::Input()

@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Button/button.h"
 
-Button::Button(Vector2 pos, float width, float height, Color buttonColor, Color buttonSelectionColor,SceneType buttonType)
+Button::Button(Vector2 pos, float width, float height, Color buttonColor, Color buttonSelectionColor, SceneType buttonType, Texture2D buttonTexture)
 {
 	rec.x = pos.x;
 	rec.y = pos.y;
@@ -12,23 +12,26 @@ Button::Button(Vector2 pos, float width, float height, Color buttonColor, Color 
 	this->buttonType = buttonType;
 	mouseOver = false;
 	buttonPresed = false;
+	
+	this->buttonTexture = buttonTexture;
 
 	std::cout << "A New Button Was Created" << std::endl;
 }
 
 Button::~Button()
 {
+	UnloadTexture(buttonTexture);
 	std::cout << "The Button Was Destroyed" << std::endl;
 }
 void Button::DrawButton()
 {
 	if (mouseOver)
 	{
-		DrawRectangle(rec.x, rec.y, rec.width, rec.height, buttonSelectionColor);
+		DrawTextureEx(buttonTexture, {rec.x,rec.y},10.0f,1.0f,WHITE);
 	}
 	else
 	{
-		DrawRectangle(rec.x, rec.y, rec.width, rec.height, buttonColor);
+		DrawTextureEx(buttonTexture, { rec.x,rec.y }, 1.0f, 1.0f, WHITE);
 	}
 }
 

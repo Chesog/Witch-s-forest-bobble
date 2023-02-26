@@ -9,27 +9,39 @@ MainMenu::MainMenu()
 	Color buttonSelectionColor = GREEN;
 	SceneType buttonType = SceneType::Gameplay;
 
-	Button* playButton = new Button(pos, width, height, buttonColor, buttonSelectionColor, buttonType); \
+	this->sceneBackground = LoadTexture("Assets/Background/MenuBackground.png");
+	this->sceneBackgroundPos = { 0.0f,0.0f };
+	this->sceneBackgroundRotation = 0.0f;
+	this->sceneBackgroundScale = 1.0f;
+	this->sceneBackgroundTint = WHITE;
+
+	Texture2D buttonTexture = LoadTexture("Assets/Buttons/1.play1.png");
+
+	Button* playButton = new Button(pos, width, height, buttonColor, buttonSelectionColor, buttonType, buttonTexture);
 	AddButton(playButton);
 
+	buttonTexture = LoadTexture("Assets/Buttons/2.rules1.png");
 	pos = { width / 2,height * 4 };
 	buttonType = SceneType::Rules;
-	Button* rulesButton = new Button(pos, width, height, buttonColor, buttonSelectionColor, buttonType);
+	Button* rulesButton = new Button(pos, width, height, buttonColor, buttonSelectionColor, buttonType, buttonTexture);
 	AddButton(rulesButton);
 
+	buttonTexture = LoadTexture("Assets/Buttons/3.options1.png");
 	pos = { width / 2,height * 6 };
 	buttonType = SceneType::Options;
-	Button* optionsButton = new Button(pos, width, height, buttonColor, buttonSelectionColor, buttonType);
+	Button* optionsButton = new Button(pos, width, height, buttonColor, buttonSelectionColor, buttonType, buttonTexture);
 	AddButton(optionsButton);
 
+	buttonTexture = LoadTexture("Assets/Buttons/4.credits1.png");
 	pos = { width / 2,height * 8 };
 	buttonType = SceneType::Credits;
-	Button* creditsButton = new Button(pos, width, height, buttonColor, buttonSelectionColor, buttonType);
+	Button* creditsButton = new Button(pos, width, height, buttonColor, buttonSelectionColor, buttonType, buttonTexture);
 	AddButton(creditsButton);
 
+	buttonTexture = LoadTexture("Assets/Buttons/5.exi1t.png");
 	pos = { width / 2,height * 10 };
 	buttonType = SceneType::Exit;
-	Button* exitButton = new Button(pos, width, height, buttonColor, buttonSelectionColor, buttonType);
+	Button* exitButton = new Button(pos, width, height, buttonColor, buttonSelectionColor, buttonType, buttonTexture);
 	AddButton(exitButton);
 
 	selectionScene = SceneType::MainMenu;
@@ -39,6 +51,8 @@ MainMenu::MainMenu()
 
 MainMenu::~MainMenu()
 {
+	UnloadTexture(sceneBackground);
+
 	int sceneButtonsSize = sceneButtons.size();
 	for (int i = 0; i < sceneButtonsSize; i++)
 	{
@@ -66,6 +80,8 @@ void MainMenu::Draw()
 	BeginDrawing();
 	ClearBackground(BLACK);
 
+	DrawTextureEx(sceneBackground, sceneBackgroundPos, sceneBackgroundRotation, sceneBackgroundScale, sceneBackgroundTint);
+
 	int size = sceneButtons.size();
 
 
@@ -73,43 +89,6 @@ void MainMenu::Draw()
 	{
 		sceneButtons[i]->DrawButton();
 	}
-
-	const char* buttonText = "Play";
-	int buttonFontSize = 30.0f;
-	int textSize = MeasureText(buttonText, buttonFontSize);
-	int textPosX = sceneButtons[0]->GetButtonPos().x + textSize / 2;
-	int textPosY = sceneButtons[0]->GetButtonPos().y + buttonFontSize / 3;
-
-	DrawText(buttonText,textPosX,textPosY,buttonFontSize, BLACK);
-
-	buttonText = "Rules";
-	textSize = MeasureText(buttonText, buttonFontSize);
-	textPosX = sceneButtons[1]->GetButtonPos().x + textSize / 2;
-	textPosY = sceneButtons[1]->GetButtonPos().y + buttonFontSize / 3;
-
-	DrawText(buttonText, textPosX, textPosY, buttonFontSize, BLACK);
-
-	buttonText = "Options";
-	textSize = MeasureText(buttonText, buttonFontSize);
-	textPosX = sceneButtons[2]->GetButtonPos().x + textSize / 2;
-	textPosY = sceneButtons[2]->GetButtonPos().y + buttonFontSize / 3;
-
-	DrawText(buttonText, textPosX, textPosY, buttonFontSize, BLACK);
-
-	buttonText = "Credits";
-	textSize = MeasureText(buttonText, buttonFontSize);
-	textPosX = sceneButtons[3]->GetButtonPos().x + textSize / 2;
-	textPosY = sceneButtons[3]->GetButtonPos().y + buttonFontSize / 3;
-
-	DrawText(buttonText, textPosX, textPosY, buttonFontSize, BLACK);
-
-	buttonText = "Exit";
-	textSize = MeasureText(buttonText, buttonFontSize);
-	textPosX = sceneButtons[4]->GetButtonPos().x + textSize / 2;
-	textPosY = sceneButtons[4]->GetButtonPos().y + buttonFontSize / 3;
-
-	DrawText(buttonText, textPosX, textPosY, buttonFontSize, BLACK);
-
 
 	DrawCircle(GetMouseX(), GetMouseY(), 5, YELLOW);
 

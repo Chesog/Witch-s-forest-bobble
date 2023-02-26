@@ -8,8 +8,9 @@ Credits::Credits()
 	Color buttonColor = RED;
 	Color buttonSelectionColor = GREEN;
 	SceneType buttonType = SceneType::MainMenu;
+	Texture2D returnButtonTexture = LoadTexture("Assets/Buttons/return.png");
 
-	Button* returnButton = new Button(pos, width, height, buttonColor, buttonSelectionColor, buttonType);
+	Button* returnButton = new Button(pos, width, height, buttonColor, buttonSelectionColor, buttonType, returnButtonTexture);
 	AddButton(returnButton);
 
 	this->sceneFont = LoadFont("Assets/Fonts/HelloTwinsDEMO.otf");
@@ -36,27 +37,27 @@ Credits::Credits()
 	buttonType = SceneType::Credits;
 
 	pos = {width,height * 4.5f};
-	Button* InstagramJ = new Button(pos, width, height, buttonColor, buttonSelectionColor, buttonType);
+	Button* InstagramJ = new Button(pos, width, height, buttonColor, buttonSelectionColor, buttonType, instaL);
 	AddButton(InstagramJ);
 
 	pos = { width,height * 6.5f };
-	Button* InstagramM = new Button(pos, width, height, buttonColor, buttonSelectionColor, buttonType);
+	Button* InstagramM = new Button(pos, width, height, buttonColor, buttonSelectionColor, buttonType, instaM);
 	AddButton(InstagramM);
 
 	pos = { width,height * 8.5f };
-	Button* InstagramP = new Button(pos, width, height, buttonColor, buttonSelectionColor, buttonType);
+	Button* InstagramP = new Button(pos, width, height, buttonColor, buttonSelectionColor, buttonType, instaP);
 	AddButton(InstagramP);
 
 	pos = {GetScreenWidth() - width * 2.5f,height * 4.5f };
-	Button* GitE = new Button(pos, width, height, buttonColor, buttonSelectionColor, buttonType);
+	Button* GitE = new Button(pos, width, height, buttonColor, buttonSelectionColor, buttonType, gitE);
 	AddButton(GitE);
 
 	pos = { GetScreenWidth() - width * 2.5f,height * 7.5f };
-	Button* ytC = new Button(pos, width, height, buttonColor, buttonSelectionColor, buttonType);
+	Button* ytC = new Button(pos, width, height, buttonColor, buttonSelectionColor, buttonType, youtC);
 	AddButton(ytC);
 
 	pos = { GetScreenWidth() - width * 10.0f,height * 11.5f };
-	Button* GitD = new Button(pos, width, height, buttonColor, buttonSelectionColor, buttonType);
+	Button* GitD = new Button(pos, width, height, buttonColor, buttonSelectionColor, buttonType, gitD);
 	AddButton(GitD);
 
 	selectionScene = SceneType::Credits;
@@ -104,14 +105,6 @@ void Credits::Draw()
 	{
 		sceneButtons[i]->DrawButton();
 	}
-
-	const char* buttonText = "Return";
-	int buttonFontSize = 30.0f;
-	int textSize = MeasureText(buttonText, buttonFontSize);
-	int textPosX = sceneButtons[0]->GetButtonPos().x + textSize / 2;
-	int textPosY = sceneButtons[0]->GetButtonPos().y + buttonFontSize / 3;
-
-	DrawText(buttonText, textPosX, textPosY, buttonFontSize, BLACK);
 
 	float mult = 3.0f;
 	const char* titleText = "Credits";
@@ -277,14 +270,14 @@ void Credits::Draw()
 
 	DrawTextEx(sceneTextFont, titleText, textPos, titleFontSize, titleSpacing, BLACK);
 
-	float addScale = 0.6f;
-
-	DrawTextureEx(instaL, sceneButtons[1]->GetButtonPos(), sceneBackgroundRotation, sceneBackgroundScale + addScale, sceneBackgroundTint);
-	DrawTextureEx(instaM, sceneButtons[2]->GetButtonPos(), sceneBackgroundRotation, sceneBackgroundScale + addScale, sceneBackgroundTint);
-	DrawTextureEx(instaP, sceneButtons[3]->GetButtonPos(), sceneBackgroundRotation, sceneBackgroundScale + addScale, sceneBackgroundTint);
-	DrawTextureEx(gitE, sceneButtons[4]->GetButtonPos(), sceneBackgroundRotation, sceneBackgroundScale + addScale, sceneBackgroundTint);
-	DrawTextureEx(youtC, sceneButtons[5]->GetButtonPos(), sceneBackgroundRotation, sceneBackgroundScale + addScale, sceneBackgroundTint);
-	DrawTextureEx(gitD, sceneButtons[6]->GetButtonPos(), sceneBackgroundRotation, sceneBackgroundScale + addScale, sceneBackgroundTint);
+	//float addScale = 0.6f;
+	//
+	//DrawTextureEx(instaL, sceneButtons[1]->GetButtonPos(), sceneBackgroundRotation, sceneBackgroundScale + addScale, sceneBackgroundTint);
+	//DrawTextureEx(instaM, sceneButtons[2]->GetButtonPos(), sceneBackgroundRotation, sceneBackgroundScale + addScale, sceneBackgroundTint);
+	//DrawTextureEx(instaP, sceneButtons[3]->GetButtonPos(), sceneBackgroundRotation, sceneBackgroundScale + addScale, sceneBackgroundTint);
+	//DrawTextureEx(gitE, sceneButtons[4]->GetButtonPos(), sceneBackgroundRotation, sceneBackgroundScale + addScale, sceneBackgroundTint);
+	//DrawTextureEx(youtC, sceneButtons[5]->GetButtonPos(), sceneBackgroundRotation, sceneBackgroundScale + addScale, sceneBackgroundTint);
+	//DrawTextureEx(gitD, sceneButtons[6]->GetButtonPos(), sceneBackgroundRotation, sceneBackgroundScale + addScale, sceneBackgroundTint);
 
 	EndDrawing();
 }

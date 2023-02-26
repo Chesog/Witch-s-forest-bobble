@@ -8,8 +8,9 @@ Rules::Rules()
 	Color buttonColor = RED;
 	Color buttonSelectionColor = GREEN;
 	SceneType buttonType = SceneType::MainMenu;
+	Texture2D returnButtonTexture = LoadTexture("Assets/Buttons/return.png");
 
-	Button* returnButton = new Button(pos, width, height, buttonColor, buttonSelectionColor, buttonType);
+	Button* returnButton = new Button(pos, width, height, buttonColor, buttonSelectionColor, buttonType, returnButtonTexture);
 	AddButton(returnButton);
 
 	this->sceneFont = LoadFont("Assets/Fonts/HelloTwinsDEMO.otf");
@@ -59,13 +60,6 @@ void Rules::Draw()
 		sceneButtons[i]->DrawButton();
 	}
 
-	const char* buttonText = "Return";
-	int buttonFontSize = 30.0f;
-	int textSize = MeasureText(buttonText, buttonFontSize);
-	int textPosX = sceneButtons[0]->GetButtonPos().x + textSize / 2;
-	int textPosY = sceneButtons[0]->GetButtonPos().y + buttonFontSize / 3;
-
-	DrawText(buttonText, textPosX, textPosY, buttonFontSize, BLACK);
 
 	float mult = 3.0f;
 	const char* titleText = "Rules";
