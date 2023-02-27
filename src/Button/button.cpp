@@ -27,11 +27,23 @@ void Button::DrawButton()
 {
 	if (mouseOver)
 	{
-		DrawTextureEx(buttonTexture, {rec.x,rec.y},10.0f,1.0f,WHITE);
+		DrawTextureEx(buttonTexture, {rec.x,rec.y},5.0f,1.0f,WHITE);
 	}
 	else
 	{
-		DrawTextureEx(buttonTexture, { rec.x,rec.y }, 1.0f, 1.0f, WHITE);
+		DrawTextureEx(buttonTexture, { rec.x,rec.y }, 0.0f, 1.0f, WHITE);
+	}
+}
+
+void Button::DrawButtonWhitScale(float scale)
+{
+	if (mouseOver)
+	{
+		DrawTextureEx(buttonTexture, { rec.x,rec.y }, 5.0f, scale, WHITE);
+	}
+	else
+	{
+		DrawTextureEx(buttonTexture, { rec.x,rec.y }, 0.0f, scale, WHITE);
 	}
 }
 

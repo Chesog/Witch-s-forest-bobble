@@ -27,7 +27,7 @@ public:
 	Gameplay();
 	~Gameplay();
 
-	SceneType ExecuteScene() override;
+	SceneType ExecuteScene(float& volume) override;
 	void Draw() override;
 	void Update() override;
 	void Input() override;
@@ -40,6 +40,8 @@ public:
 	void OutOfBounds();
 	void CreateBallPatern();
 	void checkShootCount();
+	void SetVolumeMusic(float newVolume) override;
+	float GetVolumeMusic() override;
 
 	bool BallBallColition(Ball* ball1, Ball* ball2);
 

@@ -17,6 +17,7 @@ public:
 	Button(Vector2 pos,float width,float height,Color buttonColor, Color buttonSelectionColor, SceneType buttonType, Texture2D buttonTexture);
 	~Button();
 	void DrawButton();
+	void DrawButtonWhitScale(float scale);
 	void SetButtonPresed(bool buttonPresed);
 	void SetMouseOver(bool mouseOver);
 	bool IsButtonPressed();

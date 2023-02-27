@@ -12,6 +12,8 @@ Rules::Rules()
 	SceneType buttonType = SceneType::MainMenu;
 	Texture2D returnButtonTexture = LoadTexture("Assets/Buttons/return.png");
 
+	this->sceneMusic = LoadMusicStream("Assets/Music/Woko_Forest.mp3");
+
 
 	Button* returnButton = new Button(pos, width, height, buttonColor, buttonSelectionColor, buttonType, returnButtonTexture);
 	AddButton(returnButton);
@@ -36,6 +38,8 @@ Rules::~Rules()
 	UnloadTexture(sceneBackground);
 	UnloadTexture(cursorTexture);
 
+	UnloadMusicStream(sceneMusic);
+
 	int sceneButtonsSize = sceneButtons.size();
 	for (int i = 0; i < sceneButtonsSize; i++)
 	{
@@ -44,14 +48,29 @@ Rules::~Rules()
 	std::cout << "A Credits Scene Was Destroyed" << std::endl;
 }
 
-SceneType Rules::ExecuteScene()
+SceneType Rules::ExecuteScene(float& volume)
 {
+	SetVolumeMusic(volume);
 	Update();
+	if (selectionScene != SceneType::Rules)
+	{
+		StopMusicStream(sceneMusic);
+	}
 	return selectionScene;
 }
 
 void Rules::Update()
 {
+	if (!IsMusicStreamPlaying(sceneMusic))
+	{
+		PlayMusicStream(sceneMusic);
+	}
+	else
+	{
+		UpdateMusicStream(sceneMusic);
+	}
+	SetMusicVolume(sceneMusic, volume);
+
 	Draw();
 	Input();
 	CheckButtonState();
@@ -274,4 +293,13 @@ void Rules::CheckButtonState()
 			sceneButtons[i]->SetButtonPresed(false);
 		}
 	}
+}
+
+float Rules::GetVolumeMusic()
+{
+	return volume;
+}
+void Rules::SetVolumeMusic(float newVolume)
+{
+	this->volume = newVolume;
 }

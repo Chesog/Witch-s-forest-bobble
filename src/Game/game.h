@@ -22,6 +22,8 @@ private:
 
 	bool resetScene;
 
+	float masterVolume;
+
 	int screenWidht;
 	int screenHeight;
 public:

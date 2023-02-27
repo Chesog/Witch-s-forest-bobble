@@ -5,8 +5,10 @@ Game::Game()
 	screenWidht = 1280;
 	screenHeight = 720;
 
+	this->masterVolume = 0.1f;
 
 	InitWindow(screenWidht, screenHeight, "Witch's forest bobble");
+	InitAudioDevice();
 
 	SetExitKey(NULL);
 
@@ -28,19 +30,19 @@ Game::Game()
 Game::~Game()
 {
 	
-
 	delete mainMenuScene;
 	delete gameplayScene;
 	delete creditsScene;
 	delete rulesScene;
 	delete optionsScene;
 
+	CloseAudioDevice();
+
 	std::cout << "Witch-s-forest-bobble was destroyed" << std::endl;
 }
 
 void Game::ExecuteGame()
 {
-
 	do
 	{
 		switch (currentScene)
@@ -50,40 +52,51 @@ void Game::ExecuteGame()
 			{
 				mainMenuScene->ResetScene();
 				lastSelectedScene = currentScene;
+				mainMenuScene->SetVolumeMusic(masterVolume);
 			}
-			currentScene = mainMenuScene->ExecuteScene();
+			mainMenuScene->SetVolumeMusic(masterVolume);
+			currentScene = mainMenuScene->ExecuteScene(masterVolume);
+			masterVolume = mainMenuScene->GetVolumeMusic();
 			break;
 		case SceneType::Gameplay:
 			if (ShouldResetScene())
 			{
 				gameplayScene->ResetScene();
 				lastSelectedScene = currentScene;
+				gameplayScene->SetVolumeMusic(masterVolume);
 			}
-			currentScene = gameplayScene->ExecuteScene();
+			currentScene = gameplayScene->ExecuteScene(masterVolume);
+			masterVolume = gameplayScene->GetVolumeMusic();
 			break;
 		case SceneType::Rules:
 			if (ShouldResetScene())
 			{
 				rulesScene->ResetScene();
 				lastSelectedScene = currentScene;
+				rulesScene->SetVolumeMusic(masterVolume);
 			}
-			currentScene = rulesScene->ExecuteScene();
+			currentScene = rulesScene->ExecuteScene(masterVolume);
+			masterVolume = rulesScene->GetVolumeMusic();
 			break;
 		case SceneType::Options:
 			if (ShouldResetScene())
 			{
 				optionsScene->ResetScene();
 				lastSelectedScene = currentScene;
+				optionsScene->SetVolumeMusic(masterVolume);
 			}
-			currentScene = optionsScene->ExecuteScene();
+			currentScene = optionsScene->ExecuteScene(masterVolume);
+			masterVolume = optionsScene->GetVolumeMusic();
 			break;
 		case SceneType::Credits:
 			if (ShouldResetScene())
 			{
 				creditsScene->ResetScene();
 				lastSelectedScene = currentScene;
+				creditsScene->SetVolumeMusic(masterVolume);
 			}
-			currentScene = creditsScene->ExecuteScene();
+			currentScene = creditsScene->ExecuteScene(masterVolume);
+			masterVolume = creditsScene->GetVolumeMusic();
 			break;
 		case SceneType::Exit:
 			return;

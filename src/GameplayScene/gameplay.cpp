@@ -9,6 +9,27 @@ Gameplay::Gameplay()
 
 	int playerInitalLives = 3;
 
+	float width = 200.0f;
+	float height = 40.0f;
+	Vector2 pos = {GetScreenWidth() / 2 - width - 10.0f,height * 2 };
+	Color buttonColor = RED;
+	Color buttonSelectionColor = GREEN;
+	SceneType buttonType = SceneType::Gameplay;
+
+	this->sceneMusic = LoadMusicStream("Assets/Music/game music.wav");
+
+	Texture2D buttonTexture = LoadTexture("Assets/Buttons/reset.png");
+
+	Button* ResetButton = new Button(pos, width, height, buttonColor, buttonSelectionColor, buttonType, buttonTexture);
+	AddButton(ResetButton);
+
+
+	pos = { GetScreenWidth() / 2 + width  / 20,height * 2 };
+	buttonTexture = LoadTexture("Assets/Buttons/return.png");
+
+	Button* exitButton = new Button(pos, width, height, buttonColor, buttonSelectionColor, buttonType, buttonTexture);
+	AddButton(exitButton);
+
 	Vector2 initialPos;
 	initialPos.x = static_cast<float>(GetScreenWidth() / 2);
 	initialPos.y = static_cast<float>(GetScreenHeight() - playerHeight * 2);
@@ -32,6 +53,8 @@ Gameplay::Gameplay()
 
 	this->hud = new Hud(player, gameBalls);
 
+	selectionScene = SceneType::Gameplay;
+
 	player->SetActualBall(CreateBall());
 
 	CreateBallPatern();
@@ -44,9 +67,17 @@ Gameplay::~Gameplay()
 	UnloadTexture(sceneBackground2);
 	UnloadTexture(cursorTexture);
 
+	UnloadMusicStream(sceneMusic);
+
 	for (int i = 0; i < gameBalls.size(); i++)
 	{
 		delete gameBalls[i];
+	}
+
+	int sceneButtonsSice = sceneButtons.size();
+	for (int i = 0; i < sceneButtonsSice; i++)
+	{
+		delete sceneButtons[i];
 	}
 
 	delete player;
@@ -65,16 +96,29 @@ void Gameplay::ResetScene()
 		gameBalls.erase(gameBalls.begin());
 	}
 
+	int sceneButtonsSice = sceneButtons.size();
+	for (int i = 0; i < sceneButtonsSice; i++)
+	{
+		sceneButtons[i]->SetButtonPresed(false);
+		sceneButtons[i]->SetMouseOver(false);
+	}
+	selectionScene = SceneType::Gameplay;
+
+	hud->SetDrawPause(false);
+
 	CreateBallPatern();
 	player->SetActualBall(CreateBall());
 }
 
-SceneType Gameplay::ExecuteScene()
+SceneType Gameplay::ExecuteScene(float& volume)
 {
-	Input();
+	SetVolumeMusic(volume);
 	Update();
-	Draw();
-	return SceneType::Gameplay;
+	if (selectionScene != SceneType::Gameplay)
+	{
+		StopMusicStream(sceneMusic);
+	}
+	return selectionScene;
 }
 
 void Gameplay::Draw()
@@ -99,6 +143,17 @@ void Gameplay::Draw()
 
 	hud->Draw();
 
+	if (hud->GetDrawPause())
+	{
+		int buttonSize = sceneButtons.size();
+
+		for (int i = 0; i < buttonSize; i++)
+		{
+			float scale = 0.9f;
+			sceneButtons[i]->DrawButtonWhitScale(scale);
+		}
+	}
+
 	HideCursor();
 	DrawTextureEx(cursorTexture, GetMousePosition(), sceneBackgroundRotation, 0.1f, sceneBackgroundTint);
 
@@ -107,11 +162,22 @@ void Gameplay::Draw()
 
 void Gameplay::Update()
 {
+	if (!IsMusicStreamPlaying(sceneMusic))
+	{
+		PlayMusicStream(sceneMusic);
+	}
+	else
+	{
+		UpdateMusicStream(sceneMusic);
+	}
+	SetMusicVolume(sceneMusic, volume);
+
 	player->Movement();
 
 	CheckColition();
 	CheckConection();
 	CheckBallsMovement();
+	CheckButtonState();
 	OutOfBounds();
 	checkShootCount();
 
@@ -170,6 +236,9 @@ void Gameplay::Update()
 	hud->UpdateGameBalls(gameBalls);
 	hud->PlayerWin();
 	hud->PlayerLose(ballsStopMoving);
+
+	Input();
+	Draw();
 }
 
 void Gameplay::Input()
@@ -204,6 +273,26 @@ void Gameplay::Input()
 			hud->SetDrawPause(true);
 		}
 	}
+
+	if (hud->GetDrawPause())
+	{
+		int sceneButtonsSice = sceneButtons.size();
+
+		for (int i = 0; i < sceneButtonsSice; i++)
+		{
+			if (CheckCollisionPointRec(GetMousePosition(), sceneButtons[i]->GetButtonRec()))
+			{
+				if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON))
+				{
+					sceneButtons[i]->SetButtonPresed(true);
+				}
+				else
+				{
+					sceneButtons[i]->SetButtonPresed(false);
+				}
+			}
+		}
+	}
 }
 
 void Gameplay::AddButton(Button* newButton)
@@ -213,7 +302,22 @@ void Gameplay::AddButton(Button* newButton)
 
 void Gameplay::CheckButtonState()
 {
+	for (int i = 0; i < sceneButtons.size(); i++)
+	{
+		sceneButtons[i]->SetMouseOver(CheckCollisionPointRec(GetMousePosition(), sceneButtons[i]->GetButtonRec()));
+	}
 
+	if (sceneButtons[0]->IsButtonPressed())
+	{
+		ResetScene();
+		sceneButtons[0]->SetButtonPresed(false);
+	}
+
+	if (sceneButtons[1]->IsButtonPressed())
+	{
+		selectionScene = SceneType::MainMenu();
+		sceneButtons[1]->SetButtonPresed(false);
+	}
 }
 
 void Gameplay::CheckColition()
@@ -323,7 +427,7 @@ void Gameplay::CheckConection()
 				gameBalls[i]->StartConcectionFall();
 				for (int h = 0; h < size; h++)
 				{
-					if (gameBalls[h]->GetPos().x <= gameBalls[i]->GetPos().x - gameBalls[i]->GetRad() && !gameBalls[i]->GetIsFalling() || gameBalls[h]->GetPos().x >= gameBalls[i]->GetPos().x + gameBalls[i]->GetRad() && !gameBalls[i]->GetIsFalling())
+					if (gameBalls[h]->GetPos().x >= gameBalls[i]->GetPos().x - gameBalls[i]->GetRad() && gameBalls[h]->GetPos().x <= gameBalls[i]->GetPos().x + gameBalls[i]->GetRad() && !gameBalls[i]->GetIsFalling())
 					{
 						if (gameBalls[h]->GetPos().y > gameBalls[i]->GetPos().y && gameBalls[h] != player->GetActualBall())
 						{
@@ -333,7 +437,6 @@ void Gameplay::CheckConection()
 							gameBalls[h]->SetTrajectoy(trajectory);
 							gameBalls[h]->SetIsFalling(true);
 							gameBalls[h]->StartConcectionFall();
-							return;
 						}
 					}
 				}
@@ -668,4 +771,13 @@ void Gameplay::checkShootCount()
 		}
 		shootCount = 0;
 	}
+}
+
+float Gameplay::GetVolumeMusic()
+{
+	return volume;
+}
+void Gameplay::SetVolumeMusic(float newVolume)
+{
+	this->volume = newVolume;
 }

@@ -9,16 +9,27 @@ class GameScene
 {
 protected:
 	std::vector<Button*> sceneButtons;
+
 	SceneType selectionScene;
+
 	Texture2D sceneBackground;
 	Texture2D sceneBackground2;
 	Texture2D cursorTexture;
+
+	Music sceneMusic;
+
 	Font sceneFont;
 	Font sceneTextFont;
+
 	Vector2 sceneBackgroundPos;
+
+	Color sceneBackgroundTint;
+
+	float volume;
+
 	float sceneBackgroundRotation;
 	float sceneBackgroundScale;
-	Color sceneBackgroundTint;
+
 public:
 	GameScene();
 	virtual ~GameScene();
@@ -27,5 +38,7 @@ public:
 	virtual void Input() = 0;
 	virtual void ResetScene() = 0;
 	virtual void AddButton(Button* newButton) = 0;
-	virtual SceneType ExecuteScene() = 0;
+	virtual void SetVolumeMusic(float newVolume) = 0;
+	virtual float GetVolumeMusic() = 0;
+	virtual SceneType ExecuteScene(float& volume) = 0;
 };

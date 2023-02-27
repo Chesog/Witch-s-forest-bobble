@@ -9,6 +9,8 @@ MainMenu::MainMenu()
 	Color buttonSelectionColor = GREEN;
 	SceneType buttonType = SceneType::Gameplay;
 
+	this->sceneMusic = LoadMusicStream("Assets/Music/menu music.wav");
+
 	this->cursorTexture = LoadTexture("Assets/Cursor/cursor.png");
 
 	this->sceneBackground = LoadTexture("Assets/Background/MenuBackground.png");
@@ -55,6 +57,7 @@ MainMenu::~MainMenu()
 {
 	UnloadTexture(sceneBackground);
 	UnloadTexture(cursorTexture);
+	UnloadMusicStream(sceneMusic);
 
 	int sceneButtonsSize = sceneButtons.size();
 	for (int i = 0; i < sceneButtonsSize; i++)
@@ -64,15 +67,31 @@ MainMenu::~MainMenu()
 	std::cout << "A New Main Menu Was Destroyed" << std::endl;
 }
 
-SceneType MainMenu::ExecuteScene()
+SceneType MainMenu::ExecuteScene(float& volume)
 {
+	SetVolumeMusic(volume);
 	Update();
+	if (selectionScene != SceneType::MainMenu)
+	{
+		StopMusicStream(sceneMusic);
+	}
 	return selectionScene;
 }
 
 
 void MainMenu::Update()
 {
+
+	if (!IsMusicStreamPlaying(sceneMusic))
+	{
+		PlayMusicStream(sceneMusic);
+	}
+	else
+	{
+		UpdateMusicStream(sceneMusic);
+	}
+	SetMusicVolume(sceneMusic, volume);
+
 	Draw();
 	Input();
 	CheckButtonState();
@@ -152,4 +171,13 @@ void MainMenu::CheckButtonState()
 			selectionScene = sceneButtons[i]->GetButtonType();
 		}
 	}
+}
+
+float MainMenu::GetVolumeMusic()
+{
+	return volume;
+}
+void MainMenu::SetVolumeMusic(float newVolume)
+{
+	this->volume = newVolume;
 }

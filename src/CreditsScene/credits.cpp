@@ -10,6 +10,8 @@ Credits::Credits()
 	SceneType buttonType = SceneType::MainMenu;
 	Texture2D returnButtonTexture = LoadTexture("Assets/Buttons/return.png");
 
+	this->sceneMusic = LoadMusicStream("Assets/Music/Bowsers_Cake_Land.mp3");
+
 	Button* returnButton = new Button(pos, width, height, buttonColor, buttonSelectionColor, buttonType, returnButtonTexture);
 	AddButton(returnButton);
 
@@ -79,6 +81,8 @@ Credits::~Credits()
 	UnloadTexture(youtC);
 	UnloadTexture(gitD);
 
+	UnloadMusicStream(sceneMusic);
+
 	UnloadTexture(cursorTexture);
 
 	int sceneButtonsSize = sceneButtons.size();
@@ -90,14 +94,28 @@ Credits::~Credits()
 	std::cout << "A Credits Scene Was Destroyed" << std::endl;
 }
 
-SceneType Credits::ExecuteScene()
+SceneType Credits::ExecuteScene(float& volume)
 {
+	SetVolumeMusic(volume);
 	Update();
+	if (selectionScene != SceneType::Credits)
+	{
+		StopMusicStream(sceneMusic);
+	}
 	return selectionScene;
 }
 
 void Credits::Update()
 {
+	if (!IsMusicStreamPlaying(sceneMusic))
+	{
+		PlayMusicStream(sceneMusic);
+	}
+	else
+	{
+		UpdateMusicStream(sceneMusic);
+	}
+	SetMusicVolume(sceneMusic, volume);
 	Draw();
 	Input();
 	CheckButtonState();
@@ -113,7 +131,15 @@ void Credits::Draw()
 	int sceneButtonsSice = sceneButtons.size();
 	for (int i = 0; i < sceneButtonsSice; i++)
 	{
-		sceneButtons[i]->DrawButton();
+		if (i != 0)
+		{
+			float scale = 1.6f;
+			sceneButtons[i]->DrawButtonWhitScale(scale);
+		}
+		else
+		{
+			sceneButtons[i]->DrawButton();
+		}
 	}
 
 	float mult = 3.0f;
@@ -344,13 +370,13 @@ void Credits::CheckButtonState()
 
 	if (sceneButtons[2]->IsButtonPressed())
 	{
-		//OpenURL("");
+		OpenURL("https://www.instagram.com/apitibon/?next=%2F");
 		sceneButtons[2]->SetButtonPresed(false);
 	}
 
 	if (sceneButtons[3]->IsButtonPressed())
 	{
-		//OpenURL("");
+		OpenURL("https://www.instagram.com/_scitty__/?next=%2F");
 		sceneButtons[3]->SetButtonPresed(false);
 	}
 
@@ -371,4 +397,13 @@ void Credits::CheckButtonState()
 		OpenURL("https://github.com/Chesog");
 		sceneButtons[6]->SetButtonPresed(false);
 	}
+}
+
+float Credits::GetVolumeMusic()
+{
+	return volume;
+}
+void Credits::SetVolumeMusic(float newVolume)
+{
+	this->volume = newVolume;
 }
