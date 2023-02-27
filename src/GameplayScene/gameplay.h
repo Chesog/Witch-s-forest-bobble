@@ -10,40 +10,44 @@
 #include "Ball/ball.h"
 #include "Hud/hud.h"
 
-class Gameplay : public GameScene
+namespace WFB
 {
-private:
-	std::vector<Ball*> gameBalls;
-	Player* player;
-	Hud* hud;
-	Vector2 distanceDiff;
 
-	int shootCount;
-	int maxShootCount;
+	class Gameplay : public GameScene
+	{
+	private:
+		std::vector<Ball*> gameBalls;
+		Player* player;
+		Hud* hud;
+		Vector2 distanceDiff;
 
-	bool initGame;
-	bool ballsStopMoving;
-public:
-	Gameplay();
-	~Gameplay();
+		int shootCount;
+		int maxShootCount;
 
-	SceneType ExecuteScene(float& volume) override;
-	void Draw() override;
-	void Update() override;
-	void Input() override;
-	void ResetScene() override;
-	void AddButton(Button* newButton) override;
-	void CheckButtonState();
-	void CheckColition();
-	void CheckConection();
-	void CheckBallsMovement();
-	void OutOfBounds();
-	void CreateBallPatern();
-	void checkShootCount();
-	void SetVolumeMusic(float newVolume) override;
-	float GetVolumeMusic() override;
+		bool initGame;
+		bool ballsStopMoving;
+	public:
+		Gameplay();
+		~Gameplay();
 
-	bool BallBallColition(Ball* ball1, Ball* ball2);
+		SceneType ExecuteScene(float& volume) override;
+		void Draw() override;
+		void Update() override;
+		void Input() override;
+		void ResetScene() override;
+		void AddButton(Button* newButton) override;
+		void CheckButtonState();
+		void CheckColition();
+		void CheckConection();
+		void CheckBallsMovement();
+		void OutOfBounds();
+		void CreateBallPatern();
+		void checkShootCount();
+		void SetVolumeMusic(float newVolume) override;
+		float GetVolumeMusic() override;
 
-	Ball* CreateBall();
-};
+		bool BallBallColition(Ball* ball1, Ball* ball2);
+
+		Ball* CreateBall();
+	};
+}

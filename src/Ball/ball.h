@@ -4,56 +4,59 @@
 #include "raylib.h"
 #include "Entity/entity.h"
 
-enum class BallColors { Red, Yellow, Purple, Blue ,Green,Orange};
+enum class BallColors { Red, Yellow, Purple, Blue, Green, Orange };
 
-class Ball : public Entity
+namespace WFB
 {
-private:
-	bool isFalling;
-	bool canColide;
-	float rad;
-	Color ballColor;
-	Directions currentDirection;
-	BallColors color;
-	std::vector<Ball*> collidedBalls;
-	Vector2 trajectory;
-	Texture ballTexture;
 
-public:
-	Ball(Vector2 pos,Vector2 trajectory, EntityType type, float speed, float points, float rad,Color ballColor,BallColors color, Texture2D ballTexture);
-	~Ball();
+	class Ball : public Entity
+	{
+	private:
+		bool isFalling;
+		bool canColide;
+		float rad;
+		Color ballColor;
+		Directions currentDirection;
+		BallColors color;
+		std::vector<Ball*> collidedBalls;
+		Vector2 trajectory;
+		Texture ballTexture;
 
-	void SetDirection(Directions newDirection);
-	void SetTrajectoy(Vector2 trajectory);
-	void SetPos(Vector2 pos);
-	void SetIsFalling(bool isFalling);
-	void SetCanColide(bool canColide);
-	void SetRad(float rad);
-	void AddCollidedBall(Ball* ball);
-	void StartConcectionFall();
-	void Draw() override;
-	void Movement() override;
+	public:
+		Ball(Vector2 pos, Vector2 trajectory, EntityType type, float speed, float points, float rad, Color ballColor, BallColors color, Texture2D ballTexture);
+		~Ball();
 
-	float GetRad();
-	float GetPosX();
-	float GetPosY();
+		void SetDirection(Directions newDirection);
+		void SetTrajectoy(Vector2 trajectory);
+		void SetPos(Vector2 pos);
+		void SetIsFalling(bool isFalling);
+		void SetCanColide(bool canColide);
+		void SetRad(float rad);
+		void AddCollidedBall(Ball* ball);
+		void StartConcectionFall();
+		void Draw() override;
+		void Movement() override;
 
-	int GetColidedBallsSize();
+		float GetRad();
+		float GetPosX();
+		float GetPosY();
 
-	bool GetIsFalling();
-	bool GetCanColide();
+		int GetColidedBallsSize();
 
-	BallColors GetColor();
+		bool GetIsFalling();
+		bool GetCanColide();
 
-	Color GetBallColor();
+		BallColors GetColor();
 
-	EntityType GetBallType();
+		Color GetBallColor();
 
-	std::vector<Ball*> GetCollidedBalls();
+		EntityType GetBallType();
 
-	Vector2 GetTrajectory();
-	Vector2 GetPos();
+		std::vector<Ball*> GetCollidedBalls();
 
-	Directions GetDirection();
-};
+		Vector2 GetTrajectory();
+		Vector2 GetPos();
 
+		Directions GetDirection();
+	};
+}

@@ -5,36 +5,40 @@
 #include "Player/player.h"
 #include "Ball/ball.h"
 
-class Hud
+namespace WFB
 {
-private:
-	Player* player;
-	std::vector<Ball*> gameBalls;
 
-	Rectangle leftWall;
-	Rectangle rightWall;
-	Rectangle topWall;
-	Rectangle finishLine;
-	Rectangle pauseMenu;
+	class Hud
+	{
+	private:
+		Player* player;
+		std::vector<Ball*> gameBalls;
 
-	bool drawPause;
-	bool drawVictory;
-	bool drawDefeat;
+		Rectangle leftWall;
+		Rectangle rightWall;
+		Rectangle topWall;
+		Rectangle finishLine;
+		Rectangle pauseMenu;
 
-public:
-	Hud(Player* player, std::vector<Ball*> gameBalls);
-	~Hud();
+		bool drawPause;
+		bool drawVictory;
+		bool drawDefeat;
 
-	void Draw();
-	void PlayerWin();
-	void PlayerLose(bool ballsStopMoving);
-	void UpdateGameBalls(std::vector<Ball*> gameBalls);
-	void SetDrawPause(bool drawPause);
+	public:
+		Hud(Player* player, std::vector<Ball*> gameBalls);
+		~Hud();
 
-	Rectangle GetLeftWall();
-	Rectangle GetRightWall();
-	Rectangle GetTopWall();
-	Rectangle GetFinishLine();
+		void Draw();
+		void PlayerWin();
+		void PlayerLose(bool ballsStopMoving);
+		void UpdateGameBalls(std::vector<Ball*> gameBalls);
+		void SetDrawPause(bool drawPause);
 
-	bool GetDrawPause();
-};
+		Rectangle GetLeftWall();
+		Rectangle GetRightWall();
+		Rectangle GetTopWall();
+		Rectangle GetFinishLine();
+
+		bool GetDrawPause();
+	};
+}

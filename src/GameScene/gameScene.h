@@ -5,40 +5,44 @@
 #include "GlobalUtilities/globalUtilities.h"
 #include "Button/button.h"
 
-class GameScene
+namespace WFB
 {
-protected:
-	std::vector<Button*> sceneButtons;
 
-	SceneType selectionScene;
+	class GameScene
+	{
+	protected:
+		std::vector<Button*> sceneButtons;
 
-	Texture2D sceneBackground;
-	Texture2D sceneBackground2;
-	Texture2D cursorTexture;
+		SceneType selectionScene;
 
-	Music sceneMusic;
+		Texture2D sceneBackground;
+		Texture2D sceneBackground2;
+		Texture2D cursorTexture;
 
-	Font sceneFont;
-	Font sceneTextFont;
+		Music sceneMusic;
 
-	Vector2 sceneBackgroundPos;
+		Font sceneFont;
+		Font sceneTextFont;
 
-	Color sceneBackgroundTint;
+		Vector2 sceneBackgroundPos;
 
-	float volume;
+		Color sceneBackgroundTint;
 
-	float sceneBackgroundRotation;
-	float sceneBackgroundScale;
+		float volume;
 
-public:
-	GameScene();
-	virtual ~GameScene();
-	virtual void Draw() = 0;
-	virtual void Update() = 0;
-	virtual void Input() = 0;
-	virtual void ResetScene() = 0;
-	virtual void AddButton(Button* newButton) = 0;
-	virtual void SetVolumeMusic(float newVolume) = 0;
-	virtual float GetVolumeMusic() = 0;
-	virtual SceneType ExecuteScene(float& volume) = 0;
-};
+		float sceneBackgroundRotation;
+		float sceneBackgroundScale;
+
+	public:
+		GameScene();
+		virtual ~GameScene();
+		virtual void Draw() = 0;
+		virtual void Update() = 0;
+		virtual void Input() = 0;
+		virtual void ResetScene() = 0;
+		virtual void AddButton(Button* newButton) = 0;
+		virtual void SetVolumeMusic(float newVolume) = 0;
+		virtual float GetVolumeMusic() = 0;
+		virtual SceneType ExecuteScene(float& volume) = 0;
+	};
+}

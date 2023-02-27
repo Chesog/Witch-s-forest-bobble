@@ -1,4 +1,5 @@
 #include "Game/game.h"
+using namespace WFB;
 
 int main() 
 {

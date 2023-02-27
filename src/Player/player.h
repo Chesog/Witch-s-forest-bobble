@@ -4,46 +4,50 @@
 #include "Entity/entity.h"
 #include "Ball/ball.h"
 
-class Player : public Entity
+namespace WFB
 {
-private:
-	Rectangle rec;
-	Ball* actualBall;
-	float rotation;
 
-	int lives;
+	class Player : public Entity
+	{
+	private:
+		Rectangle rec;
+		Ball* actualBall;
+		float rotation;
 
-	bool canShoot;
+		int lives;
 
-	Vector2 normalizedDirection;
-public:
-	Player(Vector2 pos, EntityType type, float speed, float points, float width, float height, int lives);
-	~Player();
+		bool canShoot;
 
-	void Draw() override;
-	void Movement() override;
-	void SetRotation(float newRotation);
-	void SetDirection(Vector2 newDirection);
-	void SetCanShoot(bool canShoot);
-	void SetSpeed(float newSpeed);
-	void SetActualBall(Ball* ball);
-	void SetActualBallTrajectory(Vector2 trajectory);
-	void SetActualBallRad(float rad);
-	void SetActualBallPos(Vector2 pos);
+		Vector2 normalizedDirection;
+	public:
+		Player(Vector2 pos, EntityType type, float speed, float points, float width, float height, int lives);
+		~Player();
 
-	float GetRotation();
-	float GetXPosition();
-	float GetYPosition();
-	float GetSpeed();
-	float GetWidth();
-	float GetHeight();
+		void Draw() override;
+		void Movement() override;
+		void SetRotation(float newRotation);
+		void SetDirection(Vector2 newDirection);
+		void SetCanShoot(bool canShoot);
+		void SetSpeed(float newSpeed);
+		void SetActualBall(Ball* ball);
+		void SetActualBallTrajectory(Vector2 trajectory);
+		void SetActualBallRad(float rad);
+		void SetActualBallPos(Vector2 pos);
 
-	bool GetCanShoot();
+		float GetRotation();
+		float GetXPosition();
+		float GetYPosition();
+		float GetSpeed();
+		float GetWidth();
+		float GetHeight();
 
-	Vector2 GetDirection();
-	Vector2 GetPosition();
+		bool GetCanShoot();
 
-	Ball* GetActualBall();
+		Vector2 GetDirection();
+		Vector2 GetPosition();
 
-	Rectangle GetPlayerRect();
-};
+		Ball* GetActualBall();
+
+		Rectangle GetPlayerRect();
+	};
+}

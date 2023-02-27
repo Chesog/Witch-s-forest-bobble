@@ -7,31 +7,34 @@
 #include "RulesScene/rules.h"
 #include "Options/options.h"
 
-
-class Game
+namespace WFB
 {
-private:
-	MainMenu* mainMenuScene;
-	Gameplay* gameplayScene;
-	Credits* creditsScene;
-	Rules* rulesScene;
-	Options* optionsScene;
 
-	SceneType currentScene;
-	SceneType lastSelectedScene;
+	class Game
+	{
+	private:
+		MainMenu* mainMenuScene;
+		Gameplay* gameplayScene;
+		Credits* creditsScene;
+		Rules* rulesScene;
+		Options* optionsScene;
 
-	bool resetScene;
+		SceneType currentScene;
+		SceneType lastSelectedScene;
 
-	float masterVolume;
+		bool resetScene;
 
-	int screenWidht;
-	int screenHeight;
-public:
-	Game();
-	~Game();
+		float masterVolume;
 
-	void ExecuteGame();
+		int screenWidht;
+		int screenHeight;
+	public:
+		Game();
+		~Game();
 
-	bool ShouldResetScene();
-	bool ScreenResized(int& screenWidth, int& screenHeight);
-};
+		void ExecuteGame();
+
+		bool ShouldResetScene();
+		bool ScreenResized(int& screenWidth, int& screenHeight);
+	};
+}
