@@ -18,12 +18,17 @@ Dario Otranto Alias: Cheso [Git](https://github.com/Chesog)
 ## Art Team :
 
 Tomas Porte Petit 
+ 
 Jules Leech
+ 
 Martina Bonfiglio [ Intagram](https://www.instagram.com/apitibon/?next=/)
+ 
 Pauli [Intagram](https://www.instagram.com/_scitty__/?next=/)
 
 ## Music Team :
 
 Enzo Coletta Alias: BiscupidTea [Git](https://github.com/BiscupidTea)
+ 
 Canine Lotus [Youtube](https://www.youtube.com/channel/UCOUky79zg0Lc0HweQCkd59Q)
+ 
 Game : [Iotchio](https://chesolib.itch.io/
